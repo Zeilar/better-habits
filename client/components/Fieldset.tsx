@@ -13,7 +13,8 @@ export default function Fieldset({ label, ...props }: Props) {
             as="fieldset"
             rounded="md"
             pl="1rem"
-            pb="0.5rem"
+            pt="0.25rem"
+            pb="0.75rem"
             textTransform="capitalize"
             borderColor={props.isInvalid ? "danger" : "border.default"}
             _focusWithin={{ borderColor: "primary.400" }}
