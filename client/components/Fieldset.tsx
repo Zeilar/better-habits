@@ -1,4 +1,4 @@
-import { Box, Input } from "@chakra-ui/react";
+import { Box, forwardRef, Input } from "@chakra-ui/react";
 
 interface Props {
     label: string;
@@ -7,20 +7,20 @@ interface Props {
     isInvalid?: boolean;
 }
 
-export default function Fieldset({ label, ...props }: Props) {
+export default forwardRef<Props, "div">(({ label, ...props }, ref) => {
     return (
         <Box
             as="fieldset"
             rounded="md"
             pl="1rem"
-            pt="0.25rem"
-            pb="0.75rem"
+            pb="0.5rem"
             textTransform="capitalize"
             borderColor={props.isInvalid ? "danger" : "border.default"}
             _focusWithin={{ borderColor: "primary.400" }}
         >
             <Box as="legend">{label}</Box>
             <Input
+                ref={ref}
                 rounded="none"
                 w="100%"
                 pl={0}
@@ -30,4 +30,4 @@ export default function Fieldset({ label, ...props }: Props) {
             />
         </Box>
     );
-}
+});

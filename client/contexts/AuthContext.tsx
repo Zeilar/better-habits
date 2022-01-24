@@ -2,7 +2,6 @@ import { AbsoluteCenter, useToast } from "@chakra-ui/react";
 import { createContext, useEffect, useState } from "react";
 import { User } from "../@types/user";
 import { apiService } from "../services";
-import GuestPage from "../components/GuestPage";
 import BrandSpinner from "../components/BrandSpinner";
 
 interface IAuthContext {
@@ -43,6 +42,7 @@ export function AuthContextProvider({ children }: AuthProps) {
     }
 
     async function login(payload: LoginOrRegisterPayload) {
+        console.log("called login");
         const response = await apiService.request<User>("/auth/login", {
             method: "POST",
             data: { ...payload },
