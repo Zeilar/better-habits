@@ -80,7 +80,7 @@ export default function LoginForm() {
                 <Text my="1rem">
                     {`Need an account? `}
                     <NextLink href="/register" passHref>
-                        <Link>Create one here</Link>
+                        <Link>Create one</Link>
                     </NextLink>
                 </Text>
                 <Button

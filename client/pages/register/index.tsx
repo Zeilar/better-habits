@@ -41,7 +41,7 @@ export default function LoginForm() {
                 bgColor="primary.400"
                 color="black"
             >
-                Register
+                Sign up
             </Text>
             <Flex
                 m="1rem"
