@@ -2,7 +2,7 @@ import { StyleConfig } from "@chakra-ui/theme-tools";
 
 export const Link: StyleConfig = {
     baseStyle: {
-        color: "blue.400",
+        color: "primary.400",
         _focus: {
             boxShadow: "none",
         },

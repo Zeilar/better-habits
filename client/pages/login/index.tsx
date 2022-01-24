@@ -31,9 +31,6 @@ export default function LoginForm() {
                 Login
             </Text>
             <Flex px="1.5rem" py="1rem" flexDir="column">
-                <NextLink href="/register" passHref>
-                    <Link mb="0.5rem">I don&apos;t have an account</Link>
-                </NextLink>
                 <FormControl isInvalid={Boolean(errors.email)} mb="1.5rem">
                     <Fieldset
                         isInvalid={Boolean(errors.email)}
@@ -48,7 +45,7 @@ export default function LoginForm() {
                         <FormError message={errors.email.message} />
                     )}
                 </FormControl>
-                <FormControl isInvalid={Boolean(errors.password)} mb="1.5rem">
+                <FormControl isInvalid={Boolean(errors.password)}>
                     <Fieldset
                         isInvalid={Boolean(errors.password)}
                         label="Password"
@@ -62,7 +59,18 @@ export default function LoginForm() {
                         <FormError message={errors.password.message} />
                     )}
                 </FormControl>
-                <Button isLoading={isSubmitting} type="submit" w="100%">
+                <Text my="1rem">
+                    {`Need an account? `}
+                    <NextLink href="/register" passHref>
+                        <Link>Create one here</Link>
+                    </NextLink>
+                </Text>
+                <Button
+                    isLoading={isSubmitting}
+                    type="submit"
+                    w="100%"
+                    rounded="md"
+                >
                     Login
                 </Button>
             </Flex>
