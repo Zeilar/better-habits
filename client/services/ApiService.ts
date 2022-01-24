@@ -2,10 +2,14 @@ import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 
 axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-interface ErrorResponse {
+export interface ErrorResponse {
     error: string;
     message: string;
     statusCode: number;
+}
+
+export interface Response<T> extends AxiosResponse<T> {
+    ok: boolean;
 }
 
 export class ApiService {

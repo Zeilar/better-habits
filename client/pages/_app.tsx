@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <CSSReset />
             <DependencyContextProvider>
                 <AuthContextProvider>
-                    <Box maxW="65rem" h="100%">
+                    <Box maxW="50rem" h="100%" mx="auto">
                         <Component {...pageProps} />
                     </Box>
                 </AuthContextProvider>

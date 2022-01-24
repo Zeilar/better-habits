@@ -2,13 +2,18 @@ import { AbsoluteCenter, useToast } from "@chakra-ui/react";
 import { createContext, useEffect, useState } from "react";
 import { User } from "../@types/user";
 import { apiService } from "../services";
+import { Response, ErrorResponse } from "../services/ApiService";
 import BrandSpinner from "../components/BrandSpinner";
 
 interface IAuthContext {
     user: User | null;
     setUser: React.Dispatch<User>;
-    login(payload: LoginOrRegisterPayload): Promise<void>;
-    register(payload: LoginOrRegisterPayload): Promise<void>;
+    login(
+        payload: LoginOrRegisterPayload
+    ): Promise<Response<ErrorResponse> | Response<User>>;
+    register(
+        payload: LoginOrRegisterPayload
+    ): Promise<Response<ErrorResponse> | Response<User>>;
     logout(): Promise<void>;
     authenticated: boolean;
 }
@@ -42,7 +47,6 @@ export function AuthContextProvider({ children }: AuthProps) {
     }
 
     async function login(payload: LoginOrRegisterPayload) {
-        console.log("called login");
         const response = await apiService.request<User>("/auth/login", {
             method: "POST",
             data: { ...payload },
@@ -55,6 +59,7 @@ export function AuthContextProvider({ children }: AuthProps) {
             });
             setUser(response.data);
         }
+        return response;
     }
 
     async function register(payload: LoginOrRegisterPayload) {
@@ -70,6 +75,7 @@ export function AuthContextProvider({ children }: AuthProps) {
             });
             setUser(response.data);
         }
+        return response;
     }
 
     async function logout() {

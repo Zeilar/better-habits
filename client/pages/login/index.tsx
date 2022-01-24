@@ -19,6 +19,10 @@ export default function LoginForm() {
         getValues,
     } = useForm<Fields>();
 
+    async function submit(fields: Fields) {
+        // const {} = await auth.login(fields,)
+    }
+
     return (
         <Box pt={0} as="form" onSubmit={handleSubmit(auth.login)}>
             <Text
