@@ -8,7 +8,6 @@ interface Props {
 }
 
 export default function Fieldset({ label, ...props }: Props) {
-    console.log(props.isInvalid);
     return (
         <Box
             as="fieldset"
