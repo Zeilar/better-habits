@@ -2,7 +2,7 @@ import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useAuth } from "../hooks";
 
-export default function withAuth(WrappedComponent: React.FC) {
+export default function withGuest(WrappedComponent: React.FC) {
     return function Component(props: any) {
         const { authenticated } = useAuth();
         const router = useRouter();
@@ -12,14 +12,14 @@ export default function withAuth(WrappedComponent: React.FC) {
             return null;
         }
 
-        if (!authenticated) {
+        if (authenticated) {
             toast({
                 position: "top",
                 status: "info",
-                title: "Please log in first",
+                title: "You are already logged in",
                 isClosable: true,
             });
-            router.replace("/guest");
+            router.replace("/");
             return null;
         }
 

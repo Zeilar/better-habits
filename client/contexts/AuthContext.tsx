@@ -56,6 +56,7 @@ export function AuthContextProvider({ children }: AuthProps) {
                 title: "Logged in",
                 status: "success",
                 position: "top",
+                isClosable: true,
             });
             setUser(response.data);
         }
@@ -72,6 +73,7 @@ export function AuthContextProvider({ children }: AuthProps) {
                 title: "Created your account!",
                 status: "success",
                 position: "top",
+                isClosable: true,
             });
             setUser(response.data);
         }
@@ -85,6 +87,7 @@ export function AuthContextProvider({ children }: AuthProps) {
                 title: "Logged out",
                 status: "success",
                 position: "top",
+                isClosable: true,
             });
             setUser(null);
         }

@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
 import NextLink from "next/link";
+import withGuest from "../../hoc/withGuest";
 
 interface Fields {
     email: string;
@@ -19,7 +20,7 @@ interface Fields {
     passwordConfirm: string;
 }
 
-export default function LoginForm() {
+function Register() {
     const auth = useAuth();
     const {
         handleSubmit,
@@ -121,9 +122,11 @@ export default function LoginForm() {
                     w="100%"
                     rounded="md"
                 >
-                    Login
+                    Register
                 </Button>
             </Flex>
         </Box>
     );
 }
+
+export default withGuest(Register);

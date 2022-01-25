@@ -12,13 +12,14 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
 import NextLink from "next/link";
+import withGuest from "../../hoc/withGuest";
 
 interface Fields {
     email: string;
     password: string;
 }
 
-export default function LoginForm() {
+function Login() {
     const auth = useAuth();
     const {
         handleSubmit,
@@ -95,3 +96,5 @@ export default function LoginForm() {
         </Box>
     );
 }
+
+export default withGuest(Login);

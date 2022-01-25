@@ -1,7 +1,18 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
+import withGuest from "../../hoc/withGuest";
+import { useAuth } from "../../hooks";
 
-export default function Guest() {
+function Guest() {
+    const { authenticated } = useAuth();
+    const router = useRouter();
+
+    if (authenticated) {
+        router.replace("/");
+        return null;
+    }
+
     return (
         <Flex
             flexDir="column"
@@ -28,3 +39,5 @@ export default function Guest() {
         </Flex>
     );
 }
+
+export default withGuest(Guest);
