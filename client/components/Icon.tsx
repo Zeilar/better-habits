@@ -1,20 +1,22 @@
 import { IconProps, Icon as ChakraIcon } from "@chakra-ui/react";
 import * as MdiIcons from "@mdi/js";
-import MdiIcon from "@mdi/react";
+import _Icon from "@mdi/react";
+
+export type MdiIcon = keyof typeof MdiIcons;
 
 interface Props extends IconProps {
-    icon?: keyof typeof MdiIcons;
+    icon?: MdiIcon;
 }
 
 export default function Icon({ icon, ...props }: Props) {
-    return (
+    return icon ? (
         <ChakraIcon
-            as={MdiIcon}
+            as={_Icon}
             path={MdiIcons[icon]}
             minW="1rem"
             minH="1rem"
             verticalAlign="middle"
             {...props}
         />
-    );
+    ) : null;
 }
