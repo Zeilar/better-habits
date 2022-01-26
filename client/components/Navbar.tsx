@@ -7,11 +7,16 @@ import { useRouter } from "next/router";
 interface NavitemProps {
     label: string;
     icon: MdiIcon;
-    active: boolean;
     href: string;
 }
 
-function Navitem({ label, icon, active, href }: NavitemProps) {
+function Navitem({ label, icon, href }: NavitemProps) {
+    const router = useRouter();
+
+    console.log(router.route);
+
+    const active = router.route === href;
+
     return (
         <NextLink href={href} passHref>
             <Link
@@ -20,7 +25,7 @@ function Navitem({ label, icon, active, href }: NavitemProps) {
                 flexDir="column"
                 alignItems="center"
                 color={active ? "primary.400" : "text.default"}
-                py="0.5rem"
+                py="0.75rem"
                 px="1rem"
                 pos="relative"
                 _hover={{ color: "primary.400" }}
@@ -44,23 +49,19 @@ function Navitem({ label, icon, active, href }: NavitemProps) {
 
 export default function Navbar() {
     const { logout } = useAuth();
-    const router = useRouter();
 
     return (
         <Flex
+            boxShadow="lg"
             as="nav"
             mt="auto"
             gridTemplateColumns="repeat(1, 1fr)"
             bgColor="gray.700"
             w="100%"
         >
-            <Navitem href="/" label="Home" icon="mdiHome" active={true} />
-            <Navitem
-                href="/programs"
-                label="Programs"
-                icon="mdiDumbbell"
-                active={false}
-            />
+            <Navitem href="/" label="Home" icon="mdiHome" />
+            <Navitem href="/programs" label="Programs" icon="mdiDumbbell" />
+            <Navitem href="/settings" label="Settings" icon="mdiCog" />
         </Flex>
     );
 }
