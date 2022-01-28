@@ -1,16 +1,18 @@
-import { Flex } from "@chakra-ui/react";
 import withAuth from "../hoc/withAuth";
 import Head from "next/head";
 import Navbar from "../components/Navbar";
+import PageWrapper from "../components/PageWrapper";
+import MetaBox from "../components/MetaBox";
 
 function Home() {
     return (
-        <Flex flexDir="column" alignItems="center" minH="100vh">
+        <PageWrapper>
             <Head>
                 <title>Better Habits</title>
             </Head>
+            <MetaBox>Hello</MetaBox>
             <Navbar />
-        </Flex>
+        </PageWrapper>
     );
 }
 

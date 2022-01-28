@@ -31,6 +31,6 @@ export const colors = {
         muted: "#828c96",
     },
     border: {
-        default: "#828c96",
+        default: "var(--chakra-colors-gray-400)",
     },
 };

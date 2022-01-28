@@ -12,8 +12,8 @@ export default forwardRef<Props, "div">(({ label, ...props }, ref) => {
         <Box
             as="fieldset"
             rounded="md"
-            pl="1rem"
-            pb="0.5rem"
+            pl={4}
+            pb={2}
             textTransform="capitalize"
             borderColor={props.isInvalid ? "danger" : "border.default"}
             _focusWithin={{ borderColor: "primary.400" }}
@@ -24,7 +24,7 @@ export default forwardRef<Props, "div">(({ label, ...props }, ref) => {
                 rounded="none"
                 w="100%"
                 pl={0}
-                pr="1rem"
+                pr={4}
                 variant="unstyled"
                 {...props}
             />

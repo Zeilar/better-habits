@@ -35,21 +35,16 @@ function Login() {
         <Box pt={0} as="form" onSubmit={handleSubmit(auth.login)}>
             <Text
                 textStyle="h1"
-                py="0.5rem"
-                px="2rem"
+                py={2}
+                px={8}
                 bgColor="primary.400"
                 color="black"
+                as="h1"
             >
                 Login
             </Text>
-            <Flex
-                m="1rem"
-                p="1rem"
-                flexDir="column"
-                bgColor="gray.600"
-                rounded="md"
-            >
-                <FormControl isInvalid={Boolean(errors.email)} mb="1.5rem">
+            <Flex m={4} p={4} flexDir="column" bgColor="gray.600" rounded="md">
+                <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
                         id="email"
@@ -78,7 +73,7 @@ function Login() {
                         <FormError message={errors.password.message} />
                     )}
                 </FormControl>
-                <Text my="1rem">
+                <Text my={4}>
                     {`Need an account? `}
                     <NextLink href="/register" passHref>
                         <Link>Create one</Link>

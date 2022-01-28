@@ -7,10 +7,3 @@ export interface ProgramSchema {
     createdAt: ISOString;
     updatedAt: ISOString;
 }
-
-export interface Exercise {
-    name: string;
-    sets?: number;
-    duration?: number;
-    date: ISOString;
-}

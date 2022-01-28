@@ -13,8 +13,8 @@ export default function Icon({ icon, ...props }: Props) {
         <ChakraIcon
             as={_Icon}
             path={MdiIcons[icon]}
-            minW="1rem"
-            minH="1rem"
+            minW={4}
+            minH={4}
             verticalAlign="middle"
             {...props}
         />

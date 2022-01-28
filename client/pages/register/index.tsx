@@ -37,21 +37,15 @@ function Register() {
         <Box pt={0} as="form" onSubmit={handleSubmit(auth.register)}>
             <Text
                 textStyle="h1"
-                py="0.5rem"
-                px="2rem"
+                py={2}
+                px={8}
                 bgColor="primary.400"
                 color="black"
             >
                 Sign up
             </Text>
-            <Flex
-                m="1rem"
-                p="1rem"
-                flexDir="column"
-                bgColor="gray.600"
-                rounded="md"
-            >
-                <FormControl isInvalid={Boolean(errors.email)} mb="1.5rem">
+            <Flex m={4} p={4} flexDir="column" bgColor="gray.600" rounded="md">
+                <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
                         id="email"
@@ -65,7 +59,7 @@ function Register() {
                         <FormError message={errors.email.message} />
                     )}
                 </FormControl>
-                <FormControl isInvalid={Boolean(errors.password)} mb="1.5rem">
+                <FormControl isInvalid={Boolean(errors.password)} mb={6}>
                     <FormLabel htmlFor="password">Password</FormLabel>
                     <Input
                         id="password"
@@ -110,7 +104,7 @@ function Register() {
                         <FormError message={errors.passwordConfirm.message} />
                     )}
                 </FormControl>
-                <Text my="1rem">
+                <Text my={4}>
                     {`Already have an account? `}
                     <NextLink href="/login" passHref>
                         <Link>Login</Link>

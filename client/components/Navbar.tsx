@@ -13,20 +13,19 @@ interface NavitemProps {
 function Navitem({ label, icon, href }: NavitemProps) {
     const router = useRouter();
 
-    console.log(router.route);
-
     const active = router.route === href;
 
     return (
         <NextLink href={href} passHref>
             <Link
+                fontSize={3}
                 as={Flex}
                 w="100%"
                 flexDir="column"
                 alignItems="center"
                 color={active ? "primary.400" : "text.default"}
-                py="0.75rem"
-                px="1rem"
+                py={3}
+                px={4}
                 pos="relative"
                 _hover={{ color: "primary.400" }}
                 _after={{
@@ -40,7 +39,7 @@ function Navitem({ label, icon, href }: NavitemProps) {
                     bgColor: "primary.400",
                 }}
             >
-                <Icon icon={icon} w="1.5rem" h="1.5rem" mb="0.25rem" />
+                <Icon icon={icon} w={6} h={6} mb={1} />
                 <Text fontWeight={600}>{label}</Text>
             </Link>
         </NextLink>
@@ -52,15 +51,15 @@ export default function Navbar() {
 
     return (
         <Flex
-            boxShadow="lg"
+            boxShadow="elevate.top"
             as="nav"
             mt="auto"
-            gridTemplateColumns="repeat(1, 1fr)"
-            bgColor="gray.700"
+            bgColor="gray.600"
             w="100%"
         >
             <Navitem href="/" label="Home" icon="mdiHome" />
             <Navitem href="/programs" label="Programs" icon="mdiDumbbell" />
+            <Navitem href="/schedule" label="Schedule" icon="mdiCalendar" />
             <Navitem href="/settings" label="Settings" icon="mdiCog" />
         </Flex>
     );

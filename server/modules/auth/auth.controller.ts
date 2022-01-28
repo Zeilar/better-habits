@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    Get,
+    HttpCode,
+    Post,
+    Req,
+    UseGuards,
+} from "@nestjs/common";
 import { Request } from "express";
 import { AuthenticatedGuard } from "../../common/guards/authenticated.guard";
 import { LoginGuard } from "../../common/guards/login.guard";
@@ -16,6 +24,7 @@ export class AuthController {
 
     @UseGuards(LoginGuard)
     @Post("/login")
+    @HttpCode(200)
     public login(@Req() req: Request) {
         return req.user;
     }

@@ -5,6 +5,7 @@ import { DateHelper } from "../../common/helpers/Date.helper";
 import { AuthModule } from "../auth/auth.module";
 import { FirebaseModule } from "../firebase/firebase.module";
 import { HashModule } from "../hash/hash.module";
+import { ProgramModule } from "../program/program.module";
 import { StorageModule } from "../storage/storage.module";
 import { UserModule } from "../user/user.module";
 import { ViewModule } from "../view/view.module";
@@ -17,6 +18,7 @@ import { AppService } from "./app.service";
         FirebaseModule,
         UserModule,
         AuthModule,
+        ProgramModule,
         TypeOrmModule.forRootAsync({
             useFactory: async () =>
                 Object.assign(await getConnectionOptions(), {

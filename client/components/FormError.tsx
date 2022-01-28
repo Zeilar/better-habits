@@ -12,7 +12,7 @@ interface Props extends FormErrorMessageProps {
 export default function FormError({ message, ...props }: Props) {
     return (
         <FormErrorMessage {...props}>
-            <Icon icon="mdiAlertCircle" mr="0.25rem" w="1.25rem" h="1.25rem" />
+            <Icon icon="mdiAlertCircle" mr={1} w={5} h={5} />
             <Text>{message}</Text>
         </FormErrorMessage>
     );
