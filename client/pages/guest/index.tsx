@@ -14,10 +14,6 @@ function Guest() {
         return null;
     }
 
-    const theme = useTheme();
-
-    console.log(theme);
-
     return (
         <Flex
             flexDir="column"
