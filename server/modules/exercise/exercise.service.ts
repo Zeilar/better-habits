@@ -10,9 +10,6 @@ export class ExerciseService {
         @InjectRepository(Exercise)
         private readonly exerciseRepository: Repository<Exercise>
     ) {}
-
-    // public create(exercise: CreateExerciseDto): void;
-    // public create(exercise: CreateExerciseDto[]): void;
     public create(exercise: CreateExerciseDto | CreateExerciseDto[]) {
         this.exerciseRepository.insert(exercise);
     }

@@ -1,4 +1,4 @@
-import { Button, Flex, Link, Text } from "@chakra-ui/react";
+import { Flex, Link, Text } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { useAuth } from "../hooks";
 import Icon, { MdiIcon } from "./Icon";
@@ -12,7 +12,6 @@ interface NavitemProps {
 
 function Navitem({ label, icon, href }: NavitemProps) {
     const router = useRouter();
-
     const active = router.route === href;
 
     return (
