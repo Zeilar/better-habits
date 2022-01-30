@@ -22,7 +22,7 @@ export class UserService {
 
     public async all() {
         const users = await this.userRepository.find();
-        return users.map((user) => {
+        return users.map(user => {
             const { password, ...rest } = user;
             return rest;
         });
@@ -32,15 +32,8 @@ export class UserService {
         return this.userRepository.findOne({ [column]: value });
     }
 
-    public async findById(id?: FindOneId, safe?: boolean) {
-        const user = await this.userRepository.findOne(id);
-        if (!user) {
-            if (safe) {
-                return null;
-            }
-            throw new NotFoundException();
-        }
-        return user;
+    public findById(id?: FindOneId) {
+        return this.userRepository.findOne(id);
     }
 
     public async exists(idOrcolumn: FindOneId): Promise<boolean>;

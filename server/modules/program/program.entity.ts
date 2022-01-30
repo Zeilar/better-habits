@@ -15,11 +15,14 @@ export class Program implements ProgramSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @ManyToOne(() => User, user => user.programs)
+    @ManyToOne(() => User, user => user.programs, { nullable: false })
     public user: User;
 
     @OneToMany(() => Exercise, exercise => exercise.program, { cascade: true })
     public exercises: Exercise[];
+
+    @Column()
+    public userId: number;
 
     @Column()
     public name: string;

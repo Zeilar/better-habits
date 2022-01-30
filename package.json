@@ -5,6 +5,7 @@
     "author": "Philip Angelin",
     "license": "MIT",
     "scripts": {
+        "migrate": "typeorm migration:run",
         "lint": "next lint",
         "prebuild": "rimraf dist",
         "next": "cd client && next",

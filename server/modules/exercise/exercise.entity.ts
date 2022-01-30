@@ -8,18 +8,18 @@ export class Exercise implements ExerciseSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @ManyToOne(() => Program, program => program.exercises)
+    @ManyToOne(() => Program, program => program.exercises, { nullable: false })
     public program: Program;
 
     @Column()
     public name: string;
 
     @Column()
+    public programId: number;
+
+    @Column()
     public sets?: number;
 
     @Column()
     public duration?: number;
-
-    @Column({ type: "timestamp" })
-    public date: ISOString;
 }

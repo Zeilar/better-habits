@@ -43,7 +43,7 @@ async function bootstrap() {
     });
     app.use("/storage", express.static(join(__dirname, "storage/public")));
 
-    await app.listen(configService.get("PORT", { infer: true }));
+    app.listen(configService.get("PORT", { infer: true }));
 }
 
 bootstrap();
