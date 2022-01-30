@@ -16,9 +16,12 @@ export class ProgramService {
     public constructor(
         @InjectRepository(Program)
         private readonly programRepository: Repository<Program>,
-        private readonly exerciseService: ExerciseService,
-        private readonly userService: UserService
+        private readonly exerciseService: ExerciseService
     ) {}
+
+    public all(userId: number) {
+        return this.programRepository.find({ userId });
+    }
 
     public create(createProgramDto: CreateProgramDto) {
         return this.programRepository.create(createProgramDto);

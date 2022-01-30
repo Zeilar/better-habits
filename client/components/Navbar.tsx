@@ -17,7 +17,7 @@ function Navitem({ label, icon, href }: NavitemProps) {
     return (
         <NextLink href={href} passHref>
             <Link
-                fontSize={3}
+                fontSize="0.75rem"
                 as={Flex}
                 w="100%"
                 flexDir="column"

@@ -40,4 +40,10 @@ export class ProgramController {
             req.user!.id
         );
     }
+
+    @Get("/")
+    @UseGuards(AuthenticatedGuard)
+    public all(@Req() req: Request) {
+        return this.programService.all(req.user!.id);
+    }
 }
