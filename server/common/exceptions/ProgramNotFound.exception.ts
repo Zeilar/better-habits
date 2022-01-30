@@ -2,18 +2,18 @@ import {
     ExceptionFilter,
     Catch,
     ArgumentsHost,
-    PayloadTooLargeException,
+    NotFoundException,
 } from "@nestjs/common";
 import { Response } from "express";
 
-@Catch(PayloadTooLargeException)
-export class VideoTooLargeException implements ExceptionFilter {
-    public catch(exception: PayloadTooLargeException, host: ArgumentsHost) {
+@Catch(NotFoundException)
+export class ProgramNotFoundException implements ExceptionFilter {
+    public catch(exception: NotFoundException, host: ArgumentsHost) {
         const res = host.switchToHttp().getResponse<Response>();
         const status = exception.getStatus();
         res.status(status).json({
             statusCode: status,
-            message: "Video too large.",
+            message: "Program not found.",
         });
     }
 }

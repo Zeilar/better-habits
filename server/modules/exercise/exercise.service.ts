@@ -10,7 +10,16 @@ export class ExerciseService {
         @InjectRepository(Exercise)
         private readonly exerciseRepository: Repository<Exercise>
     ) {}
-    public create(exercise: CreateExerciseDto | CreateExerciseDto[]) {
-        this.exerciseRepository.insert(exercise);
+
+    public create(exercises: CreateExerciseDto | CreateExerciseDto[]) {
+        return Array.isArray(exercises)
+            ? exercises.map(exercise =>
+                  this.exerciseRepository.create(exercise)
+              )
+            : [this.exerciseRepository.create(exercises)];
+    }
+
+    public store(exercises: CreateExerciseDto | CreateExerciseDto[]) {
+        this.exerciseRepository.insert(this.create(exercises));
     }
 }

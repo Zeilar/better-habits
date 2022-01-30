@@ -22,7 +22,4 @@ export class Exercise implements ExerciseSchema {
 
     @Column({ type: "timestamp" })
     public date: ISOString;
-
-    @Column({ type: "json" })
-    public exercises: Exercise[];
 }

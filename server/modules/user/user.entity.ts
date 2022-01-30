@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { ISOString } from "../../@types/date";
 import { UserSchema } from "../../@types/user";
 import { Program } from "../program/program.entity";
 
@@ -7,7 +8,7 @@ export class User implements UserSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @OneToMany(() => Program, (program) => program.user, { cascade: true })
+    @OneToMany(() => Program, program => program.user, { cascade: true })
     public programs: Program[];
 
     @Column({ unique: true, type: "varchar" })
@@ -17,8 +18,8 @@ export class User implements UserSchema {
     public password: string;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
-    public createdAt: string;
+    public createdAt: ISOString;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
-    public updatedAt: string;
+    public updatedAt: ISOString;
 }

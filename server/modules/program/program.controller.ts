@@ -1,6 +1,16 @@
-import { Body, Controller, Get, Post, UseGuards } from "@nestjs/common";
+import {
+    Body,
+    Controller,
+    Get,
+    Param,
+    Post,
+    UseFilters,
+    UseGuards,
+} from "@nestjs/common";
+import { ProgramNotFoundException } from "../../common/exceptions/ProgramNotFound.exception";
 import { AuthenticatedGuard } from "../../common/guards/authenticated.guard";
-import { CreateProgramDto } from "../../common/validators/createProgram.validator";
+import { CreateProgramWithExercisesDto } from "../../common/validators/createProgramWithExercises.validator";
+import { FindOneParams } from "../../common/validators/findOneParams.validator";
 import { ProgramService } from "../program/program.service";
 
 @Controller("/programs")
@@ -9,7 +19,16 @@ export class ProgramController {
 
     @Post("/")
     @UseGuards(AuthenticatedGuard)
-    public create(@Body() createProgramDto: CreateProgramDto) {
-        this.programService.create(createProgramDto);
+    public async create(
+        @Body() createProgramWithExercisesDto: CreateProgramWithExercisesDto
+    ) {
+        await this.programService.store(createProgramWithExercisesDto);
+    }
+
+    @Get("/:id")
+    @UseFilters(ProgramNotFoundException)
+    @UseGuards(AuthenticatedGuard)
+    public getProgramWithExercises(@Param() params: FindOneParams) {
+        return this.programService.getProgramWithExercises(params.id);
     }
 }

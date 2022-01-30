@@ -5,6 +5,7 @@ import {
     ManyToOne,
     OneToMany,
 } from "typeorm";
+import { ISOString } from "../../@types/date";
 import { ProgramSchema } from "../../@types/program";
 import { Exercise } from "../exercise/exercise.entity";
 import { User } from "../user/user.entity";
@@ -24,8 +25,8 @@ export class Program implements ProgramSchema {
     public name: string;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
-    public createdAt: string;
+    public createdAt: ISOString;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
-    public updatedAt: string;
+    public updatedAt: ISOString;
 }
