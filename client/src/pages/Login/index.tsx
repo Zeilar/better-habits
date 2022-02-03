@@ -75,9 +75,9 @@ function Login() {
                 </FormControl>
                 <Text my={4}>
                     {`Need an account? `}
-                    <ReactLink to="/register">
-                        <Link>Create one</Link>
-                    </ReactLink>
+                    <Link as={ReactLink} to="/register">
+                        Create one
+                    </Link>
                 </Text>
                 <Button
                     isLoading={isSubmitting}

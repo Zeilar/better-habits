@@ -106,9 +106,9 @@ function Register() {
                 </FormControl>
                 <Text my={4}>
                     {`Already have an account? `}
-                    <ReactLink to="/login">
-                        <Link>Login</Link>
-                    </ReactLink>
+                    <Link as={ReactLink} to="/login">
+                        Login
+                    </Link>
                 </Text>
                 <Button
                     isLoading={isSubmitting}
