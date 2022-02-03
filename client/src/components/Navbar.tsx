@@ -11,37 +11,37 @@ interface NavitemProps {
 
 function Navitem({ label, icon, href }: NavitemProps) {
     return (
-        <ReactLink to={href}>
-            <Link
-                fontSize="0.75rem"
-                as={Flex}
-                w="100%"
-                flexDir="column"
-                alignItems="center"
-                color={"text.default"}
-                py={3}
-                px={4}
-                pos="relative"
-                _hover={{ color: "primary.400" }}
-                _after={{
-                    display: "none",
-                    content: `""`,
-                    pos: "absolute",
-                    top: 0,
-                    left: 0,
-                    w: "100%",
-                    h: "2px",
-                    bgColor: "primary.400",
-                }}
-                _activeLink={{
-                    color: "primary.400",
-                    _after: { display: "block " },
-                }}
-            >
-                <Icon icon={icon} w={6} h={6} mb={1} />
-                <Text fontWeight={600}>{label}</Text>
-            </Link>
-        </ReactLink>
+        <Link
+            fontSize="0.75rem"
+            as={ReactLink}
+            w="100%"
+            display="flex"
+            flexDir="column"
+            alignItems="center"
+            color={"text.default"}
+            py={3}
+            px={4}
+            pos="relative"
+            to={href}
+            _hover={{ color: "primary.400" }}
+            _after={{
+                display: "none",
+                content: `""`,
+                pos: "absolute",
+                top: 0,
+                left: 0,
+                w: "100%",
+                h: "2px",
+                bgColor: "primary.400",
+            }}
+            _activeLink={{
+                color: "primary.400",
+                _after: { display: "block " },
+            }}
+        >
+            <Icon icon={icon} w={6} h={6} mb={1} />
+            <Text fontWeight={600}>{label}</Text>
+        </Link>
     );
 }
 

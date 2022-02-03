@@ -11,7 +11,6 @@ import {
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
-import withGuest from "../../hoc/withGuest";
 import { Link as ReactLink } from "react-router-dom";
 
 interface Fields {
@@ -20,7 +19,7 @@ interface Fields {
     passwordConfirm: string;
 }
 
-function Register() {
+export default function Register() {
     const auth = useAuth();
     const {
         handleSubmit,
@@ -44,7 +43,7 @@ function Register() {
             >
                 Sign up
             </Text>
-            <Flex m={4} p={4} flexDir="column" bgColor="gray.600" rounded="md">
+            <Flex m={4} p={4} flexDir="column">
                 <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
@@ -122,5 +121,3 @@ function Register() {
         </Box>
     );
 }
-
-export default withGuest(Register);

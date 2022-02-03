@@ -1,9 +1,8 @@
 import { Button, Flex, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import withGuest from "../../hoc/withGuest";
 import { useAuth } from "../../hooks";
 
-function Guest() {
+export default function Guest() {
     const { authenticated } = useAuth();
 
     if (authenticated) {
@@ -51,5 +50,3 @@ function Guest() {
         </Flex>
     );
 }
-
-export default withGuest(Guest);

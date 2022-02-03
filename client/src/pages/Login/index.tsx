@@ -12,14 +12,13 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
 import { Link as ReactLink } from "react-router-dom";
-import withGuest from "../../hoc/withGuest";
 
 interface Fields {
     email: string;
     password: string;
 }
 
-function Login() {
+export default function Login() {
     const auth = useAuth();
     const {
         handleSubmit,
@@ -43,7 +42,7 @@ function Login() {
             >
                 Login
             </Text>
-            <Flex m={4} p={4} flexDir="column" bgColor="gray.600" rounded="md">
+            <Flex m={4} p={4} flexDir="column">
                 <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
@@ -91,5 +90,3 @@ function Login() {
         </Box>
     );
 }
-
-export default withGuest(Login);
