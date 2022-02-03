@@ -1,5 +1,6 @@
 # compiled output
 dist
+dist_client
 /node_modules
 
 .next

@@ -1,19 +1,21 @@
 import { Injectable, OnModuleInit } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import next from "next";
-import { NextServer } from "next/dist/server/next";
+import { Request, Response } from "express";
+import { join } from "path";
 import { EnvConfig } from "../../@types/config";
 
 @Injectable()
 export class ViewService implements OnModuleInit {
-    private nextServer: NextServer;
+    public clientIndexPath: string;
 
     public constructor(
         private readonly configService: ConfigService<EnvConfig, true>
     ) {}
 
-    public getNextServer() {
-        return this.nextServer;
+    public getHandler() {
+        return (req: Request, res: Response) => {
+            res.sendFile(this.clientIndexPath);
+        };
     }
 
     public onModuleInit() {
@@ -21,8 +23,13 @@ export class ViewService implements OnModuleInit {
             const dev =
                 this.configService.get("NODE_ENV", { infer: true }) ===
                 "development";
-            this.nextServer = next({ dev, dir: "./client" });
-            this.nextServer.prepare();
+            this.clientIndexPath = join(
+                __dirname,
+                dev
+                    ? "../../../client/public/index.html"
+                    : "../../../dist_client/index.html"
+            );
+            console.log(this.clientIndexPath);
         } catch (error) {
             console.error(error);
         }

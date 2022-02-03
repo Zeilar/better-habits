@@ -6,8 +6,6 @@ import { AppModule } from "./modules/app/app.module";
 import session from "express-session";
 import { RequestMethod, ValidationPipe } from "@nestjs/common";
 import { DateHelper } from "./common/helpers/Date.helper";
-import express from "express";
-import { join } from "path";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
@@ -16,6 +14,9 @@ async function bootstrap() {
     const configService =
         app.get<ConfigService<EnvConfig, true>>(ConfigService);
     const dateHelper = app.get(DateHelper);
+
+    const dev =
+        configService.get("NODE_ENV", { infer: true }) === "development";
 
     app.use(
         session({
@@ -27,9 +28,7 @@ async function bootstrap() {
             cookie: {
                 maxAge: dateHelper.DAY_IN_MILLISECONDS * 7,
                 httpOnly: true,
-                secure:
-                    configService.get("NODE_ENV", { infer: true }) ===
-                    "production",
+                secure: !dev,
                 sameSite: "strict",
             },
         }),
@@ -41,7 +40,10 @@ async function bootstrap() {
     app.setGlobalPrefix("/api/v1", {
         exclude: [{ path: "*", method: RequestMethod.GET }],
     });
-    app.use("/storage", express.static(join(__dirname, "storage/public")));
+    app.enableCors({
+        origin: dev ? configService.get("CLIENT_URL", { infer: true }) : "/",
+        credentials: true,
+    });
 
     app.listen(configService.get("PORT", { infer: true }));
 }

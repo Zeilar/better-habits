@@ -8,8 +8,7 @@ export class ViewController {
 
     @Get("*")
     public serveClient(@Req() req: Request, @Res() res: Response) {
-        const nextServer = this.viewService.getNextServer();
-        const handler = nextServer.getRequestHandler();
+        const handler = this.viewService.getHandler();
         handler(req, res);
     }
 }

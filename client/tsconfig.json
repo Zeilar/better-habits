@@ -4,23 +4,18 @@
         "lib": ["dom", "dom.iterable", "esnext"],
         "allowJs": true,
         "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
-        "noEmit": true,
-        "esModuleInterop": true,
+        "noFallthroughCasesInSwitch": true,
         "module": "esnext",
         "moduleResolution": "node",
+        "useUnknownInCatchVariables": false,
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "jsx": "preserve",
-        "incremental": true,
-        "useUnknownInCatchVariables": false
+        "noEmit": true,
+        "jsx": "react-jsx"
     },
-    "include": [
-        "next-env.d.ts",
-        "next.config.js",
-        "pages/**/*.ts",
-        "pages/**/*.tsx"
-    ],
-    "exclude": ["node_modules"]
+    "include": ["src"]
 }

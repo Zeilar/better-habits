@@ -6,7 +6,6 @@ import { AuthModule } from "../auth/auth.module";
 import { FirebaseModule } from "../firebase/firebase.module";
 import { HashModule } from "../hash/hash.module";
 import { ProgramModule } from "../program/program.module";
-import { StorageModule } from "../storage/storage.module";
 import { UserModule } from "../user/user.module";
 import { ViewModule } from "../view/view.module";
 import { AppController } from "./app.controller";
@@ -25,7 +24,6 @@ import { AppService } from "./app.service";
                     autoLoadEntities: true,
                 }),
         }),
-        StorageModule,
         ViewModule,
     ],
     controllers: [AppController],
