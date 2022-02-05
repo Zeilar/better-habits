@@ -23,6 +23,7 @@ export default function Programs() {
                 {success &&
                     data.map(program => (
                         <Link
+                            transition="none"
                             display="flex"
                             justifyContent="space-between"
                             as={ReactLink}
@@ -31,7 +32,7 @@ export default function Programs() {
                             p={4}
                             rounded="md"
                             to={`/program/${program.id}`}
-                            _hover={{ bgColor: "primary.400", color: "black" }}
+                            _hover={{ bgColor: "gray.400" }}
                         >
                             <Text>{program.name}</Text>
                         </Link>

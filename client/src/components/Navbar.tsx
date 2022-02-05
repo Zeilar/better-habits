@@ -23,7 +23,7 @@ function Navitem({ label, icon, href }: NavitemProps) {
             px={4}
             pos="relative"
             to={href}
-            _hover={{ color: "primary.400" }}
+            _hover={{ bgColor: "gray.400" }}
             _after={{
                 display: "none",
                 content: `""`,
@@ -36,6 +36,7 @@ function Navitem({ label, icon, href }: NavitemProps) {
             }}
             _activeLink={{
                 color: "primary.400",
+                bgColor: "transparent",
                 _after: { display: "block " },
             }}
         >
