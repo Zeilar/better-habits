@@ -1,5 +1,4 @@
-import { IsDateString, IsNumber, IsOptional, IsString } from "class-validator";
-import { ISOString } from "../../@types/date";
+import { IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateExerciseDto {
     @IsString()
@@ -12,7 +11,4 @@ export class CreateExerciseDto {
     @IsNumber()
     @IsOptional()
     public duration?: number;
-
-    @IsDateString()
-    public date: ISOString;
 }

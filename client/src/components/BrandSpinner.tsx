@@ -1,4 +1,4 @@
-import { Flex, Text, keyframes } from "@chakra-ui/react";
+import { Flex, Text, keyframes, FlexProps } from "@chakra-ui/react";
 
 const pulse = keyframes`
     0% {
@@ -12,7 +12,7 @@ const pulse = keyframes`
     }
 `;
 
-export default function BrandSpinner() {
+export default function BrandSpinner(props: FlexProps) {
     return (
         <Flex
             animation={`${pulse} infinite 1.5s linear`}
@@ -23,6 +23,7 @@ export default function BrandSpinner() {
             justifyContent="center"
             h="5rem"
             w="5rem"
+            {...props}
         >
             <Text
                 as="h1"

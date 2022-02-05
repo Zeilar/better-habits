@@ -6,16 +6,41 @@ export const Alert: StyleConfig = {
         // @ts-ignore
         solid: (props: AlertProps) => {
             switch (props.status) {
+                case "info":
+                    return {
+                        container: {
+                            bgColor: "blue.400",
+                        },
+                        icon: {
+                            color: "blue.900",
+                        },
+                    };
+                case "warning":
+                    return {
+                        container: {
+                            bgColor: "yellow.300",
+                        },
+                        icon: {
+                            color: "yellow.800",
+                        },
+                    };
                 case "error":
                     return {
                         container: {
                             bgColor: "danger",
                         },
+                        icon: {
+                            color: "red.800",
+                        },
                     };
                 case "success":
                     return {
                         container: {
-                            bgColor: "primary.500",
+                            color: "text.default",
+                            bgColor: "primary.700",
+                        },
+                        icon: {
+                            color: "primary.400",
                         },
                     };
             }

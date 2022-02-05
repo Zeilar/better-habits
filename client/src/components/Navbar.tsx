@@ -1,7 +1,7 @@
 import { Flex, Link, Text } from "@chakra-ui/react";
 import { useAuth } from "../hooks";
 import Icon, { MdiIcon } from "./Icon";
-import { Link as ReactLink } from "react-router-dom";
+import { NavLink as ReactLink } from "react-router-dom";
 
 interface NavitemProps {
     label: string;

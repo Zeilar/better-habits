@@ -29,7 +29,6 @@ export class ViewService implements OnModuleInit {
                     ? "../../../client/public/index.html"
                     : "../../../dist_client/index.html"
             );
-            console.log(this.clientIndexPath);
         } catch (error) {
             console.error(error);
         }

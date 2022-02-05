@@ -19,8 +19,12 @@ export class ProgramService {
         private readonly exerciseService: ExerciseService
     ) {}
 
-    public all(userId: number) {
-        return this.programRepository.find({ userId });
+    public all(userId: number, withExercises?: boolean) {
+        const relations = [];
+        if (withExercises) {
+            relations.push("exercises");
+        }
+        return this.programRepository.find({ where: { userId }, relations });
     }
 
     public create(createProgramDto: CreateProgramDto) {

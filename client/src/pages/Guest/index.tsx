@@ -22,7 +22,7 @@ export default function Guest() {
             </Text>
             <Text textStyle="h4" as="h4">
                 {`Welcome to `}
-                <Text as="span" color="primary.500" fontWeight={600}>
+                <Text as="span" color="primary.400" fontWeight={600}>
                     Better Habits
                 </Text>
             </Text>

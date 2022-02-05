@@ -5,7 +5,7 @@ export const Input: StyleConfig = {
         filled: {
             field: {
                 _focus: {
-                    borderColor: "primary.500",
+                    borderColor: "primary.400",
                     boxShadow: "none",
                 },
                 _invalid: {

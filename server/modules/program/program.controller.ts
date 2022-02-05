@@ -4,6 +4,7 @@ import {
     Get,
     Param,
     Post,
+    Query,
     Req,
     UseFilters,
     UseGuards,
@@ -13,6 +14,7 @@ import { ProgramNotFoundException } from "../../common/exceptions/ProgramNotFoun
 import { AuthenticatedGuard } from "../../common/guards/authenticated.guard";
 import { CreateProgramWithExercisesDto } from "../../common/validators/createProgramWithExercises.validator";
 import { FindOneParams } from "../../common/validators/findOneParams.validator";
+import { GetProgramsQueryDto } from "../../common/validators/getProgramsQuery.validator";
 import { ProgramService } from "../program/program.service";
 
 @Controller("/programs")
@@ -43,7 +45,10 @@ export class ProgramController {
 
     @Get("/")
     @UseGuards(AuthenticatedGuard)
-    public all(@Req() req: Request) {
-        return this.programService.all(req.user!.id);
+    public all(@Req() req: Request, @Query() query: GetProgramsQueryDto) {
+        return this.programService.all(
+            req.user!.id,
+            query.withExercises === "true"
+        );
     }
 }

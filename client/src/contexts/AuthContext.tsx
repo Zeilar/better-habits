@@ -1,4 +1,4 @@
-import { AbsoluteCenter, useToast } from "@chakra-ui/react";
+import { Flex, useToast } from "@chakra-ui/react";
 import { createContext, useEffect, useState } from "react";
 import { User } from "../../@types/user";
 import { apiService } from "../services";
@@ -40,10 +40,10 @@ export function AuthContextProvider({ children }: AuthProps) {
 
     async function whoami() {
         const response = await apiService.request<User>("/auth/whoami");
-        setLoading(false);
         if (response.ok) {
             setUser(response.data);
         }
+        setLoading(false);
     }
 
     async function login(payload: LoginOrRegisterPayload) {
@@ -104,9 +104,14 @@ export function AuthContextProvider({ children }: AuthProps) {
 
     if (loading) {
         return (
-            <AbsoluteCenter>
+            <Flex
+                h="100vh"
+                w="100%"
+                alignItems="center"
+                justifyContent="center"
+            >
                 <BrandSpinner />
-            </AbsoluteCenter>
+            </Flex>
         );
     }
 
