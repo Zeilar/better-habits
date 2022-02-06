@@ -1,6 +1,7 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
     Param,
     Post,
@@ -27,7 +28,10 @@ export class ProgramController {
         @Body() createProgramWithExercisesDto: CreateProgramWithExercisesDto,
         @Req() req: Request
     ) {
-        this.programService.store(createProgramWithExercisesDto, req.user!.id);
+        return this.programService.store(
+            createProgramWithExercisesDto,
+            req.user!.id
+        );
     }
 
     @Get("/:id")
@@ -50,5 +54,11 @@ export class ProgramController {
             req.user!.id,
             query.withExercises === "true"
         );
+    }
+
+    @Delete("/:id")
+    @UseGuards(AuthenticatedGuard)
+    public destroy(@Req() req: Request) {
+        return this.programService.destroy(req.user!.id);
     }
 }

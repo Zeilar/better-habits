@@ -36,6 +36,15 @@ export const Button: StyleConfig = {
                 color: "black",
             },
         },
+        danger: {
+            border: "1px solid",
+            borderColor: "danger",
+            color: "danger",
+            _hover: {
+                bgColor: "danger",
+                color: "text.default",
+            },
+        },
         unstyled: {
             border: 0,
         },

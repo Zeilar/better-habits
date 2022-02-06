@@ -104,12 +104,7 @@ export function AuthContextProvider({ children }: AuthProps) {
 
     if (loading) {
         return (
-            <Flex
-                h="100vh"
-                w="100%"
-                alignItems="center"
-                justifyContent="center"
-            >
+            <Flex h="100vh" alignItems="center" justifyContent="center">
                 <BrandSpinner />
             </Flex>
         );

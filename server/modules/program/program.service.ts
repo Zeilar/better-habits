@@ -43,6 +43,17 @@ export class ProgramService {
         this.programRepository.save(program);
     }
 
+    public async destroy(userId: number) {
+        const program = await this.programRepository.findOne({ userId });
+        if (!program) {
+            throw new NotFoundException();
+        }
+        if (program.userId !== userId) {
+            throw new ForbiddenException();
+        }
+        this.programRepository.delete(program);
+    }
+
     public async getProgramWithExercises(programId: number, userId: number) {
         const program = await this.programRepository.findOne(programId, {
             relations: ["exercises"],

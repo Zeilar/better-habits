@@ -52,10 +52,12 @@ export default function Navbar() {
     return (
         <Flex
             boxShadow="elevate.top"
+            alignItems="center"
+            h="navbarHeight"
             as="nav"
-            mt="auto"
             bgColor="gray.600"
-            w="100%"
+            pos="sticky"
+            bottom={0}
             justifyContent="center"
         >
             <Navitem href="/" label="Home" icon="mdiHome" />

@@ -6,7 +6,11 @@ interface Props extends FlexProps {
 
 export default function PageWrapper({ children, ...props }: Props) {
     return (
-        <Flex flexDir="column" alignItems="center" minH="100vh" {...props}>
+        <Flex
+            flexDir="column"
+            minH="calc(100vh - var(--chakra-sizes-navbarHeight))"
+            {...props}
+        >
             {children}
         </Flex>
     );

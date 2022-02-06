@@ -8,7 +8,10 @@ export class Exercise implements ExerciseSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @ManyToOne(() => Program, program => program.exercises, { nullable: false })
+    @ManyToOne(() => Program, program => program.exercises, {
+        nullable: false,
+        onDelete: "CASCADE",
+    })
     public program: Program;
 
     @Column()

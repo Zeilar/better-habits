@@ -1,4 +1,4 @@
-import { extendTheme, theme } from "@chakra-ui/react";
+import { extendTheme, theme as chakraTheme } from "@chakra-ui/react";
 import { colors } from "./colors";
 import * as components from "./components";
 import { config } from "./config";
@@ -9,14 +9,29 @@ import { withDefaults } from "./withDefaults";
 // import { breakpoints } from "./breakpoints";
 import { textStyles } from "./textStyles";
 import { radii } from "./radii";
+import { sizes } from "./sizes";
+
+export const theme = {
+    sizes,
+    config,
+    colors,
+    shadows,
+    fonts,
+    components: { ...chakraTheme.components, ...components },
+    styles,
+    // breakpoints,
+    textStyles,
+    radii,
+};
 
 export default extendTheme(
     {
+        sizes,
         config,
         colors,
         shadows,
         fonts,
-        components: { ...theme.components, ...components },
+        components: { ...chakraTheme.components, ...components },
         styles,
         // breakpoints,
         textStyles,

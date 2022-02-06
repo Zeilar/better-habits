@@ -1,5 +1,4 @@
 import {
-    Box,
     Button,
     Flex,
     FormControl,
@@ -12,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
 import { Link as ReactLink } from "react-router-dom";
+import PageWrapper from "../../components/PageWrapper";
 
 interface Fields {
     email: string;
@@ -27,7 +27,7 @@ export default function Login() {
     } = useForm<Fields>();
 
     return (
-        <Box pt={0} as="form" onSubmit={handleSubmit(auth.login)}>
+        <PageWrapper as="form" onSubmit={handleSubmit(auth.login)}>
             <Text
                 textStyle="h1"
                 py={2}
@@ -74,15 +74,10 @@ export default function Login() {
                         Create one
                     </Link>
                 </Text>
-                <Button
-                    isLoading={isSubmitting}
-                    type="submit"
-                    w="100%"
-                    rounded="md"
-                >
+                <Button isLoading={isSubmitting} type="submit" rounded="md">
                     Login
                 </Button>
             </Flex>
-        </Box>
+        </PageWrapper>
     );
 }

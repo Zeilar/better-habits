@@ -6,6 +6,7 @@ export type MdiIcon = keyof typeof MdiIcons;
 
 interface Props extends IconProps {
     icon?: MdiIcon;
+    size?: number | string; // For some reason TS doesn't think this exists on IconProps
 }
 
 export default function Icon({ icon, ...props }: Props) {
