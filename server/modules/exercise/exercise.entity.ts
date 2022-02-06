@@ -20,9 +20,9 @@ export class Exercise implements ExerciseSchema {
     @Column()
     public programId: number;
 
-    @Column()
+    @Column({ nullable: true })
     public sets?: number;
 
-    @Column()
+    @Column({ nullable: true })
     public duration?: number;
 }

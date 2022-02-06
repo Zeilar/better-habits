@@ -18,9 +18,7 @@ export class Program implements ProgramSchema {
     @ManyToOne(() => User, user => user.programs, { nullable: false })
     public user: User;
 
-    @OneToMany(() => Exercise, exercise => exercise.program, {
-        cascade: true,
-    })
+    @OneToMany(() => Exercise, exercise => exercise.program, { cascade: true })
     public exercises: Exercise[];
 
     @Column()
