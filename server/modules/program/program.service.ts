@@ -8,7 +8,6 @@ import { Repository } from "typeorm";
 import { CreateProgramDto } from "../../common/validators/createProgram.validator";
 import { CreateProgramWithExercisesDto } from "../../common/validators/createProgramWithExercises.validator";
 import { ExerciseService } from "../exercise/exercise.service";
-import { UserService } from "../user/user.service";
 import { Program } from "./program.entity";
 
 @Injectable()
@@ -40,6 +39,25 @@ export class ProgramService {
             createProgramWithExercisesDto.exercises
         );
         program.userId = userId;
+        this.programRepository.save(program);
+    }
+
+    public async update(
+        createProgramWithExercisesDto: CreateProgramWithExercisesDto,
+        programId: number,
+        userId: number
+    ) {
+        const program = await this.programRepository.findOne(programId);
+        if (!program) {
+            throw new NotFoundException();
+        }
+        if (program.userId !== userId) {
+            throw new ForbiddenException();
+        }
+        await this.exerciseService.destroyAllInProgram(programId);
+        program.exercises = this.exerciseService.create(
+            createProgramWithExercisesDto.exercises
+        );
         this.programRepository.save(program);
     }
 

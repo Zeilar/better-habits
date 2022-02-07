@@ -5,6 +5,7 @@ import {
     Get,
     Param,
     Post,
+    Put,
     Query,
     Req,
     UseFilters,
@@ -60,5 +61,19 @@ export class ProgramController {
     @UseGuards(AuthenticatedGuard)
     public destroy(@Req() req: Request) {
         return this.programService.destroy(req.user!.id);
+    }
+
+    @Put("/:id")
+    @UseGuards(AuthenticatedGuard)
+    public update(
+        @Req() req: Request,
+        @Body() createProgramWithExercisesDto: CreateProgramWithExercisesDto,
+        @Param() params: FindOneParams
+    ) {
+        return this.programService.update(
+            createProgramWithExercisesDto,
+            params.id,
+            req.user!.id
+        );
     }
 }

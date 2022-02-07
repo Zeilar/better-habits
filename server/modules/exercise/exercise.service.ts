@@ -19,6 +19,10 @@ export class ExerciseService {
             : [this.exerciseRepository.create(exercises)];
     }
 
+    public destroyAllInProgram(programId: number) {
+        return this.exerciseRepository.delete({ programId });
+    }
+
     public store(exercises: CreateExerciseDto | CreateExerciseDto[]) {
         this.exerciseRepository.insert(this.create(exercises));
     }
