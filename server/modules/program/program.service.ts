@@ -58,6 +58,7 @@ export class ProgramService {
         program.exercises = this.exerciseService.create(
             createProgramWithExercisesDto.exercises
         );
+        program.name = createProgramWithExercisesDto.program.name;
         this.programRepository.save(program);
     }
 
