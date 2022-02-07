@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { Program } from "../../../@types/program";
+import ContainerSpinner from "../../components/ContainerSpinner";
 import PageWrapper from "../../components/PageWrapper";
 import { useCSR } from "../../hooks";
 import { apiService } from "../../services";
@@ -33,14 +34,17 @@ export default function SingleProgram() {
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
 
-    function save(fields: Fields) {
+    async function save(fields: Fields) {
         const { name, ...exercises } = fields;
         const parsedExercises = Object.values(exercises).map(exercise => ({
             ...exercise,
             duration: exercise.duration ? parseInt(exercise.duration) : null,
             sets: exercise.sets ? parseInt(exercise.sets) : null,
         }));
-        console.log(name, parsedExercises);
+        await apiService.request(`/programs/${id}`, {
+            method: "PUT",
+            data: { program: { name }, exercises: parsedExercises },
+        });
     }
 
     async function destroy() {
@@ -64,6 +68,7 @@ export default function SingleProgram() {
 
     return (
         <PageWrapper as="form" onSubmit={handleSubmit(save)}>
+            {(submitting || formState.isSubmitting) && <ContainerSpinner />}
             <Text>{data.name}</Text>
             <FormControl isInvalid={Boolean(formState.errors.name)}>
                 <FormLabel htmlFor="name">Name</FormLabel>

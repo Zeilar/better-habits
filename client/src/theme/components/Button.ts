@@ -10,6 +10,9 @@ export const Button: StyleConfig = {
         _focus: {
             boxShadow: "none",
         },
+        _disabled: {
+            pointerEvents: "none",
+        },
     },
     sizes: {
         md: {
