@@ -1,0 +1,56 @@
+version: "3.7"
+
+services:
+    main:
+        container_name: bh_main
+        build:
+            context: .
+            target: development
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        ports:
+            - ${PORT}:${PORT}
+            - 9229:9229
+        command: npm run start:dev
+        env_file:
+            - .env
+        networks:
+            - webnet
+        depends_on:
+            - db
+    client:
+        container_name: bh_client
+        env_file:
+            - client/.env
+        ports:
+            - 5555:5555
+        networks:
+            - webnet
+        command: npm run start:client
+        build:
+            context: .
+    db:
+        container_name: bh_postgres
+        image: postgres
+        networks:
+            - webnet
+        environment:
+            POSTGRES_USER: ${DOCKER_DB_USER}
+            POSTGRES_PASSWORD: ${DOCKER_DB_PASSWORD}
+            POSTGRES_DB: ${DOCKER_DB_NAME}
+            PGDATA: /var/lib/postgresql/data
+        ports:
+            - 5432:5432
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        restart: always
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - 8080:8080
+networks:
+    webnet:
+volumes:
+    pgdata:
