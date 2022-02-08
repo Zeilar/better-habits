@@ -9,7 +9,7 @@ import {
     UseGuards,
 } from "@nestjs/common";
 import { EmailTakenException } from "../../common/exceptions/EmailTakenException.exception";
-import { UserNotFoundException } from "../../common/exceptions/userNotFound.exception";
+import { UserNotFoundException } from "../../common/exceptions/UserNotFound.exception";
 import { AuthenticatedGuard } from "../../common/guards/authenticated.guard";
 import { EditUserGuard } from "../../common/guards/editUser.guard";
 import { UserExistsGuard } from "../../common/guards/userExists.guard";
