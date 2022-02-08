@@ -6,10 +6,12 @@ export const styles = {
         "*, *::before, *::after": {
             borderColor: "border.default",
         },
-        "#__next": {
-            minH: "100vh !important", // Need !important due to Chakra default styling
+        body: {
             bgColor: "body",
             color: "text.default",
+        },
+        "#__next": {
+            minH: "100vh !important", // Need !important due to Chakra default styling
             // "::-webkit-scrollbar-thumb": {
             //     backgroundColor: "brand.default",
             //     backgroundClip: "padding-box",

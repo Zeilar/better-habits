@@ -10,6 +10,9 @@ export default function Programs() {
 
     return (
         <PageWrapper>
+            <Text textStyle="h1" py={4} px={8} color="primary.400" as="h1">
+                Programs
+            </Text>
             {loading && (
                 <Grid p={4} gridGap={2}>
                     {Array(5)
