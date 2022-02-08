@@ -9,11 +9,11 @@
         "allowSyntheticDefaultImports": true,
         "skipLibCheck": true,
         "target": "es2017",
-        "outDir": "./dist",
+        "outDir": "dist",
         "incremental": true,
         "jsx": "preserve",
         "esModuleInterop": true,
         "declarationMap": false
     },
-    "include": ["server"]
+    "exclude": ["dist_client"]
 }
