@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import Settings from "./pages/Settings";
 
 export default function App() {
+    console.log(process.env.REACT_APP_API_BASE_URL);
     return (
         <>
             <Routes>

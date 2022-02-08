@@ -20,17 +20,18 @@ services:
             - 9229:9229
         command: npm run start:dev
         env_file:
-            - .env
+            - ./.env
         networks:
             - webnet
         depends_on:
             - db
     client:
         container_name: bh_client
-        env_file:
-            - client/.env
         ports:
-            - 5555:5555
+            - ${CLIENT_PORT}:${CLIENT_PORT}
+        environment:
+            PORT: ${CLIENT_PORT}
+            REACT_APP_API_BASE_URL: ${BASE_URL}
         networks:
             - webnet
         command: npm run start:client
