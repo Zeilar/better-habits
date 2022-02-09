@@ -5,10 +5,10 @@ ENV NODE_ENV=${NODE_ENV}
 
 WORKDIR /usr/src/app
 
+RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
+
 COPY . .
 
 RUN npm install
-
-USER node
 
 CMD ["npm", "start"]
