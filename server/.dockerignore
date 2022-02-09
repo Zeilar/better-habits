@@ -1,2 +1,4 @@
 node_modules
-docker-compose.yml
+Dockerfile
+.gitignore
+ormconfig.example.json
