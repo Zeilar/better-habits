@@ -4,7 +4,7 @@ import passport from "passport";
 import { EnvConfig } from "./@types/config";
 import { AppModule } from "./modules/app/app.module";
 import session from "express-session";
-import { RequestMethod, ValidationPipe } from "@nestjs/common";
+import { Logger, RequestMethod, ValidationPipe } from "@nestjs/common";
 import { DateHelper } from "./common/helpers/Date.helper";
 
 async function bootstrap() {
@@ -45,7 +45,9 @@ async function bootstrap() {
         credentials: true,
     });
 
-    app.listen(configService.get("PORT", { infer: true }));
+    const port = configService.get("PORT", { infer: true });
+    await app.listen(port);
+    Logger.log(`Listening on ${port}`);
 }
 
 bootstrap();
