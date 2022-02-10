@@ -31,7 +31,7 @@ export const Button: StyleConfig = {
             color: "black",
         },
         secondary: {
-            border: "1px solid",
+            border: "2px solid",
             borderColor: "primary.400",
             color: "primary.400",
             _hover: {
@@ -40,7 +40,7 @@ export const Button: StyleConfig = {
             },
         },
         danger: {
-            border: "1px solid",
+            border: "2px solid",
             borderColor: "danger",
             color: "danger",
             _hover: {
