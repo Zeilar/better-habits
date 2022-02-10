@@ -1,8 +1,5 @@
 {
     "scripts": {
-        "build": "cd server && nest build && cd ../client && npm run build && mv build ../server/dist_client",
-        "start:server:dev": "cd server && nest start --watch",
-        "start:server": "cd server && nest start",
-        "start:client": "cd client && react-scripts start"
+        "build": "cd server && npm run build && cd ../client && npm run build && mv build ../server/dist_client"
     }
 }

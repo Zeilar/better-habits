@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { apiService } from "../services";
 import { AxiosRequestConfig } from "axios";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 
 type Status = "loading" | "error" | "success";
 type Config = AxiosRequestConfig | undefined;
