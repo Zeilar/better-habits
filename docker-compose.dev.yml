@@ -3,7 +3,9 @@ version: "3.7"
 services:
     server:
         container_name: bh_server
-        build: ./server
+        build:
+            context: ./server
+            dockerfile: Dockerfile.dev
         volumes:
             - ./server:/usr/src/app
             - /usr/src/app/node_modules
@@ -15,11 +17,14 @@ services:
             - db
     client:
         container_name: bh_client
-        build: ./client
+        build:
+            context: ./client
+            dockerfile: Dockerfile.dev
         ports:
             - ${CLIENT_PORT}:${CLIENT_PORT}
         environment:
             PORT: ${CLIENT_PORT}
+            NODE_ENV: development
             REACT_APP_API_BASE_URL: ${BASE_URL}
         volumes:
             - ./client:/usr/src/app

@@ -6,23 +6,31 @@ import { AppModule } from "./modules/app/app.module";
 import session from "express-session";
 import { Logger, RequestMethod, ValidationPipe } from "@nestjs/common";
 import { DateHelper } from "./common/helpers/Date.helper";
+import { createClient } from "redis";
+import redisStore from "connect-redis";
+
+const RedisSessionStore = redisStore(session);
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
         logger: ["error", "warn", "log", "debug"],
     });
-    const configService =
-        app.get<ConfigService<EnvConfig, true>>(ConfigService);
+    const configService = app.get<ConfigService<EnvConfig, true>>(ConfigService);
     const dateHelper = app.get(DateHelper);
 
-    const dev =
-        configService.get("NODE_ENV", { infer: true }) === "development";
+    const dev = configService.get("NODE_ENV", { infer: true }) === "development";
+
+    console.log("IS DEV?", dev);
+
+    const redisClient = createClient({ legacyMode: true });
+    await redisClient.connect();
 
     app.use(
         session({
             secret: configService.get("SESSION_SECRET", {
                 infer: true,
             }),
+            store: new RedisSessionStore({ client: redisClient }),
             resave: false,
             saveUninitialized: false,
             cookie: {
@@ -35,7 +43,6 @@ async function bootstrap() {
         passport.initialize(),
         passport.session()
     );
-
     app.useGlobalPipes(new ValidationPipe({ transform: true }));
     app.setGlobalPrefix("/api/v1", {
         exclude: [{ path: "*", method: RequestMethod.GET }],

@@ -4,6 +4,8 @@ services:
     server:
         container_name: bh_server
         build: ./server
+        environment:
+            NODE_ENV: production
         volumes:
             - ./server:/usr/src/app
             - /usr/src/app/node_modules

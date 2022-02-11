@@ -1,13 +1,10 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { UserService } from "../user/user.service";
 import { HashService } from "../hash/hash.service";
 
 @Injectable()
 export class AuthService {
-    public constructor(
-        private readonly userService: UserService,
-        private readonly hashService: HashService
-    ) {}
+    public constructor(private readonly userService: UserService, private readonly hashService: HashService) {}
 
     public async validateUser(email: string, password: string) {
         const user = await this.userService.findOne("email", email);
