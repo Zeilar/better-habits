@@ -1,9 +1,0 @@
-{
-    "scripts": {
-        "build": "cd server && npm run build && cd ../client && npm run build && mv build ../server/dist_client",
-        "build:dev": "docker-compose -f docker-compose.dev.yml build",
-        "build:prod": "docker-compose build",
-        "start:dev": "docker-compose -f docker-compose.dev.yml up",
-        "start:prod": "docker-compose up"
-    }
-}
