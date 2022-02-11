@@ -6,10 +6,6 @@ import { AppModule } from "./modules/app/app.module";
 import session from "express-session";
 import { Logger, RequestMethod, ValidationPipe } from "@nestjs/common";
 import { DateHelper } from "./common/helpers/Date.helper";
-import { createClient } from "redis";
-import redisStore from "connect-redis";
-
-const RedisSessionStore = redisStore(session);
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
@@ -20,15 +16,11 @@ async function bootstrap() {
 
     const dev = configService.get("NODE_ENV", { infer: true }) === "development";
 
-    const redisClient = createClient({ legacyMode: true });
-    await redisClient.connect();
-
     app.use(
         session({
             secret: configService.get("SESSION_SECRET", {
                 infer: true,
             }),
-            store: new RedisSessionStore({ client: redisClient }),
             resave: false,
             saveUninitialized: false,
             cookie: {
