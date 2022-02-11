@@ -20,8 +20,6 @@ async function bootstrap() {
 
     const dev = configService.get("NODE_ENV", { infer: true }) === "development";
 
-    console.log("IS DEV?", dev);
-
     const redisClient = createClient({ legacyMode: true });
     await redisClient.connect();
 
