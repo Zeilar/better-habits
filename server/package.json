@@ -9,7 +9,7 @@
         "prebuild": "rimraf dist",
         "build": "nest build",
         "build:prod": "rimraf dist_client && npm run build && cd ../client && npm run build && mv build ../server/dist_client && cd ../server && docker-compose build",
-        "format": "prettier --write \"server/**/*.ts\" \"test/**/*.ts\"",
+        "format": "prettier --write \"/**/*.ts\" \"test/**/*.ts\"",
         "start:dev": "nest start --watch",
         "start:prod": "docker-compose up",
         "test": "jest",

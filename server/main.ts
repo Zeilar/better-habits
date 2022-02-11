@@ -18,9 +18,7 @@ async function bootstrap() {
 
     app.use(
         session({
-            secret: configService.get("SESSION_SECRET", {
-                infer: true,
-            }),
+            secret: configService.get("SESSION_SECRET", { infer: true }),
             resave: false,
             saveUninitialized: false,
             cookie: {
