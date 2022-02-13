@@ -8,6 +8,7 @@ import { Logger, RequestMethod, ValidationPipe } from "@nestjs/common";
 import { DateHelper } from "./common/helpers/Date.helper";
 import express from "express";
 import { join } from "path";
+import env from "config/env";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
@@ -15,7 +16,6 @@ async function bootstrap() {
     });
     const configService = app.get<ConfigService<EnvConfig, true>>(ConfigService);
     const dateHelper = app.get(DateHelper);
-
     const enviroment = configService.get("NODE_ENV", { infer: true });
     const dev = enviroment === "development";
     const distClientPath = join(__dirname, "../dist_client");
@@ -23,11 +23,12 @@ async function bootstrap() {
     const sessionCookieMaxAge = dateHelper.DAY_IN_MILLISECONDS * 7;
     const sessionCookieSecure = !dev;
 
-    Logger.debug(`Enviroment ${enviroment}`);
-    Logger.debug(`Static content path ${distClientPath}`);
-    Logger.debug(`CORS origin ${corsOrigin}`);
-    Logger.debug(`Session cookie max age ${sessionCookieMaxAge} milliseconds`);
-    Logger.debug(`Session cookie secure ${sessionCookieSecure}`);
+    Logger.debug(`.env output: ${JSON.stringify(env())}`);
+    Logger.debug(`Enviroment: ${enviroment}`);
+    Logger.debug(`Static content path: ${distClientPath}`);
+    Logger.debug(`CORS origin: ${corsOrigin}`);
+    Logger.debug(`Session cookie max age: ${sessionCookieMaxAge} milliseconds`);
+    Logger.debug(`Session cookie secure: ${sessionCookieSecure}`);
 
     app.use(
         session({
