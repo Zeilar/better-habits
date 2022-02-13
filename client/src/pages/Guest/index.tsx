@@ -1,22 +1,17 @@
-import { Button, Flex, Text } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
+import { Button, Text } from "@chakra-ui/react";
+import { Link, Navigate } from "react-router-dom";
+import PageWrapper from "../../components/PageWrapper";
 import { useAuth } from "../../hooks";
 
 export default function Guest() {
     const { authenticated } = useAuth();
 
     if (authenticated) {
-        return null;
+        return <Navigate to="/" />;
     }
 
     return (
-        <Flex
-            flexDir="column"
-            minH="100vh"
-            textAlign="center"
-            p={6}
-            justifyContent="center"
-        >
+        <PageWrapper p={6}>
             <Text textStyle="h1" as="h1">
                 👋
             </Text>
@@ -47,6 +42,6 @@ export default function Guest() {
                     Login
                 </Button>
             </Link>
-        </Flex>
+        </PageWrapper>
     );
 }

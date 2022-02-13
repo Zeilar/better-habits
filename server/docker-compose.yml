@@ -14,17 +14,17 @@ services:
         depends_on:
             - db
     db:
-        container_name: bh_postgres
-        image: postgres
+        container_name: bh_db
+        image: mysql
         environment:
-            POSTGRES_USER: ${DOCKER_DB_USER}
-            POSTGRES_PASSWORD: ${DOCKER_DB_PASSWORD}
-            POSTGRES_DB: ${DOCKER_DB_NAME}
-            PGDATA: /var/lib/postgresql/data
+            MYSQL_USER: ${DOCKER_DB_USER}
+            MYSQL_PASSWORD: ${DOCKER_DB_PASSWORD}
+            MYSQL_ROOT_PASSWORD: ${DOCKER_DB_PASSWORD}
+            MYSQL_DATABASE: ${DOCKER_DB_NAME}
         ports:
-            - 5432:5432
+            - 3306:3306
         volumes:
-            - pgdata:/var/lib/postgresql/data
+            - dbdata:/var/lib/mysql
         restart: always
 volumes:
-    pgdata:
+    dbdata:

@@ -13,7 +13,8 @@
         "incremental": true,
         "jsx": "preserve",
         "esModuleInterop": true,
-        "declarationMap": false
+        "declarationMap": false,
+        "baseUrl": "."
     },
     "exclude": ["dist_client"]
 }

@@ -5,7 +5,8 @@
     "author": "Philip Angelin",
     "license": "MIT",
     "scripts": {
-        "migrate": "typeorm migration:run",
+        "migration:run": "typeorm migration:run",
+        "migration:generate": "typeorm migration:generate -- -n Migration",
         "prebuild": "rimraf dist",
         "build": "nest build",
         "build:prod": "rimraf dist_client && npm run build && cd ../client && npm run build && mv build ../server/dist_client && cd ../server && docker-compose build",

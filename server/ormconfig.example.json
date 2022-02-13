@@ -1,9 +1,23 @@
-{
-    "type": "mysql",
-    "host": "localhost",
-    "port": 3306,
-    "username": "root",
-    "password": "root",
-    "database": "test",
-    "entities": ["dist/**/*.entity{.ts,.js}"]
-}
+[
+    {
+        "name": "development",
+        "type": "mysql",
+        "host": "localhost",
+        "port": 3306,
+        "username": "root",
+        "password": "",
+        "database": "better_habits",
+        "entities": ["dist/**/*.entity{.ts,.js}"],
+        "synchronize": true
+    },
+    {
+        "name": "production",
+        "type": "mysql",
+        "host": "localhost",
+        "port": 3306,
+        "username": "",
+        "password": "",
+        "database": "",
+        "entities": ["dist/**/*.entity{.ts,.js}"]
+    }
+]
