@@ -20,15 +20,14 @@ async function bootstrap() {
     const dev = enviroment === "development";
     const distClientPath = join(__dirname, "../dist_client");
     const corsOrigin = dev ? configService.get("CLIENT_URL", { infer: true }) : "/";
-    const sessionCookieMaxAge = dateHelper.DAY_IN_MILLISECONDS * 7;
-    const sessionCookieSecure = !dev;
+    const sessionCookie = { maxAge: dateHelper.DAY_IN_MILLISECONDS * 7, secure: !dev };
 
     Logger.debug(`.env output: ${JSON.stringify(env())}`);
     Logger.debug(`Enviroment: ${enviroment}`);
     Logger.debug(`Static content path: ${distClientPath}`);
     Logger.debug(`CORS origin: ${corsOrigin}`);
-    Logger.debug(`Session cookie max age: ${sessionCookieMaxAge} milliseconds`);
-    Logger.debug(`Session cookie secure: ${sessionCookieSecure}`);
+    Logger.debug(`Session cookie max age: ${sessionCookie.maxAge} milliseconds`);
+    Logger.debug(`Session cookie secure: ${sessionCookie.secure}`);
 
     app.use(
         session({
@@ -36,10 +35,9 @@ async function bootstrap() {
             resave: false,
             saveUninitialized: false,
             cookie: {
-                maxAge: sessionCookieMaxAge,
                 httpOnly: true,
-                secure: sessionCookieSecure,
                 sameSite: "strict",
+                ...sessionCookie,
             },
         }),
         passport.initialize(),
