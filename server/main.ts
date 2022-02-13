@@ -33,15 +33,15 @@ async function bootstrap() {
         passport.initialize(),
         passport.session(),
         express.static(join(__dirname, "../dist_client"))
-    );
-    app.useGlobalPipes(new ValidationPipe({ transform: true }));
-    app.setGlobalPrefix("/api/v1", {
-        exclude: [{ path: "*", method: RequestMethod.GET }],
-    });
-    app.enableCors({
-        origin: dev ? configService.get("CLIENT_URL", { infer: true }) : "/",
-        credentials: true,
-    });
+    )
+        .useGlobalPipes(new ValidationPipe({ transform: true }))
+        .setGlobalPrefix("/api/v1", {
+            exclude: [{ path: "*", method: RequestMethod.GET }],
+        })
+        .enableCors({
+            origin: dev ? configService.get("CLIENT_URL", { infer: true }) : "/",
+            credentials: true,
+        });
 
     const port = configService.get("PORT", { infer: true });
     await app.listen(port);
