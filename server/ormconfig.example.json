@@ -4,20 +4,28 @@
         "type": "mysql",
         "host": "localhost",
         "port": 3306,
-        "username": "root",
+        "username": "",
         "password": "",
-        "database": "better_habits",
-        "entities": ["dist/**/*.entity{.ts,.js}"],
+        "database": "",
+        "entities": ["dist/**/*.entity.js"],
+        "migrations": ["dist/migrations/*.js"],
+        "cli": {
+            "migrationsDir": "dist/migrations"
+        },
         "synchronize": true
     },
     {
         "name": "production",
         "type": "mysql",
-        "host": "localhost",
+        "host": "db",
         "port": 3306,
         "username": "",
         "password": "",
         "database": "",
-        "entities": ["dist/**/*.entity{.ts,.js}"]
+        "entities": ["dist/**/*.entity.js"],
+        "migrations": ["dist/migrations/*.js"],
+        "cli": {
+            "migrationsDir": "dist/migrations"
+        }
     }
 ]
