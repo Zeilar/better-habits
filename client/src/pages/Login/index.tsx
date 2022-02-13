@@ -1,17 +1,10 @@
-import {
-    Button,
-    Flex,
-    FormControl,
-    FormLabel,
-    Input,
-    Link,
-    Text,
-} from "@chakra-ui/react";
+import { Button, Flex, FormControl, FormLabel, Input, Link, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
 import { Link as ReactLink } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper";
+import PageHeader from "../../components/PageHeader";
 
 interface Fields {
     email: string;
@@ -28,17 +21,8 @@ export default function Login() {
 
     return (
         <PageWrapper as="form" onSubmit={handleSubmit(auth.login)}>
-            <Text
-                textStyle="h1"
-                py={2}
-                px={8}
-                bgColor="primary.400"
-                color="black"
-                as="h1"
-            >
-                Login
-            </Text>
-            <Flex m={4} p={4} flexDir="column">
+            <PageHeader>Login</PageHeader>
+            <Flex px={8} my={4} flexDir="column">
                 <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
@@ -49,9 +33,7 @@ export default function Login() {
                             required: "Email is required",
                         })}
                     />
-                    {errors.email?.message && (
-                        <FormError message={errors.email.message} />
-                    )}
+                    {errors.email?.message && <FormError message={errors.email.message} />}
                 </FormControl>
                 <FormControl isInvalid={Boolean(errors.password)}>
                     <FormLabel htmlFor="password">Password</FormLabel>
@@ -64,9 +46,7 @@ export default function Login() {
                             required: "Password is required",
                         })}
                     />
-                    {errors.password?.message && (
-                        <FormError message={errors.password.message} />
-                    )}
+                    {errors.password?.message && <FormError message={errors.password.message} />}
                 </FormControl>
                 <Text my={4}>
                     {`Need an account? `}

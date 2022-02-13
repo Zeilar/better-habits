@@ -4,15 +4,14 @@ import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
+import PageHeader from "../../components/PageHeader";
 
 export default function Programs() {
     const { data, success, loading } = useCSR<Program[]>("/programs");
 
     return (
         <PageWrapper>
-            <Text textStyle="h1" py={4} px={8} color="primary.400" as="h1">
-                Programs
-            </Text>
+            <PageHeader>My programs</PageHeader>
             {loading && (
                 <Grid p={4} gridGap={2}>
                     {Array(5)

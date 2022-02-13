@@ -11,7 +11,7 @@ export default function Guest() {
     }
 
     return (
-        <PageWrapper p={6}>
+        <PageWrapper p={6} textAlign="center" justifyContent="center">
             <Text textStyle="h1" as="h1">
                 👋
             </Text>

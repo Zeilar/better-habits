@@ -1,17 +1,10 @@
-import {
-    Button,
-    Flex,
-    FormControl,
-    FormLabel,
-    Input,
-    Link,
-    Text,
-} from "@chakra-ui/react";
+import { Button, Flex, FormControl, FormLabel, Input, Link, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
 import { Link as ReactLink } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper";
+import PageHeader from "../../components/PageHeader";
 
 interface Fields {
     email: string;
@@ -30,16 +23,8 @@ export default function Register() {
 
     return (
         <PageWrapper as="form" onSubmit={handleSubmit(auth.register)}>
-            <Text
-                textStyle="h1"
-                py={2}
-                px={8}
-                bgColor="primary.400"
-                color="black"
-            >
-                Sign up
-            </Text>
-            <Flex m={4} p={4} flexDir="column">
+            <PageHeader>Sign up</PageHeader>
+            <Flex px={8} my={4} flexDir="column">
                 <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
@@ -50,9 +35,7 @@ export default function Register() {
                             required: "Email is required",
                         })}
                     />
-                    {errors.email?.message && (
-                        <FormError message={errors.email.message} />
-                    )}
+                    {errors.email?.message && <FormError message={errors.email.message} />}
                 </FormControl>
                 <FormControl isInvalid={Boolean(errors.password)} mb={6}>
                     <FormLabel htmlFor="password">Password</FormLabel>
@@ -74,14 +57,10 @@ export default function Register() {
                             },
                         })}
                     />
-                    {errors.password?.message && (
-                        <FormError message={errors.password.message} />
-                    )}
+                    {errors.password?.message && <FormError message={errors.password.message} />}
                 </FormControl>
                 <FormControl isInvalid={Boolean(errors.passwordConfirm)}>
-                    <FormLabel htmlFor="passwordConfirm">
-                        Confirm Password
-                    </FormLabel>
+                    <FormLabel htmlFor="passwordConfirm">Confirm Password</FormLabel>
                     <Input
                         id="passwordConfirm"
                         isInvalid={Boolean(errors.passwordConfirm)}
@@ -89,15 +68,10 @@ export default function Register() {
                         placeholder="••••••••••"
                         {...register("passwordConfirm", {
                             required: "Password confirmation is required",
-                            validate: value =>
-                                value === getValues().password
-                                    ? true
-                                    : "Passwords do not match",
+                            validate: value => (value === getValues().password ? true : "Passwords do not match"),
                         })}
                     />
-                    {errors.passwordConfirm?.message && (
-                        <FormError message={errors.passwordConfirm.message} />
-                    )}
+                    {errors.passwordConfirm?.message && <FormError message={errors.passwordConfirm.message} />}
                 </FormControl>
                 <Text my={4}>
                     {`Already have an account? `}

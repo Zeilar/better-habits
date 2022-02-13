@@ -1,7 +1,8 @@
 export const styles = {
     global: {
         "::selection": {
-            color: "primary.200",
+            color: "body",
+            bgColor: "primary.400",
         },
         "*, *::before, *::after": {
             borderColor: "border.default",
