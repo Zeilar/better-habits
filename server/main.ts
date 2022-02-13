@@ -6,6 +6,8 @@ import { AppModule } from "./modules/app/app.module";
 import session from "express-session";
 import { Logger, RequestMethod, ValidationPipe } from "@nestjs/common";
 import { DateHelper } from "./common/helpers/Date.helper";
+import express from "express";
+import { join } from "path";
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, {
@@ -29,7 +31,8 @@ async function bootstrap() {
             },
         }),
         passport.initialize(),
-        passport.session()
+        passport.session(),
+        express.static(join(__dirname, "../dist_client"))
     );
     app.useGlobalPipes(new ValidationPipe({ transform: true }));
     app.setGlobalPrefix("/api/v1", {

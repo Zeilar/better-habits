@@ -13,6 +13,6 @@ export class ViewService implements OnModuleInit {
     }
 
     public onModuleInit() {
-        this.clientIndexPath = join(__dirname, "../../dist_client/index.html");
+        this.clientIndexPath = join(__dirname, "../../../dist_client/index.html");
     }
 }
