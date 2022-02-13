@@ -24,8 +24,8 @@ export class ViewService implements OnModuleInit {
         }
         try {
             const result = await stat(this.clientIndexPath);
-            if (!result.isDirectory()) {
-                Logger.warn("Client build should be a directory");
+            if (!result.isFile()) {
+                Logger.warn("Missing client index.html");
             }
         } catch (error) {
             Logger.warn("Missing client build");
