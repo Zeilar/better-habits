@@ -11,9 +11,7 @@ import { join } from "path";
 import env from "config/env";
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule, {
-        logger: ["error", "warn", "log", "debug"],
-    });
+    const app = await NestFactory.create(AppModule, { logger: ["error", "warn", "log", "debug"] });
     const configService = app.get<ConfigService<EnvConfig, true>>(ConfigService);
     const dateHelper = app.get(DateHelper);
     const enviroment = configService.get("NODE_ENV", { infer: true });
