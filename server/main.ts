@@ -16,7 +16,18 @@ async function bootstrap() {
     const configService = app.get<ConfigService<EnvConfig, true>>(ConfigService);
     const dateHelper = app.get(DateHelper);
 
-    const dev = configService.get("NODE_ENV", { infer: true }) === "development";
+    const enviroment = configService.get("NODE_ENV", { infer: true });
+    const dev = enviroment === "development";
+    const distClientPath = join(__dirname, "../dist_client");
+    const corsOrigin = dev ? configService.get("CLIENT_URL", { infer: true }) : "/";
+    const sessionCookieMaxAge = dateHelper.DAY_IN_MILLISECONDS * 7;
+    const sessionCookieSecure = !dev;
+
+    Logger.debug(`Enviroment ${enviroment}`);
+    Logger.debug(`Static content path ${distClientPath}`);
+    Logger.debug(`CORS origin ${corsOrigin}`);
+    Logger.debug(`Session cookie max age ${sessionCookieMaxAge} milliseconds`);
+    Logger.debug(`Session cookie secure ${sessionCookieSecure}`);
 
     app.use(
         session({
@@ -24,24 +35,19 @@ async function bootstrap() {
             resave: false,
             saveUninitialized: false,
             cookie: {
-                maxAge: dateHelper.DAY_IN_MILLISECONDS * 7,
+                maxAge: sessionCookieMaxAge,
                 httpOnly: true,
-                secure: !dev,
+                secure: sessionCookieSecure,
                 sameSite: "strict",
             },
         }),
         passport.initialize(),
         passport.session(),
-        express.static(join(__dirname, "../dist_client"))
+        express.static(distClientPath)
     )
         .useGlobalPipes(new ValidationPipe({ transform: true }))
-        .setGlobalPrefix("/api/v1", {
-            exclude: [{ path: "*", method: RequestMethod.GET }],
-        })
-        .enableCors({
-            origin: dev ? configService.get("CLIENT_URL", { infer: true }) : "/",
-            credentials: true,
-        });
+        .setGlobalPrefix("/api/v1", { exclude: [{ path: "*", method: RequestMethod.GET }] })
+        .enableCors({ origin: corsOrigin, credentials: true });
 
     const port = configService.get("PORT", { infer: true });
     await app.listen(port);
