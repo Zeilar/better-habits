@@ -1,15 +1,8 @@
 import { Button, Text } from "@chakra-ui/react";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper";
-import { useAuth } from "../../hooks";
 
 export default function Guest() {
-    const { authenticated } = useAuth();
-
-    if (authenticated) {
-        return <Navigate to="/" />;
-    }
-
     return (
         <PageWrapper p={6} textAlign="center" justifyContent="center">
             <Text textStyle="h1" as="h1">
