@@ -8,6 +8,7 @@ import Home from "./pages/index";
 import Login from "./pages/Login";
 import Program from "./pages/Program";
 import Programs from "./pages/Programs";
+import NewProgram from "./pages/Programs/new";
 import Register from "./pages/Register";
 import Settings from "./pages/Settings";
 
@@ -60,6 +61,14 @@ export default function App() {
                     element={
                         <ProtectedRoute>
                             <Program />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/programs/new"
+                    element={
+                        <ProtectedRoute>
+                            <NewProgram />
                         </ProtectedRoute>
                     }
                 />
