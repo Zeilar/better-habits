@@ -1,19 +1,16 @@
-import { Flex, useToast } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { createContext, useEffect, useState } from "react";
 import { User } from "../../@types/user";
 import { apiService } from "../services";
 import { Response, ErrorResponse } from "../services/ApiService";
 import BrandSpinner from "../components/BrandSpinner";
+import { useToast } from "../hooks";
 
 interface IAuthContext {
     user: User | null;
     setUser: React.Dispatch<User>;
-    login(
-        payload: LoginOrRegisterPayload
-    ): Promise<Response<ErrorResponse> | Response<User>>;
-    register(
-        payload: LoginOrRegisterPayload
-    ): Promise<Response<ErrorResponse> | Response<User>>;
+    login(payload: LoginOrRegisterPayload): Promise<Response<ErrorResponse> | Response<User>>;
+    register(payload: LoginOrRegisterPayload): Promise<Response<ErrorResponse> | Response<User>>;
     logout(): Promise<void>;
     authenticated: boolean;
 }
@@ -52,13 +49,8 @@ export function AuthContextProvider({ children }: AuthProps) {
             data: { ...payload },
         });
         if (response.ok) {
-            toast({
-                title: "Logged in",
-                status: "success",
-                position: "top",
-                isClosable: true,
-            });
             setUser(response.data);
+            toast({ title: "Logged in", status: "success" });
         }
         return response;
     }
@@ -69,13 +61,8 @@ export function AuthContextProvider({ children }: AuthProps) {
             method: "POST",
         });
         if (response.ok) {
-            toast({
-                title: "Created your account!",
-                status: "success",
-                position: "top",
-                isClosable: true,
-            });
             setUser(response.data);
+            toast({ description: "Created your account!", status: "success" });
         }
         return response;
     }
@@ -83,13 +70,8 @@ export function AuthContextProvider({ children }: AuthProps) {
     async function logout() {
         const response = await apiService.request("/auth/logout");
         if (response.ok) {
-            toast({
-                title: "Logged out",
-                status: "success",
-                position: "top",
-                isClosable: true,
-            });
             setUser(null);
+            toast({ description: "Logged out", status: "success" });
         }
     }
 
@@ -110,7 +92,5 @@ export function AuthContextProvider({ children }: AuthProps) {
         );
     }
 
-    return (
-        <AuthContext.Provider value={values}>{children}</AuthContext.Provider>
-    );
+    return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 }

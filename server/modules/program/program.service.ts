@@ -1,8 +1,4 @@
-import {
-    ForbiddenException,
-    Injectable,
-    NotFoundException,
-} from "@nestjs/common";
+import { ForbiddenException, Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CreateProgramDto } from "../../common/validators/createProgram.validator";
@@ -30,16 +26,11 @@ export class ProgramService {
         return this.programRepository.create(createProgramDto);
     }
 
-    public async store(
-        createProgramWithExercisesDto: CreateProgramWithExercisesDto,
-        userId: number
-    ) {
+    public store(createProgramWithExercisesDto: CreateProgramWithExercisesDto, userId: number) {
         const program = this.create(createProgramWithExercisesDto.program);
-        program.exercises = this.exerciseService.create(
-            createProgramWithExercisesDto.exercises
-        );
+        program.exercises = this.exerciseService.create(createProgramWithExercisesDto.exercises);
         program.userId = userId;
-        this.programRepository.save(program);
+        return this.programRepository.save(program);
     }
 
     public async update(
@@ -55,9 +46,7 @@ export class ProgramService {
             throw new ForbiddenException();
         }
         await this.exerciseService.destroyAllInProgram(programId);
-        program.exercises = this.exerciseService.create(
-            createProgramWithExercisesDto.exercises
-        );
+        program.exercises = this.exerciseService.create(createProgramWithExercisesDto.exercises);
         program.name = createProgramWithExercisesDto.program.name;
         this.programRepository.save(program);
     }
