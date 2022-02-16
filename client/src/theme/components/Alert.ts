@@ -35,7 +35,7 @@ export const Alert: StyleConfig = {
                     return {
                         container,
                         icon: {
-                            color: "primary.400",
+                            color: "primary.600",
                         },
                     };
             }

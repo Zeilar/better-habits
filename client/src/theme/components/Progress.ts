@@ -3,7 +3,7 @@ import { StyleConfig } from "@chakra-ui/theme-tools";
 export const Progress: StyleConfig = {
     baseStyle: {
         filledTrack: {
-            bgColor: "primary.400",
+            bgColor: "primary.600",
             transition: "width 1s ease-in-out",
         },
         track: {

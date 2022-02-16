@@ -27,15 +27,15 @@ export const Button: StyleConfig = {
     },
     variants: {
         primary: {
-            bgColor: "primary.400",
+            bgColor: "primary.600",
             color: "black",
         },
         secondary: {
             border: "2px solid",
-            borderColor: "primary.400",
-            color: "primary.400",
+            borderColor: "primary.600",
+            color: "primary.600",
             _hover: {
-                bgColor: "primary.400",
+                bgColor: "primary.600",
                 color: "black",
             },
         },

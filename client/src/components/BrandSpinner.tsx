@@ -20,7 +20,7 @@ export default function BrandSpinner(props: FlexProps) {
             alignItems="center"
             rounded="full"
             fontSize="2rem"
-            bgColor="primary.400"
+            bgColor="primary.600"
             justifyContent="center"
             h="5rem"
             w="5rem"

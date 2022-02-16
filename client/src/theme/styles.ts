@@ -2,7 +2,7 @@ export const styles = {
     global: {
         "::selection": {
             color: "body",
-            bgColor: "primary.400",
+            bgColor: "primary.600",
         },
         "*, *::before, *::after": {
             borderColor: "border.default",

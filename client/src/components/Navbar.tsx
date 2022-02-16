@@ -32,10 +32,10 @@ function Navitem({ label, icon, href }: NavitemProps) {
                 left: 0,
                 w: "100%",
                 h: "2px",
-                bgColor: "primary.400",
+                bgColor: "primary.600",
             }}
             _activeLink={{
-                color: "primary.400",
+                color: "primary.600",
                 bgColor: "transparent",
                 _after: { display: "block " },
             }}

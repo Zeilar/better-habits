@@ -45,7 +45,7 @@ export default function Programs() {
                 transform="translateX(-50%)"
                 left="50%"
                 rounded="full"
-                bgColor="primary.400"
+                bgColor="primary.600"
                 to="/programs/new"
                 p={1}
             >

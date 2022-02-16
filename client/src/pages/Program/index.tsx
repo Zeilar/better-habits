@@ -57,7 +57,9 @@ export default function SingleProgram() {
                         gridGap={4}
                         p={4}
                     >
-                        <Button type="submit">Save</Button>
+                        <Button type="submit" bgColor="success">
+                            Save
+                        </Button>
                         <Button variant="danger" onClick={destroy} type="button">
                             Delete
                         </Button>
