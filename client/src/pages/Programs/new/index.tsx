@@ -42,9 +42,7 @@ export default function NewProgram() {
                         p={4}
                         gridGap={4}
                     >
-                        <Button type="submit" bgColor="success">
-                            Create
-                        </Button>
+                        <Button type="submit">Create</Button>
                         <Link to="/programs">
                             <Button type="submit" variant="secondary" w="100%">
                                 Cancel
