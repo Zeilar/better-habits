@@ -4,7 +4,6 @@ import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
 import { Link as ReactLink } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper";
-import PageHeader from "../../components/PageHeader";
 
 interface Fields {
     email: string;
@@ -21,7 +20,9 @@ export default function Login() {
 
     return (
         <PageWrapper as="form" onSubmit={handleSubmit(auth.login)}>
-            <PageHeader>Login</PageHeader>
+            <Text as="h2" textStyle="h2">
+                Login
+            </Text>
             <Flex px={8} my={4} flexDir="column">
                 <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
