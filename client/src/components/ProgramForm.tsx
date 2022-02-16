@@ -1,4 +1,5 @@
 import { Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react";
+import { useCallback, useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Program } from "../../@types/program";
 import ContainerSpinner from "./ContainerSpinner";
@@ -22,6 +23,16 @@ interface Props {
 export default function ProgramForm({ program, onSubmit, submitting, controls }: Props) {
     const { handleSubmit, register, formState, control } = useForm<Fields>({ defaultValues: program });
     const exercises = useFieldArray({ name: "exercises", control });
+
+    const addExercise = useCallback(() => {
+        exercises.append({ name: "", duration: 0, sets: 0 });
+    }, [exercises]);
+
+    useEffect(() => {
+        if (exercises.fields.length === 0) {
+            addExercise();
+        }
+    }, [exercises.fields.length, addExercise]);
 
     return (
         <PageWrapper as="form" onSubmit={handleSubmit(onSubmit)}>
@@ -80,11 +91,11 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                             />
                             {errors?.duration && <FormErrorMessage>{errors.duration.message}</FormErrorMessage>}
                         </FormControl>
-                        <Button onClick={() => exercises.remove(i)}>X</Button>
+                        {exercises.fields.length > 1 && <Button onClick={() => exercises.remove(i)}>X</Button>}
                     </Flex>
                 );
             })}
-            <Button onClick={() => exercises.append({ duration: 0, sets: 0, name: "" })}>Add</Button>
+            <Button onClick={addExercise}>Add</Button>
             {controls}
         </PageWrapper>
     );
