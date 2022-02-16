@@ -39,6 +39,9 @@ export const Button: StyleConfig = {
                 color: "black",
             },
         },
+        link: {
+            color: "primary.600",
+        },
         danger: {
             border: "2px solid",
             borderColor: "danger",
