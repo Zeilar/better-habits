@@ -1,15 +1,15 @@
 export const colors = {
     primary: {
-        50: "#E5FFF3",
-        100: "#B8FFDC",
-        200: "#8AFFC6",
-        300: "#5CFFB0",
-        400: "#2EFF99",
-        500: "#00FF83",
-        600: "#00CC69",
-        700: "#00994E",
-        800: "#006634",
-        900: "#00331A",
+        50: "#E5FFFF",
+        100: "#B8FFFF",
+        200: "#8AFFFF",
+        300: "#5CFFFF",
+        400: "#2EFFFF",
+        500: "#00FFFF",
+        600: "#00CCCC",
+        700: "#009999",
+        800: "#006666",
+        900: "#003333",
     },
     gray: {
         50: "#414141",
@@ -27,10 +27,10 @@ export const colors = {
     success: "var(--chakra-colors-green-600)",
     body: "var(--chakra-colors-gray-900)",
     text: {
-        default: "#f5f5f5",
+        default: "var(--chakra-colors-whiteAlpha-900)",
         muted: "#828c96",
     },
     border: {
-        default: "var(--chakra-colors-gray-400)",
+        default: "var(--chakra-colors-gray-300)",
     },
 };

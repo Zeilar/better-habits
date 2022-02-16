@@ -19,19 +19,14 @@ export default function BrandSpinner(props: FlexProps) {
             flexDir="column"
             alignItems="center"
             rounded="full"
+            fontSize="2rem"
             bgColor="primary.400"
             justifyContent="center"
             h="5rem"
             w="5rem"
             {...props}
         >
-            <Text
-                as="h1"
-                textStyle="h1"
-                textAlign="center"
-                whiteSpace="nowrap"
-                color="black"
-            >
+            <Text as="h1" fontWeight={700} textAlign="center" whiteSpace="nowrap" color="black">
                 BH
             </Text>
         </Flex>

@@ -55,7 +55,7 @@ export default function Navbar() {
             alignItems="center"
             h="navbarHeight"
             as="nav"
-            bgColor="gray.700"
+            bgColor="gray.800"
             pos="sticky"
             bottom={0}
             justifyContent="center"

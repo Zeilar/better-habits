@@ -1,17 +1,16 @@
-import { Link, Grid, Text, Skeleton, Box } from "@chakra-ui/react";
+import { Grid, Skeleton, Box, Text, Link, Divider, Flex } from "@chakra-ui/react";
 import { useCSR } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
-import PageHeader from "../../components/PageHeader";
+import Card from "../../components/Card";
 
 export default function Programs() {
-    const { data, success, loading } = useCSR<Program[]>("/programs");
+    const { data, success, loading } = useCSR<Program<true>[]>("/programs");
 
     return (
-        <PageWrapper>
-            <PageHeader>My programs</PageHeader>
+        <PageWrapper p={4}>
             {loading && (
                 <Grid p={4} gridGap={2}>
                     {Array(5)
@@ -21,39 +20,24 @@ export default function Programs() {
                         ))}
                 </Grid>
             )}
-            <Grid p={4} gridGap={2}>
-                {success &&
-                    data.map(program => (
-                        <Link
-                            transition="none"
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                            as={ReactLink}
-                            key={program.id}
-                            bgColor="gray.600"
-                            p={4}
-                            rounded="md"
-                            to={`/program/${program.id}`}
-                            _hover={{
-                                bgColor: "gray.400",
-                                "> svg": {
-                                    opacity: 1,
-                                    transform: "translateX(0)",
-                                },
-                            }}
-                        >
-                            <Text>{program.name}</Text>
-                            <Icon
-                                transform="translateX(-0.25rem)"
-                                transition="transform 0.25s"
-                                icon="mdiArrowRight"
-                                size="1.5rem"
-                                opacity={0}
-                            />
-                        </Link>
-                    ))}
-            </Grid>
+            {success && (
+                <>
+                    <Text textStyle="h3" as="h3" mb={4}>
+                        My programs
+                    </Text>
+                    <Flex flexDir="column" gridGap={4}>
+                        {data.map(program => (
+                            <Link as={ReactLink} to={`/program/${program.id}`} key={program.id}>
+                                <Card>
+                                    <Text>{program.name}</Text>
+                                    <Divider my={4} />
+                                    <Text>Placeholder...</Text>
+                                </Card>
+                            </Link>
+                        ))}
+                    </Flex>
+                </>
+            )}
             <Box
                 as={ReactLink}
                 bottom="calc(var(--chakra-sizes-navbarHeight) + 2rem)"
