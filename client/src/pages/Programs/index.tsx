@@ -10,8 +10,6 @@ import { exercisesCombinedDuration } from "./service";
 export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
 
-    console.log(data);
-
     return (
         <PageWrapper p={4}>
             {loading && (
