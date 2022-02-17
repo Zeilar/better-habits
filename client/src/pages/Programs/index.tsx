@@ -28,7 +28,7 @@ export default function Programs() {
                     </Text>
                     <Flex flexDir="column" gridGap={4}>
                         {data.map(program => (
-                            <Link as={ReactLink} to={`/program/${program.id}`} key={program.id}>
+                            <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
                                 <Card>
                                     <Text>{program.name}</Text>
                                     <Divider my={4} />

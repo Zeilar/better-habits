@@ -1,6 +1,6 @@
-import { Button, Grid } from "@chakra-ui/react";
+import { Button, Grid, Link, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link as ReactLink, useNavigate } from "react-router-dom";
 import { Program } from "../../../../@types/program";
 import PageWrapper from "../../../components/PageWrapper";
 import ProgramForm, { Fields } from "../../../components/ProgramForm";
@@ -44,9 +44,9 @@ export default function NewProgram() {
                         gridGap={4}
                     >
                         <Button type="submit">Create</Button>
-                        <Button variant="link" w="100%">
-                            <Link to="/programs">Cancel</Link>
-                        </Button>
+                        <Link as={ReactLink} to="/programs" display="flex">
+                            <Text m="auto">Cancel</Text>
+                        </Link>
                     </Grid>
                 }
             />

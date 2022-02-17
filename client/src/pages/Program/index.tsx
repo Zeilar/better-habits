@@ -1,6 +1,6 @@
-import { Button, Grid } from "@chakra-ui/react";
+import { Button, Grid, Link } from "@chakra-ui/react";
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link as ReactLink, useNavigate, useParams } from "react-router-dom";
 import { Program } from "../../../@types/program";
 import Icon from "../../components/Icon";
 import PageWrapper from "../../components/PageWrapper";
@@ -44,10 +44,10 @@ export default function SingleProgram() {
 
     return (
         <PageWrapper>
-            <Button variant="link">
+            <Link as={ReactLink} to="/programs" w="fit-content">
                 <Icon icon="mdiArrowLeft" mr={1} />
-                <Link to="/programs">Go back</Link>
-            </Button>
+                Go back
+            </Link>
             <ProgramForm
                 program={data}
                 onSubmit={edit}
