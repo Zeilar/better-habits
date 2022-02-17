@@ -1,9 +1,8 @@
-import { Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useCallback, useEffect } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Program } from "../../@types/program";
 import ContainerSpinner from "./ContainerSpinner";
-import PageWrapper from "./PageWrapper";
 
 interface ExerciseField {
     name: string;
@@ -35,7 +34,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
     }, [exercises.fields.length, addExercise]);
 
     return (
-        <PageWrapper as="form" onSubmit={handleSubmit(onSubmit)}>
+        <Flex as="form" onSubmit={handleSubmit(onSubmit)} h="100%" flexDir="column" flexGrow={1}>
             {(submitting || formState.isSubmitting) && <ContainerSpinner />}
             <Text>{program?.name}</Text>
             <FormControl isInvalid={Boolean(formState.errors.name)}>
@@ -96,7 +95,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                 );
             })}
             <Button onClick={addExercise}>Add</Button>
-            {controls}
-        </PageWrapper>
+            <Box mt="auto">{controls}</Box>
+        </Flex>
     );
 }
