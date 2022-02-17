@@ -47,7 +47,7 @@ function Navitem({ label, icon, href }: NavitemProps) {
 }
 
 export default function Navbar() {
-    const { logout } = useAuth();
+    const { logout, authenticated } = useAuth();
 
     return (
         <Flex
@@ -60,10 +60,20 @@ export default function Navbar() {
             bottom={0}
             justifyContent="center"
         >
-            <Navitem href="/" label="Home" icon="mdiHome" />
-            <Navitem href="/programs" label="Programs" icon="mdiDumbbell" />
-            <Navitem href="/schedule" label="Schedule" icon="mdiCalendar" />
-            <Navitem href="/settings" label="Settings" icon="mdiCog" />
+            {authenticated ? (
+                <>
+                    <Navitem href="/" label="Home" icon="mdiHome" />
+                    <Navitem href="/programs" label="Programs" icon="mdiDumbbell" />
+                    <Navitem href="/schedule" label="Schedule" icon="mdiCalendar" />
+                    <Navitem href="/settings" label="Settings" icon="mdiCog" />
+                </>
+            ) : (
+                <>
+                    <Navitem href="/guest" label="Welcome" icon="mdiHome" />
+                    <Navitem href="/register" label="Register" icon="mdiAccountPlus" />
+                    <Navitem href="/login" label="Login" icon="mdiLock" />
+                </>
+            )}
         </Flex>
     );
 }
