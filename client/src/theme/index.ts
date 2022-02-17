@@ -11,19 +11,6 @@ import { textStyles } from "./textStyles";
 import { radii } from "./radii";
 import { sizes } from "./sizes";
 
-export const theme = {
-    sizes,
-    config,
-    colors,
-    shadows,
-    fonts,
-    components: { ...chakraTheme.components, ...components },
-    styles,
-    // breakpoints,
-    textStyles,
-    radii,
-};
-
 export default extendTheme(
     {
         sizes,
