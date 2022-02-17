@@ -5,9 +5,12 @@ import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
 import Card from "../../components/Card";
+import { exercisesCombinedDuration } from "./service";
 
 export default function Programs() {
-    const { data, success, loading } = useCSR<Program<true>[]>("/programs");
+    const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
+
+    console.log(data);
 
     return (
         <PageWrapper p={4}>
@@ -16,7 +19,7 @@ export default function Programs() {
                     {Array(5)
                         .fill(null)
                         .map((_, i) => (
-                            <Skeleton height="3.5rem" key={i} />
+                            <Skeleton height="7rem" key={i} rounded="md" />
                         ))}
                 </Grid>
             )}
@@ -31,7 +34,21 @@ export default function Programs() {
                                 <Card>
                                     <Text>{program.name}</Text>
                                     <Divider my={4} />
-                                    <Text>Placeholder...</Text>
+                                    <Flex alignItems="center">
+                                        <Flex alignItems="center">
+                                            <Icon icon="mdiWeightLifter" />
+                                            <Text ml={2} as="span">
+                                                {program.exercises.length}
+                                            </Text>
+                                        </Flex>
+                                        <Divider orientation="vertical" mx={4} height={4} />
+                                        <Flex alignItems="center">
+                                            <Icon icon="mdiClock" />
+                                            <Text ml={2} as="span">
+                                                {exercisesCombinedDuration(program.exercises)}
+                                            </Text>
+                                        </Flex>
+                                    </Flex>
                                 </Card>
                             </Link>
                         ))}
