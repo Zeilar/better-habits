@@ -11,7 +11,7 @@ export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
 
     return (
-        <PageWrapper p={4}>
+        <PageWrapper pt={4} overflow="hidden" noScroll>
             {loading && (
                 <Grid p={4} gridGap={2}>
                     {Array(5)
@@ -23,15 +23,15 @@ export default function Programs() {
             )}
             {success && (
                 <>
-                    <Text textStyle="h3" as="h3" mb={4}>
+                    <Text textStyle="h3" as="h3" mb={4} px={5}>
                         My programs
                     </Text>
-                    <Flex flexDir="column" gridGap={4}>
+                    <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {data.map(program => (
                             <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
-                                <Card>
+                                <Card borderLeftRadius="none" borderLeft="2px solid" borderColor="primary.600">
                                     <Text>{program.name}</Text>
-                                    <Divider my={4} />
+                                    <Divider my={4} borderColor="border.default" />
                                     <Flex alignItems="center">
                                         <Flex alignItems="center">
                                             <Icon icon="mdiWeightLifter" />
@@ -55,11 +55,12 @@ export default function Programs() {
             )}
             <Box
                 as={ReactLink}
-                bottom="calc(var(--chakra-sizes-navbarHeight) + 2rem)"
+                bottom="calc(var(--chakra-sizes-navbarHeight) + 1.5rem)"
                 pos="fixed"
                 transform="translateX(-50%)"
                 left="50%"
                 rounded="full"
+                boxShadow="0 0 8px rgba(0, 0, 0, 0.5)"
                 bgColor="primary.600"
                 to="/programs/new"
                 p={1}
