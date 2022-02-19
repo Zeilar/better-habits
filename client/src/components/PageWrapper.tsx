@@ -5,9 +5,9 @@ interface Props extends FlexProps {
 }
 
 export default function PageWrapper({ children, noScroll, ...props }: Props) {
-    const heightCss = { [noScroll ? "h" : "minH"]: "calc(100vh - var(--chakra-sizes-navbarHeight))" };
+    const css = { [noScroll ? "h" : "minH"]: `calc(100vh - var(--chakra-sizes-navbarHeight))` };
     return (
-        <Flex flexDir="column" {...heightCss} {...props}>
+        <Flex flexDir="column" overflowY="auto" {...css} {...props}>
             {children}
         </Flex>
     );

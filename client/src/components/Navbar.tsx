@@ -58,6 +58,7 @@ export default function Navbar() {
             bgColor="gray.700"
             pos="sticky"
             bottom={0}
+            zIndex={1000}
             justifyContent="center"
         >
             {authenticated ? (

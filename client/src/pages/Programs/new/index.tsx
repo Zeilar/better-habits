@@ -28,7 +28,7 @@ export default function NewProgram() {
     }
 
     return (
-        <PageWrapper>
+        <PageWrapper noScroll>
             <ProgramForm
                 onSubmit={create}
                 submitting={submitting}
@@ -38,10 +38,11 @@ export default function NewProgram() {
                         boxShadow="elevate.top"
                         bgColor="gray.700"
                         pos="sticky"
-                        bottom="var(--chakra-sizes-navbarHeight)"
-                        mt="auto"
+                        bottom={0}
                         p={4}
                         gridGap={4}
+                        zIndex={20}
+                        h="controlsHeight"
                     >
                         <Button type="submit">Create</Button>
                         <Link as={ReactLink} to="/programs" display="flex">

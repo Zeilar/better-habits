@@ -58,10 +58,11 @@ export default function SingleProgram() {
                         bgColor="gray.700"
                         gridTemplateColumns="repeat(2, 1fr)"
                         pos="sticky"
-                        bottom="var(--chakra-sizes-navbarHeight)"
-                        mt="auto"
+                        bottom={0}
+                        h="controlsHeight"
                         gridGap={4}
                         p={4}
+                        zIndex={20}
                     >
                         <Button type="submit">Save</Button>
                         <Button variant="danger" onClick={destroy} type="button">
