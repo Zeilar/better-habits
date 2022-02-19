@@ -57,8 +57,6 @@ export default function SingleProgram() {
                         boxShadow="elevate.top"
                         bgColor="gray.700"
                         gridTemplateColumns="repeat(2, 1fr)"
-                        pos="sticky"
-                        bottom={0}
                         h="controlsHeight"
                         gridGap={4}
                         p={4}

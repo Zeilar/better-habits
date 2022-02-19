@@ -37,11 +37,8 @@ export default function NewProgram() {
                         gridTemplateColumns="repeat(2, 1fr)"
                         boxShadow="elevate.top"
                         bgColor="gray.700"
-                        pos="sticky"
-                        bottom={0}
                         p={4}
                         gridGap={4}
-                        zIndex={20}
                         h="controlsHeight"
                     >
                         <Button type="submit">Create</Button>

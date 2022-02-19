@@ -49,7 +49,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                     {formState.errors.name && <FormErrorMessage>{formState.errors.name.message}</FormErrorMessage>}
                 </FormControl>
                 <Text>Exercises</Text>
-                <Box overflowY="auto">
+                <Flex overflowY="auto" flexDir="column" gridGap={4}>
                     {exercises.fields.map((_, i) => {
                         const label = `exercises.${i}`;
                         const name = `${label}.name`;
@@ -115,10 +115,12 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                             </Card>
                         );
                     })}
-                </Box>
+                </Flex>
                 <Button onClick={addExercise}>Add Exercise</Button>
             </Flex>
-            {controls}
+            <Box pos="sticky" bottom={0} mt="auto">
+                {controls}
+            </Box>
         </Flex>
     );
 }
