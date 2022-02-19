@@ -19,17 +19,18 @@ export default function Login() {
     } = useForm<Fields>();
 
     return (
-        <PageWrapper as="form" onSubmit={handleSubmit(auth.login)}>
+        <PageWrapper as="form" onSubmit={handleSubmit(auth.login)} p={4}>
             <Text as="h2" textStyle="h2">
                 Login
             </Text>
-            <Flex px={8} my={4} flexDir="column">
+            <Flex my={4} flexDir="column">
                 <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
                         id="email"
                         placeholder="john.doe@example.com"
                         type="email"
+                        autoFocus
                         {...register("email", {
                             required: "Email is required",
                         })}
