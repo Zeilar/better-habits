@@ -118,7 +118,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                 </Flex>
                 <Button onClick={addExercise}>Add Exercise</Button>
             </Flex>
-            <Box pos="sticky" bottom={0} mt="auto">
+            <Box pos="sticky" bottom={0} mt="auto" zIndex={100}>
                 {controls}
             </Box>
         </Flex>
