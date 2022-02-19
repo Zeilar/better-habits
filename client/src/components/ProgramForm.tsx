@@ -36,10 +36,10 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
     }, [exercises.fields.length, addExercise]);
 
     return (
-        <Flex as="form" onSubmit={handleSubmit(onSubmit)} h="100%" flexDir="column" flexGrow={1}>
+        <Flex as="form" onSubmit={handleSubmit(onSubmit)} h="100%" flexDir="column" flexGrow={1} overflow="hidden">
             {(submitting || formState.isSubmitting) && <ContainerSpinner />}
-            <Flex p={4} gridGap={4} flexDir="column">
-                <FormControl isInvalid={Boolean(formState.errors.name)} mb={4}>
+            <Flex pt={4} flexDir="column" overflowY="auto">
+                <FormControl isInvalid={Boolean(formState.errors.name)} mb={8} px={4}>
                     <FormLabel htmlFor="name">
                         <Text textStyle="h3" as="h3">
                             Name
@@ -52,11 +52,11 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                     />
                     {formState.errors.name && <FormErrorMessage>{formState.errors.name.message}</FormErrorMessage>}
                 </FormControl>
-                <Box>
-                    <Text textStyle="h3" as="h3" mb={2}>
-                        Exercises
-                    </Text>
-                    <Flex overflowY="auto" flexDir="column" gridGap={4}>
+                <Text textStyle="h3" as="h3" mb={2} px={4}>
+                    Exercises
+                </Text>
+                <Box overflowY="auto" px={4} pb={4}>
+                    <Flex flexDir="column" gridGap={4}>
                         {exercises.fields.map((_, i) => {
                             const label = `exercises.${i}`;
                             const name = `${label}.name`;
@@ -123,8 +123,10 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                             );
                         })}
                     </Flex>
+                    <Button mt={4} onClick={addExercise} w="100%">
+                        Add Exercise
+                    </Button>
                 </Box>
-                <Button onClick={addExercise}>Add Exercise</Button>
             </Flex>
             <Box pos="sticky" bottom={0} mt="auto" zIndex={100}>
                 {controls}
