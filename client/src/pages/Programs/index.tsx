@@ -1,4 +1,4 @@
-import { Grid, Skeleton, Box, Text, Link, Divider, Flex } from "@chakra-ui/react";
+import { Grid, Skeleton, Text, Link, Divider, Flex } from "@chakra-ui/react";
 import { useCSR } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
@@ -53,20 +53,24 @@ export default function Programs() {
                     </Flex>
                 </>
             )}
-            <Box
+            <Flex
                 as={ReactLink}
                 bottom="calc(var(--chakra-sizes-navbarHeight) + 1.5rem)"
                 pos="fixed"
+                alignItems="center"
+                justifyContent="center"
                 transform="translateX(-50%)"
                 left="50%"
                 rounded="full"
+                w={8}
+                h={8}
                 boxShadow="0 0 8px rgba(0, 0, 0, 0.5)"
                 bgColor="primary.600"
                 to="/programs/new"
                 p={1}
             >
-                <Icon icon="mdiPlus" w="2rem" h="2rem" color="black" />
-            </Box>
+                <Icon icon="mdiPlus" w={6} h={6} color="black" />
+            </Flex>
         </PageWrapper>
     );
 }
