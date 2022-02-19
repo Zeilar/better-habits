@@ -11,7 +11,7 @@ export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
 
     return (
-        <PageWrapper pt={4} overflow="hidden" noScroll>
+        <PageWrapper pt={4} noScroll>
             {loading && (
                 <Grid p={4} gridGap={2}>
                     {Array(5)
