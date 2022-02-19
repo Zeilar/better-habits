@@ -1,5 +1,5 @@
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Program } from "../../@types/program";
 import Card from "./Card";
@@ -24,9 +24,12 @@ interface Props {
 export default function ProgramForm({ program, onSubmit, submitting, controls }: Props) {
     const { handleSubmit, register, formState, control } = useForm<Fields>({ defaultValues: program });
     const exercises = useFieldArray({ name: "exercises", control });
+    const exercisesEl = useRef<HTMLDivElement>(null);
+    const shouldScroll = useRef(false);
 
     const addExercise = useCallback(() => {
         exercises.append({ name: "", duration: 0, sets: 0 });
+        shouldScroll.current = true;
     }, [exercises]);
 
     useEffect(() => {
@@ -34,6 +37,13 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
             addExercise();
         }
     }, [exercises.fields.length, addExercise]);
+
+    useEffect(() => {
+        if (exercises.fields.length > 1 && shouldScroll.current) {
+            exercisesEl.current?.scrollTo({ top: 99999, behavior: "smooth" });
+            shouldScroll.current = false;
+        }
+    }, [exercises.fields.length]);
 
     return (
         <Flex as="form" onSubmit={handleSubmit(onSubmit)} h="100%" flexDir="column" flexGrow={1} overflow="hidden">
@@ -46,7 +56,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                         </Text>
                     </FormLabel>
                     <Input
-                        placeholder="Weight lifting"
+                        placeholder="Heavy weights"
                         id="name"
                         {...register("name", { required: "Field is required" })}
                     />
@@ -55,7 +65,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                 <Text textStyle="h3" as="h3" mb={2} px={4}>
                     Exercises
                 </Text>
-                <Box overflowY="auto" px={4} pb={4}>
+                <Box ref={exercisesEl} overflowY="auto" px={4} pb={4}>
                     <Flex flexDir="column" gridGap={4}>
                         {exercises.fields.map((_, i) => {
                             const label = `exercises.${i}`;
