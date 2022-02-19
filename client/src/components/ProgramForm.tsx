@@ -40,7 +40,11 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
             {(submitting || formState.isSubmitting) && <ContainerSpinner />}
             <Flex p={4} gridGap={4} flexDir="column">
                 <FormControl isInvalid={Boolean(formState.errors.name)} mb={4}>
-                    <FormLabel htmlFor="name">Name</FormLabel>
+                    <FormLabel htmlFor="name">
+                        <Text textStyle="h3" as="h3">
+                            Name
+                        </Text>
+                    </FormLabel>
                     <Input
                         placeholder="Weight lifting"
                         id="name"
@@ -48,74 +52,78 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                     />
                     {formState.errors.name && <FormErrorMessage>{formState.errors.name.message}</FormErrorMessage>}
                 </FormControl>
-                <Text>Exercises</Text>
-                <Flex overflowY="auto" flexDir="column" gridGap={4}>
-                    {exercises.fields.map((_, i) => {
-                        const label = `exercises.${i}`;
-                        const name = `${label}.name`;
-                        const sets = `${label}.sets`;
-                        const duration = `${label}.duration`;
-                        const errors = formState.errors.exercises ? formState.errors.exercises[i] : {};
-                        return (
-                            <Card key={i} gridGap={4} pos="relative">
-                                {exercises.fields.length > 1 && (
-                                    <Button
-                                        variant="unstyled"
-                                        onClick={() => exercises.remove(i)}
-                                        pos="absolute"
-                                        display="flex"
-                                        w={8}
-                                        h={8}
-                                        right={1}
-                                        top={1}
-                                        zIndex={10}
-                                    >
-                                        <Icon icon="mdiClose" />
-                                    </Button>
-                                )}
-                                <FormControl isInvalid={Boolean(errors?.name)}>
-                                    <FormLabel htmlFor={name}>Name</FormLabel>
-                                    <Input
-                                        id={name}
-                                        placeholder="Situps"
-                                        {...register(`exercises.${i}.name`, {
-                                            required: "Field is required",
-                                        })}
-                                    />
-                                    {errors?.name && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
-                                </FormControl>
-                                <Flex gridGap={4}>
-                                    <FormControl isInvalid={Boolean(errors?.sets)}>
-                                        <FormLabel htmlFor={sets}>Sets</FormLabel>
+                <Box>
+                    <Text textStyle="h3" as="h3" mb={2}>
+                        Exercises
+                    </Text>
+                    <Flex overflowY="auto" flexDir="column" gridGap={4}>
+                        {exercises.fields.map((_, i) => {
+                            const label = `exercises.${i}`;
+                            const name = `${label}.name`;
+                            const sets = `${label}.sets`;
+                            const duration = `${label}.duration`;
+                            const errors = formState.errors.exercises ? formState.errors.exercises[i] : {};
+                            return (
+                                <Card key={i} gridGap={4} pos="relative">
+                                    {exercises.fields.length > 1 && (
+                                        <Button
+                                            variant="unstyled"
+                                            onClick={() => exercises.remove(i)}
+                                            pos="absolute"
+                                            display="flex"
+                                            w={8}
+                                            h={8}
+                                            right={1}
+                                            top={1}
+                                            zIndex={10}
+                                        >
+                                            <Icon icon="mdiClose" />
+                                        </Button>
+                                    )}
+                                    <FormControl isInvalid={Boolean(errors?.name)}>
+                                        <FormLabel htmlFor={name}>Name</FormLabel>
                                         <Input
-                                            id={sets}
-                                            placeholder="Sets"
-                                            type="number"
-                                            {...register(`exercises.${i}.sets`, {
-                                                setValueAs: value => Number(value) || null,
+                                            id={name}
+                                            placeholder="Situps"
+                                            {...register(`exercises.${i}.name`, {
+                                                required: "Field is required",
                                             })}
                                         />
-                                        {errors?.sets && <FormErrorMessage>{errors.sets.message}</FormErrorMessage>}
+                                        {errors?.name && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
                                     </FormControl>
-                                    <FormControl isInvalid={Boolean(errors?.duration)}>
-                                        <FormLabel htmlFor={duration}>Duration</FormLabel>
-                                        <Input
-                                            id={duration}
-                                            type="number"
-                                            placeholder="Duration"
-                                            {...register(`exercises.${i}.duration`, {
-                                                setValueAs: value => Number(value) || null,
-                                            })}
-                                        />
-                                        {errors?.duration && (
-                                            <FormErrorMessage>{errors.duration.message}</FormErrorMessage>
-                                        )}
-                                    </FormControl>
-                                </Flex>
-                            </Card>
-                        );
-                    })}
-                </Flex>
+                                    <Flex gridGap={4}>
+                                        <FormControl isInvalid={Boolean(errors?.sets)}>
+                                            <FormLabel htmlFor={sets}>Sets</FormLabel>
+                                            <Input
+                                                id={sets}
+                                                placeholder="Sets"
+                                                type="number"
+                                                {...register(`exercises.${i}.sets`, {
+                                                    setValueAs: value => Number(value) || null,
+                                                })}
+                                            />
+                                            {errors?.sets && <FormErrorMessage>{errors.sets.message}</FormErrorMessage>}
+                                        </FormControl>
+                                        <FormControl isInvalid={Boolean(errors?.duration)}>
+                                            <FormLabel htmlFor={duration}>Duration</FormLabel>
+                                            <Input
+                                                id={duration}
+                                                type="number"
+                                                placeholder="Duration"
+                                                {...register(`exercises.${i}.duration`, {
+                                                    setValueAs: value => Number(value) || null,
+                                                })}
+                                            />
+                                            {errors?.duration && (
+                                                <FormErrorMessage>{errors.duration.message}</FormErrorMessage>
+                                            )}
+                                        </FormControl>
+                                    </Flex>
+                                </Card>
+                            );
+                        })}
+                    </Flex>
+                </Box>
                 <Button onClick={addExercise}>Add Exercise</Button>
             </Flex>
             <Box pos="sticky" bottom={0} mt="auto" zIndex={100}>
