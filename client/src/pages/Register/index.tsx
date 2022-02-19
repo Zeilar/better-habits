@@ -35,6 +35,10 @@ export default function Register() {
                         type="email"
                         {...register("email", {
                             required: "Email is required",
+                            maxLength: {
+                                value: 50,
+                                message: "Maximum 50 characters",
+                            },
                         })}
                     />
                     {errors.email?.message && <FormError message={errors.email.message} />}
