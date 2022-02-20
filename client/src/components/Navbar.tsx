@@ -23,7 +23,7 @@ function Navitem({ label, icon, href }: NavitemProps) {
             px={4}
             pos="relative"
             to={href}
-            _hover={{ bgColor: "gray.400" }}
+            _hover={{ color: "primary.600" }}
             _after={{
                 display: "none",
                 content: `""`,

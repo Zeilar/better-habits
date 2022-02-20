@@ -5,10 +5,29 @@ import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
 import Card from "../../components/Card";
-import { exercisesCombinedDuration } from "./service";
+import { Direction, exercisesCombinedDuration, sortBy, SortProperty } from "./service";
+import { useState } from "react";
+
+interface Sort {
+    property: SortProperty;
+    direction: Direction;
+    label: string;
+}
+
+const sorts: Sort[] = [
+    { property: "date", direction: "desc", label: "Date descending" },
+    { property: "date", direction: "asc", label: "Date ascending" },
+    { property: "name", direction: "desc", label: "Name descending" },
+    { property: "name", direction: "asc", label: "Name ascending" },
+    { property: "duration", direction: "desc", label: "Duration descending" },
+    { property: "duration", direction: "asc", label: "Duration ascending" },
+    { property: "exercises", direction: "desc", label: "Exercises descending" },
+    { property: "exercises", direction: "asc", label: "Exercises ascending" },
+];
 
 export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
+    const [sort, setSort] = useState<Sort>(sorts[0]);
 
     return (
         <PageWrapper pt={4} noScroll>
@@ -27,7 +46,7 @@ export default function Programs() {
                         My programs
                     </Text>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
-                        {data.map(program => (
+                        {sortBy(data, sort.property, sort.direction).map(program => (
                             <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
                                 <Card borderLeftRadius="none" borderLeft="2px solid" borderColor="primary.600">
                                     <Text>{program.name}</Text>

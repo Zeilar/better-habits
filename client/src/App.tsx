@@ -10,6 +10,7 @@ import Program from "./pages/Program";
 import Programs from "./pages/Programs";
 import NewProgram from "./pages/Programs/new";
 import Register from "./pages/Register";
+import Schedule from "./pages/Schedule";
 import Settings from "./pages/Settings";
 
 export default function App() {
@@ -76,8 +77,7 @@ export default function App() {
                     path="/schedule"
                     element={
                         <ProtectedRoute>
-                            {null}
-                            {/* <Schedule /> */}
+                            <Schedule />
                         </ProtectedRoute>
                     }
                 />
