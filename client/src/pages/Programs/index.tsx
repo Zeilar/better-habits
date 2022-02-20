@@ -1,4 +1,4 @@
-import { Grid, Skeleton, Text, Link, Divider, Flex } from "@chakra-ui/react";
+import { Grid, Skeleton, Text, Link, Divider, Flex, Select, Box } from "@chakra-ui/react";
 import { useCSR } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
@@ -27,7 +27,9 @@ const sorts: Sort[] = [
 
 export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
-    const [sort, setSort] = useState<Sort>(sorts[0]);
+    const [sortIndex, setSortIndex] = useState(0);
+
+    const sort = sorts[sortIndex];
 
     return (
         <PageWrapper pt={4} noScroll>
@@ -42,9 +44,19 @@ export default function Programs() {
             )}
             {success && (
                 <>
-                    <Text textStyle="h3" as="h3" mb={4} px={5}>
-                        My programs
-                    </Text>
+                    <Box px={4} mb={4}>
+                        <Text textStyle="h3" as="h3" mb={4}>
+                            My programs
+                        </Text>
+                        <Text mb={1}>Sort by</Text>
+                        <Select value={sorts.indexOf(sort)} onChange={e => setSortIndex(parseInt(e.target.value))}>
+                            {sorts.map((sort, i) => (
+                                <option key={i} value={i}>
+                                    {sort.label}
+                                </option>
+                            ))}
+                        </Select>
+                    </Box>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {sortBy(data, sort.property, sort.direction).map(program => (
                             <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
