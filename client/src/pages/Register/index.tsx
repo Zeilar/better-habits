@@ -29,7 +29,6 @@ export default function Register() {
                 <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
-                        autoFocus
                         id="email"
                         placeholder="john.doe@example.com"
                         type="email"

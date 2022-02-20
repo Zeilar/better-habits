@@ -1,4 +1,4 @@
-import { StyleConfig } from "@chakra-ui/theme-tools";
+import { StyleConfig, transparentize } from "@chakra-ui/theme-tools";
 import { AlertProps } from "@chakra-ui/react";
 
 export const Alert: StyleConfig = {
@@ -39,6 +39,15 @@ export const Alert: StyleConfig = {
                         },
                     };
             }
+        },
+        border: {
+            container: {
+                py: 1,
+                rounded: "md",
+                border: "2px solid",
+                borderColor: "red.700",
+                bgColor: transparentize("red.500", 0.25),
+            },
         },
     },
 };
