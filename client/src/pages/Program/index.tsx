@@ -43,7 +43,7 @@ export default function SingleProgram() {
     }
 
     return (
-        <PageWrapper>
+        <PageWrapper noScroll>
             <Link as={ReactLink} to="/programs" w="fit-content" p={4}>
                 <Icon icon="mdiArrowLeft" mr={1} />
                 Go back
