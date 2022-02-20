@@ -15,19 +15,19 @@ interface Sort {
 }
 
 const sorts: Sort[] = [
-    { property: "date", direction: "desc", label: "Date descending" },
     { property: "date", direction: "asc", label: "Date ascending" },
-    { property: "name", direction: "desc", label: "Name descending" },
+    { property: "date", direction: "desc", label: "Date descending" },
     { property: "name", direction: "asc", label: "Name ascending" },
-    { property: "duration", direction: "desc", label: "Duration descending" },
+    { property: "name", direction: "desc", label: "Name descending" },
     { property: "duration", direction: "asc", label: "Duration ascending" },
-    { property: "exercises", direction: "desc", label: "Exercises descending" },
+    { property: "duration", direction: "desc", label: "Duration descending" },
     { property: "exercises", direction: "asc", label: "Exercises ascending" },
+    { property: "exercises", direction: "desc", label: "Exercises descending" },
 ];
 
 export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
-    const [sortIndex, setSortIndex] = useState(0);
+    const [sortIndex, setSortIndex] = useState(1);
 
     const sort = sorts[sortIndex];
 
