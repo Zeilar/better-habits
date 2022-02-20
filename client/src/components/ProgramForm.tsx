@@ -62,9 +62,14 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                     />
                     {formState.errors.name && <FormErrorMessage>{formState.errors.name.message}</FormErrorMessage>}
                 </FormControl>
-                <Text textStyle="h3" as="h3" mb={2} px={4}>
-                    Exercises
-                </Text>
+                <Flex justifyContent="space-between" mb={2} px={4}>
+                    <Text textStyle="h3" as="h3">
+                        Exercises
+                    </Text>
+                    <Text textStyle="h3" as="h3">
+                        {exercises.fields.length}
+                    </Text>
+                </Flex>
                 <Box ref={exercisesEl} overflowY="auto" px={4} pb={4}>
                     <Flex flexDir="column" gridGap={4}>
                         {exercises.fields.map((_, i) => {
