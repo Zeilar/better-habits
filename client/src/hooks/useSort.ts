@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { SortDirection } from "../../@types/sort";
 
+export type SortDirection = "desc" | "asc";
 export type SortFunction<T> = (cb: SortFunctionCallback<T>) => T[];
 export type SortFunctionCallback<T, D = any> = (a: T, b: T) => [D, D];
 
