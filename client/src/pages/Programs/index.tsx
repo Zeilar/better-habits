@@ -22,12 +22,12 @@ const sorts: Sort[] = [
 
 export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
-    const [sortIndex, setSortIndex] = useState(1);
+    const [sortIndex, setSortIndex] = useState(0);
     const sortSelector = useDisclosure();
     const sortSelectorEl = useOnClickOutside<HTMLDivElement>(() => {
         sortSelector.onClose();
     });
-    const sorter = useSort<Program<true>>(data);
+    const sorter = useSort<Program<true>>(data, { defaultDirection: "desc" });
 
     const sort = sorts[sortIndex];
 
