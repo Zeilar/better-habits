@@ -1,5 +1,5 @@
-import { Grid, Skeleton, Text, Link, Divider, Flex, Select, Box } from "@chakra-ui/react";
-import { useCSR } from "../../hooks";
+import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
+import { useCSR, useOnClickOutside } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
@@ -28,8 +28,17 @@ const sorts: Sort[] = [
 export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
     const [sortIndex, setSortIndex] = useState(1);
+    const sortSelector = useDisclosure();
+    const sortSelectorEl = useOnClickOutside<HTMLDivElement>(() => {
+        sortSelector.onClose();
+    });
 
     const sort = sorts[sortIndex];
+
+    function pickSort(index: number) {
+        sortSelector.onClose();
+        setSortIndex(index);
+    }
 
     return (
         <PageWrapper pt={4} noScroll>
@@ -44,18 +53,46 @@ export default function Programs() {
             )}
             {success && (
                 <>
-                    <Box px={4} mb={4}>
+                    <Box px={4} mb={2}>
                         <Text textStyle="h3" as="h3" mb={4}>
                             My programs
                         </Text>
-                        <Text mb={1}>Sort by</Text>
-                        <Select value={sorts.indexOf(sort)} onChange={e => setSortIndex(parseInt(e.target.value))}>
-                            {sorts.map((sort, i) => (
-                                <option key={i} value={i}>
-                                    {sort.label}
-                                </option>
-                            ))}
-                        </Select>
+                        <Box pos="relative" ref={sortSelectorEl}>
+                            <Button
+                                variant="unstyled"
+                                onClick={sortSelector.onToggle}
+                                _hover={{ color: "primary.600" }}
+                            >
+                                {sort.label}
+                                <Icon ml={2} icon={sort.direction === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
+                            </Button>
+                            {sortSelector.isOpen && (
+                                <Flex
+                                    flexDir="column"
+                                    pos="absolute"
+                                    top={10}
+                                    left={0}
+                                    bgColor="gray.800"
+                                    boxShadow="card"
+                                    rounded="md"
+                                >
+                                    {sorts.map((sort, i) => (
+                                        <Box
+                                            key={i}
+                                            onClick={() => pickSort(i)}
+                                            p={4}
+                                            userSelect="none"
+                                            cursor="pointer"
+                                            _first={{ roundedTop: "md" }}
+                                            _last={{ roundedBottom: "md" }}
+                                            _hover={{ bgColor: "gray.500" }}
+                                        >
+                                            {sort.label}
+                                        </Box>
+                                    ))}
+                                </Flex>
+                            )}
+                        </Box>
                     </Box>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {sortBy(data, sort.property, sort.direction).map(program => (
