@@ -15,7 +15,7 @@ function compare<T>(a: T, b: T, direction: SortDirection) {
     }
 }
 
-export default function useSort<T>(items: T[]) {
+export function useSort<T>(items: T[]) {
     const [direction, setDirection] = useState<SortDirection>("desc");
 
     function toggleDirection() {

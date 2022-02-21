@@ -1,5 +1,5 @@
 import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
-import { useCSR, useOnClickOutside } from "../../hooks";
+import { useCSR, useOnClickOutside, useSort } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
@@ -7,7 +7,6 @@ import Icon from "../../components/Icon";
 import Card from "../../components/Card";
 import { exercisesCombinedDuration, sortBy, SortProperty } from "./service";
 import { useState } from "react";
-import useSort from "../../hooks/useSort";
 
 interface Sort {
     property: SortProperty;
