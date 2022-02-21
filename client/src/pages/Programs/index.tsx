@@ -10,24 +10,20 @@ import { useState } from "react";
 
 interface Sort {
     property: SortProperty;
-    direction: Direction;
     label: string;
 }
 
 const sorts: Sort[] = [
-    { property: "date", direction: "asc", label: "Date ascending" },
-    { property: "date", direction: "desc", label: "Date descending" },
-    { property: "name", direction: "asc", label: "Name ascending" },
-    { property: "name", direction: "desc", label: "Name descending" },
-    { property: "duration", direction: "asc", label: "Duration ascending" },
-    { property: "duration", direction: "desc", label: "Duration descending" },
-    { property: "exercises", direction: "asc", label: "Exercises ascending" },
-    { property: "exercises", direction: "desc", label: "Exercises descending" },
+    { property: "date", label: "Date" },
+    { property: "name", label: "Name" },
+    { property: "duration", label: "Duration" },
+    { property: "exercises", label: "Exercises" },
 ];
 
 export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
     const [sortIndex, setSortIndex] = useState(1);
+    const [sortDirection, setSortDirection] = useState<Direction>("desc");
     const sortSelector = useDisclosure();
     const sortSelectorEl = useOnClickOutside<HTMLDivElement>(() => {
         sortSelector.onClose();
@@ -38,6 +34,10 @@ export default function Programs() {
     function pickSort(index: number) {
         sortSelector.onClose();
         setSortIndex(index);
+    }
+
+    function toggleSortDirection() {
+        setSortDirection(direction => (direction === "asc" ? "desc" : "asc"));
     }
 
     return (
@@ -64,7 +64,14 @@ export default function Programs() {
                                 _hover={{ color: "primary.600" }}
                             >
                                 {sort.label}
-                                <Icon ml={2} icon={sort.direction === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
+                            </Button>
+                            <Button
+                                variant="unstyled"
+                                _hover={{ color: "primary.600" }}
+                                onClick={toggleSortDirection}
+                                ml={4}
+                            >
+                                <Icon icon={sortDirection === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
                             </Button>
                             {sortSelector.isOpen && (
                                 <Flex
@@ -95,7 +102,7 @@ export default function Programs() {
                         </Box>
                     </Box>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
-                        {sortBy(data, sort.property, sort.direction).map(program => (
+                        {sortBy(data, sort.property, sortDirection).map(program => (
                             <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
                                 <Card borderLeftRadius="none" borderLeft="2px solid" borderColor="primary.600">
                                     <Text>{program.name}</Text>
