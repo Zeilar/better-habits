@@ -5,8 +5,9 @@ import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
 import Card from "../../components/Card";
-import { Direction, exercisesCombinedDuration, sortBy, SortProperty } from "./service";
+import { exercisesCombinedDuration, sortBy, SortProperty } from "./service";
 import { useState } from "react";
+import useSort from "../../hooks/useSort";
 
 interface Sort {
     property: SortProperty;
@@ -14,8 +15,8 @@ interface Sort {
 }
 
 const sorts: Sort[] = [
-    { property: "date", label: "Date" },
     { property: "name", label: "Name" },
+    { property: "date", label: "Date" },
     { property: "duration", label: "Duration" },
     { property: "exercises", label: "Exercises" },
 ];
@@ -23,21 +24,17 @@ const sorts: Sort[] = [
 export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
     const [sortIndex, setSortIndex] = useState(1);
-    const [sortDirection, setSortDirection] = useState<Direction>("desc");
     const sortSelector = useDisclosure();
     const sortSelectorEl = useOnClickOutside<HTMLDivElement>(() => {
         sortSelector.onClose();
     });
+    const sorter = useSort<Program<true>>(data);
 
     const sort = sorts[sortIndex];
 
-    function pickSort(index: number) {
+    function onSortChange(index: number) {
         sortSelector.onClose();
         setSortIndex(index);
-    }
-
-    function toggleSortDirection() {
-        setSortDirection(direction => (direction === "asc" ? "desc" : "asc"));
     }
 
     return (
@@ -68,13 +65,14 @@ export default function Programs() {
                             <Button
                                 variant="unstyled"
                                 _hover={{ color: "primary.600" }}
-                                onClick={toggleSortDirection}
+                                onClick={sorter.toggleDirection}
                                 ml={4}
                             >
-                                <Icon icon={sortDirection === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
+                                <Icon icon={sorter.direction === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
                             </Button>
                             {sortSelector.isOpen && (
                                 <Flex
+                                    minW="10rem"
                                     flexDir="column"
                                     pos="absolute"
                                     top={10}
@@ -86,7 +84,7 @@ export default function Programs() {
                                     {sorts.map((sort, i) => (
                                         <Box
                                             key={i}
-                                            onClick={() => pickSort(i)}
+                                            onClick={() => onSortChange(i)}
                                             p={4}
                                             userSelect="none"
                                             cursor="pointer"
@@ -102,7 +100,7 @@ export default function Programs() {
                         </Box>
                     </Box>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
-                        {sortBy(data, sort.property, sortDirection).map(program => (
+                        {sortBy(sorter.sort, sort.property).map(program => (
                             <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
                                 <Card borderLeftRadius="none" borderLeft="2px solid" borderColor="primary.600">
                                     <Text>{program.name}</Text>
