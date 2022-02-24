@@ -1,3 +1,4 @@
+import { Schedule } from "modules/schedule/schedule.entity";
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { ISOString } from "../../@types/date";
 import { UserSchema } from "../../@types/user";
@@ -10,6 +11,9 @@ export class User implements UserSchema {
 
     @OneToMany(() => Program, program => program.user, { cascade: true })
     public programs: Program[];
+
+    @OneToMany(() => Program, program => program.user, { cascade: true })
+    public schedules: Schedule[];
 
     @Column({ unique: true, type: "varchar" })
     public email: string;

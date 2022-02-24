@@ -1,5 +1,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { ScheduleModule } from "modules/schedule/schedule.module";
 import { getConnectionOptions } from "typeorm";
 import { DateHelper } from "../../common/helpers/Date.helper";
 import { AuthModule } from "../auth/auth.module";
@@ -16,6 +17,7 @@ import { AppService } from "./app.service";
         UserModule,
         AuthModule,
         ProgramModule,
+        ScheduleModule,
         TypeOrmModule.forRootAsync({
             useFactory: async () =>
                 Object.assign(await getConnectionOptions(process.env.NODE_ENV), {

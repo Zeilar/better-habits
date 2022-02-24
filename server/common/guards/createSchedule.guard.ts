@@ -2,7 +2,7 @@ import { ExecutionContext, Injectable, CanActivate, ForbiddenException } from "@
 import { UserService } from "../../modules/user/user.service";
 
 @Injectable()
-export class EditUserGuard implements CanActivate {
+export class CreateScheduleGuard implements CanActivate {
     public constructor(private readonly userService: UserService) {}
 
     public async canActivate(context: ExecutionContext) {

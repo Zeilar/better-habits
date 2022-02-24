@@ -1,9 +1,10 @@
 import { ISOString } from "./date";
 
-export interface ProgramSchema {
+export interface ScheduleSchema {
     id: number;
-    name: string;
-    exercises: Exercise[];
+    date: ISOString;
+    userId: number;
+    programId: number;
     createdAt: ISOString;
     updatedAt: ISOString;
 }
