@@ -15,7 +15,7 @@ interface Sort {
 
 const sorts: Sort[] = [
     { property: "name", label: "Name" },
-    { property: "date", label: "Date" },
+    { property: "lastUpdated", label: "Last updated" },
     { property: "duration", label: "Duration" },
     { property: "exercises", label: "Exercises" },
 ];

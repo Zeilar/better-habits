@@ -1,6 +1,6 @@
 import { ScheduleSchema } from "../../@types/schedule";
 import { Program } from "modules/program/program.entity";
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn } from "typeorm";
 import { ISOString } from "../../@types/date";
 import { User } from "../user/user.entity";
 
@@ -10,15 +10,13 @@ export class Schedule implements ScheduleSchema {
     public id: number;
 
     @ManyToOne(() => User, user => user.schedules, { nullable: false })
+    @JoinColumn({ name: "userId" })
     public user: User;
-
-    @ManyToOne(() => Program, program => program.schedules, { nullable: false })
-    public program: Program;
-
-    @Column()
     public userId: number;
 
-    @Column()
+    @ManyToOne(() => Program, program => program.schedules)
+    @JoinColumn({ name: "programId" })
+    public program: Program;
     public programId: number;
 
     @Column()

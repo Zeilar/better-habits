@@ -3,7 +3,7 @@ import humanize from "humanize-duration";
 import { SortFunction } from "../../hooks/useSort";
 import { Program } from "../../../@types/program";
 
-export type SortProperty = "name" | "duration" | "exercises" | "date";
+export type SortProperty = "name" | "duration" | "exercises" | "lastUpdated";
 
 export function exercisesCombinedDuration(exercises: Exercise[]) {
     const minutes = exercises.reduce((total, exercise) => total + (exercise.duration ?? 0), 0);
@@ -18,7 +18,7 @@ export function sortBy(cb: SortFunction<Program<true>>, property: SortProperty) 
             return cb((a, b) => [a.exercises.length, b.exercises.length]);
         case "duration":
             return cb((a, b) => [exercisesCombinedDuration(a.exercises), exercisesCombinedDuration(b.exercises)]);
-        case "date":
+        case "lastUpdated":
             return cb((a, b) => [new Date(a.updatedAt).getTime(), new Date(b.updatedAt).getTime()]);
     }
 }

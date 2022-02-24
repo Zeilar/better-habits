@@ -12,6 +12,7 @@
         "cli": {
             "migrationsDir": "dist/migrations"
         },
+        "logging": ["error"],
         "synchronize": true
     },
     {

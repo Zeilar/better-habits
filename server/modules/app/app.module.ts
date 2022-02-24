@@ -20,9 +20,7 @@ import { AppService } from "./app.service";
         ScheduleModule,
         TypeOrmModule.forRootAsync({
             useFactory: async () =>
-                Object.assign(await getConnectionOptions(process.env.NODE_ENV), {
-                    autoLoadEntities: true,
-                }),
+                Object.assign(await getConnectionOptions(process.env.NODE_ENV), { autoLoadEntities: true }),
         }),
         ViewModule,
     ],

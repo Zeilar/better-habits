@@ -1,4 +1,4 @@
-import { Body, Controller, ForbiddenException, Get, Post, Req, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
 import { AuthenticatedGuard } from "common/guards/authenticated.guard";
 import { CreateScheduleGuard } from "common/guards/createSchedule.guard";
 import { CreateScheduleDto } from "common/validators/createSchedule.validator";
