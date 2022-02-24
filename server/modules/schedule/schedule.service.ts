@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { CreateScheduleDto } from "common/validators/createSchedule.validator";
 import { Repository } from "typeorm";
 import { Schedule } from "./schedule.entity";
+import { FindOneId } from "../../@types/repository";
 
 @Injectable()
 export class ScheduleService {
@@ -21,5 +22,9 @@ export class ScheduleService {
 
     public store(createScheduleDto: CreateScheduleDto) {
         return this.scheduleRepository.save(createScheduleDto);
+    }
+
+    public destroy(id: FindOneId) {
+        return this.scheduleRepository.delete(id);
     }
 }

@@ -53,7 +53,7 @@ export default function Programs() {
                         <Text textStyle="h3" as="h3" mb={4}>
                             My programs
                         </Text>
-                        <Box pos="relative" ref={sortSelectorEl}>
+                        <Flex pos="relative" ref={sortSelectorEl} justifyContent="space-between">
                             <Button
                                 variant="unstyled"
                                 onClick={sortSelector.onToggle}
@@ -65,7 +65,6 @@ export default function Programs() {
                                 variant="unstyled"
                                 _hover={{ color: "primary.600" }}
                                 onClick={sorter.toggleDirection}
-                                ml={4}
                             >
                                 <Icon icon={sorter.direction === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
                             </Button>
@@ -96,7 +95,7 @@ export default function Programs() {
                                     ))}
                                 </Flex>
                             )}
-                        </Box>
+                        </Flex>
                     </Box>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {sortBy(sorter.sort, sort.property).map(program => (
