@@ -1,30 +1,37 @@
-import { ScheduleSchema } from "../../@types/schedule";
+import { Day, ScheduleSchema } from "../../@types/schedule";
 import { Program } from "modules/program/program.entity";
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 import { ISOString } from "../../@types/date";
 import { User } from "../user/user.entity";
+import { days } from "common/constants";
 
-@Entity({ synchronize: false })
+@Entity()
 export class Schedule implements ScheduleSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @ManyToOne(() => User, user => user.schedules, { onDelete: "CASCADE", nullable: false })
+    @ManyToOne(() => User, user => user.schedules, { onDelete: "CASCADE" })
     @JoinColumn({ name: "userId" })
     public user: User;
 
     @Column()
     public userId: number;
 
-    @ManyToOne(() => Program, program => program.schedules, { onDelete: "CASCADE", nullable: false })
+    @ManyToOne(() => Program, program => program.schedules, { onDelete: "CASCADE" })
     @JoinColumn({ name: "programId" })
     public program: Program;
 
     @Column()
     public programId: number;
 
+    @Column({ type: "enum", enum: days })
+    public day: Day;
+
     @Column()
-    public date: ISOString;
+    public start: string;
+
+    @Column()
+    public end: string;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     public createdAt: ISOString;
