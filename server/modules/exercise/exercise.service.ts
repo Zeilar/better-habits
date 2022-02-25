@@ -13,9 +13,7 @@ export class ExerciseService {
 
     public create(exercises: CreateExerciseDto | CreateExerciseDto[]) {
         return Array.isArray(exercises)
-            ? exercises.map(exercise =>
-                  this.exerciseRepository.create(exercise)
-              )
+            ? exercises.map(exercise => this.exerciseRepository.create(exercise))
             : [this.exerciseRepository.create(exercises)];
     }
 

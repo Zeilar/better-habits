@@ -1,5 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm";
-import { ISOString } from "../../@types/date";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
 import { ExerciseSchema } from "../../@types/exercise";
 import { Program } from "../program/program.entity";
 
@@ -8,17 +7,15 @@ export class Exercise implements ExerciseSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @ManyToOne(() => Program, program => program.exercises, {
-        nullable: false,
-        onDelete: "CASCADE",
-    })
+    @ManyToOne(() => Program, program => program.exercises, { onDelete: "CASCADE" })
+    @JoinColumn({ name: "programId" })
     public program: Program;
 
     @Column()
-    public name: string;
+    public programId: number;
 
     @Column()
-    public programId: number;
+    public name: string;
 
     @Column({ nullable: true })
     public sets?: number;

@@ -1,5 +1,5 @@
 import { Schedule } from "modules/schedule/schedule.entity";
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn, Index } from "typeorm";
 import { ISOString } from "../../@types/date";
 import { ProgramSchema } from "../../@types/program";
 import { Exercise } from "../exercise/exercise.entity";
@@ -10,9 +10,11 @@ export class Program implements ProgramSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 
-    @ManyToOne(() => User, user => user.programs, { nullable: false })
+    @ManyToOne(() => User, user => user.programs, { onDelete: "CASCADE" })
     @JoinColumn({ name: "userId" })
     public user: User;
+
+    @Column()
     public userId: number;
 
     @OneToMany(() => Exercise, exercise => exercise.program, { cascade: true })
