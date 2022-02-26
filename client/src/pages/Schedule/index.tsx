@@ -4,7 +4,7 @@ import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
 import Card from "../../components/Card";
-import { sortBy, sorts } from "./service";
+import { getDay, sortBy, sorts } from "./service";
 import { useState } from "react";
 import { Schedule } from "../../../@types/schedule";
 
@@ -39,7 +39,7 @@ export default function Schedules() {
                 <>
                     <Box px={4} mb={2}>
                         <Text textStyle="h3" as="h3" mb={4}>
-                            My programs
+                            My schedule
                         </Text>
                         <Flex pos="relative" ref={sortSelectorEl} justifyContent="space-between">
                             <Button
@@ -86,23 +86,21 @@ export default function Schedules() {
                         </Flex>
                     </Box>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
-                        {sortBy(sorter.sort, sort.property).map(program => (
-                            <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
+                        {sortBy(sorter.sort, sort.property).map(schedule => (
+                            <Link as={ReactLink} to={`/schedule/${schedule.id}`} key={schedule.id} color="text.default">
                                 <Card borderLeftRadius="none" borderLeft="2px solid" borderColor="primary.600">
-                                    <Text>{"mhm"}</Text>
-                                    <Divider my={4} borderColor="border.default" />
                                     <Flex alignItems="center">
                                         <Flex alignItems="center">
-                                            <Icon icon="mdiWeightLifter" />
-                                            <Text ml={2} as="span">
-                                                {"something"}
+                                            <Icon icon="mdiCalendar" />
+                                            <Text ml={2} as="span" textTransform="capitalize">
+                                                {getDay(schedule.day)}
                                             </Text>
                                         </Flex>
                                         <Divider orientation="vertical" mx={4} height={4} />
                                         <Flex alignItems="center">
                                             <Icon icon="mdiClock" />
                                             <Text ml={2} as="span">
-                                                {"hmm"}
+                                                {schedule.start} - {schedule.end}
                                             </Text>
                                         </Flex>
                                     </Flex>
@@ -125,7 +123,7 @@ export default function Schedules() {
                 h={8}
                 boxShadow="0 0 8px rgba(0, 0, 0, 0.5)"
                 bgColor="primary.600"
-                to="/programs/new"
+                to="/schedule/new"
                 p={1}
             >
                 <Icon icon="mdiPlus" w={6} h={6} color="black" />
