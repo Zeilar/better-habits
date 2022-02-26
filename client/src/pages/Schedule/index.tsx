@@ -89,14 +89,14 @@ export default function Schedules() {
                         {sortBy(sorter.sort, sort.property).map(schedule => (
                             <Link as={ReactLink} to={`/schedule/${schedule.id}`} key={schedule.id} color="text.default">
                                 <Card borderLeftRadius="none" borderLeft="2px solid" borderColor="primary.600">
-                                    <Flex alignItems="center">
+                                    <Flex flexDir="column">
                                         <Flex alignItems="center">
                                             <Icon icon="mdiCalendar" />
                                             <Text ml={2} as="span" textTransform="capitalize">
                                                 {getDay(schedule.day)}
                                             </Text>
                                         </Flex>
-                                        <Divider orientation="vertical" mx={4} height={4} />
+                                        <Divider my={4} />
                                         <Flex alignItems="center">
                                             <Icon icon="mdiClock" />
                                             <Text ml={2} as="span">
