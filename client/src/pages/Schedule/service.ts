@@ -15,8 +15,12 @@ export function parseTime(time: string) {
     return { hours, minutes };
 }
 
-export function getDay(index: number) {
-    return days[index];
+export function getDay(day: number) {
+    return days[day];
+}
+
+export function isToday(day: number) {
+    return new Date().getDay() === day;
 }
 
 export const sorts: Sort[] = [

@@ -100,7 +100,7 @@ export default function Programs() {
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {sortBy(sorter.sort, sort.property).map(program => (
                             <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
-                                <Card borderLeftRadius="none" borderLeft="2px solid" borderColor="primary.600">
+                                <Card>
                                     <Text>{program.name}</Text>
                                     <Divider my={4} borderColor="border.default" />
                                     <Flex alignItems="center">

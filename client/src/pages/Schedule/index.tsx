@@ -4,7 +4,7 @@ import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
 import Card from "../../components/Card";
-import { getDay, sortBy, sorts } from "./service";
+import { getDay, isToday, sortBy, sorts } from "./service";
 import { useState } from "react";
 import { Schedule } from "../../../@types/schedule";
 
@@ -88,13 +88,18 @@ export default function Schedules() {
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {sortBy(sorter.sort, sort.property).map(schedule => (
                             <Link as={ReactLink} to={`/schedule/${schedule.id}`} key={schedule.id} color="text.default">
-                                <Card borderLeftRadius="none" borderLeft="2px solid" borderColor="primary.600">
+                                <Card>
                                     <Flex flexDir="column">
                                         <Flex alignItems="center">
                                             <Icon icon="mdiCalendar" />
                                             <Text ml={2} as="span" textTransform="capitalize">
                                                 {getDay(schedule.day)}
                                             </Text>
+                                            {isToday(schedule.day) && (
+                                                <Text color="primary.600" as="span" ml="auto">
+                                                    Today
+                                                </Text>
+                                            )}
                                         </Flex>
                                         <Divider my={4} />
                                         <Flex alignItems="center">
