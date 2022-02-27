@@ -17,10 +17,20 @@ export default function Schedules() {
     });
     const sorter = useSort<Schedule>(data, { defaultDirection: "desc" });
     const sort = sorts[sortIndex];
+    const [onlyToday, setOnlyToday] = useState(false);
 
     function onSortChange(index: number) {
         sortSelector.onClose();
         setSortIndex(index);
+    }
+
+    let schedules: Schedule[] = [];
+
+    if (success) {
+        schedules = sortBy(sorter.sort, sort.property);
+        if (onlyToday) {
+            schedules = schedules.filter(schedule => isToday(schedule.day));
+        }
     }
 
     return (
@@ -41,7 +51,7 @@ export default function Schedules() {
                             My schedule
                         </Text>
                         <Flex>
-                            <Checkbox />
+                            <Checkbox isChecked={onlyToday} onChange={e => setOnlyToday(e.target.checked)} />
                             <Text>Today</Text>
                         </Flex>
                         <Flex pos="relative" ref={sortSelectorEl} justifyContent="space-between">
@@ -89,7 +99,7 @@ export default function Schedules() {
                         </Flex>
                     </Box>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
-                        {sortBy(sorter.sort, sort.property).map(schedule => (
+                        {schedules.map(schedule => (
                             <Link as={ReactLink} to={`/schedule/${schedule.id}`} key={schedule.id} color="text.default">
                                 <Card>
                                     <Flex flexDir="column">
