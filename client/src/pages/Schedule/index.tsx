@@ -51,8 +51,14 @@ export default function Schedules() {
                             My schedule
                         </Text>
                         <Flex>
-                            <Checkbox isChecked={onlyToday} onChange={e => setOnlyToday(e.target.checked)} />
-                            <Text>Today</Text>
+                            <Checkbox
+                                isChecked={onlyToday}
+                                id="onlyToday"
+                                onChange={e => setOnlyToday(e.target.checked)}
+                            />
+                            <Text as="label" htmlFor="onlyToday">
+                                Today
+                            </Text>
                         </Flex>
                         <Flex pos="relative" ref={sortSelectorEl} justifyContent="space-between">
                             <Button
