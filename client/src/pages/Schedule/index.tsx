@@ -1,4 +1,4 @@
-import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button, useDisclosure, Checkbox } from "@chakra-ui/react";
+import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
 import { useCSR, useOnClickOutside, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
@@ -50,16 +50,43 @@ export default function Schedules() {
                         <Text textStyle="h3" as="h3" mb={4}>
                             My schedule
                         </Text>
-                        <Flex>
-                            <Checkbox
-                                isChecked={onlyToday}
-                                id="onlyToday"
-                                onChange={e => setOnlyToday(e.target.checked)}
-                            />
-                            <Text as="label" htmlFor="onlyToday">
-                                Today
-                            </Text>
-                        </Flex>
+                        <Card p={1} rounded="pill">
+                            <Flex
+                                pos="relative"
+                                h={10}
+                                rounded="pill"
+                                alignItems="center"
+                                justifyContent="space-between"
+                            >
+                                <Box
+                                    pos="absolute"
+                                    top={0}
+                                    rounded="pill"
+                                    transitionDuration="0.15s"
+                                    transitionProperty="left"
+                                    bgColor="primary.600"
+                                    left={onlyToday ? "50%" : 0}
+                                    h="100%"
+                                    w="50%"
+                                />
+                                <Button
+                                    w="50%"
+                                    variant="unstyled"
+                                    onClick={() => setOnlyToday(false)}
+                                    color={!onlyToday ? "black" : undefined}
+                                >
+                                    All
+                                </Button>
+                                <Button
+                                    w="50%"
+                                    variant="unstyled"
+                                    onClick={() => setOnlyToday(true)}
+                                    color={onlyToday ? "black" : undefined}
+                                >
+                                    Today
+                                </Button>
+                            </Flex>
+                        </Card>
                         <Flex pos="relative" ref={sortSelectorEl} justifyContent="space-between">
                             <Button
                                 variant="unstyled"

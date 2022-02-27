@@ -7,3 +7,4 @@ export * from "./Modal";
 export * from "./FormError";
 export * from "./Alert";
 export * from "./FormLabel";
+export * from "./Checkbox";
