@@ -1,12 +1,12 @@
 import { Day, ScheduleSchema } from "../../@types/schedule";
 import { Program } from "modules/program/program.entity";
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, BaseEntity } from "typeorm";
 import { ISOString } from "../../@types/date";
 import { User } from "../user/user.entity";
 import { days } from "common/constants";
 
 @Entity()
-export class Schedule implements ScheduleSchema {
+export class Schedule extends BaseEntity implements ScheduleSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 

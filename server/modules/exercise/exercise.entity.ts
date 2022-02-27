@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, BaseEntity } from "typeorm";
 import { ExerciseSchema } from "../../@types/exercise";
 import { Program } from "../program/program.entity";
 
 @Entity()
-export class Exercise implements ExerciseSchema {
+export class Exercise extends BaseEntity implements ExerciseSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 

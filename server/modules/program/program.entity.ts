@@ -1,12 +1,12 @@
 import { Schedule } from "modules/schedule/schedule.entity";
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn, Index } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, OneToMany, JoinColumn, Index, BaseEntity } from "typeorm";
 import { ISOString } from "../../@types/date";
 import { ProgramSchema } from "../../@types/program";
 import { Exercise } from "../exercise/exercise.entity";
 import { User } from "../user/user.entity";
 
 @Entity()
-export class Program implements ProgramSchema {
+export class Program extends BaseEntity implements ProgramSchema {
     @PrimaryGeneratedColumn()
     public id: number;
 

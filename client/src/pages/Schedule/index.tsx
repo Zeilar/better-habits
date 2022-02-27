@@ -1,4 +1,4 @@
-import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
+import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button, useDisclosure, Checkbox } from "@chakra-ui/react";
 import { useCSR, useOnClickOutside, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
@@ -17,7 +17,6 @@ export default function Schedules() {
     });
     const sorter = useSort<Schedule>(data, { defaultDirection: "desc" });
     const sort = sorts[sortIndex];
-    const useSortMenu = sorts.length > 1;
 
     function onSortChange(index: number) {
         sortSelector.onClose();
@@ -41,11 +40,15 @@ export default function Schedules() {
                         <Text textStyle="h3" as="h3" mb={4}>
                             My schedule
                         </Text>
+                        <Flex>
+                            <Checkbox />
+                            <Text>Today</Text>
+                        </Flex>
                         <Flex pos="relative" ref={sortSelectorEl} justifyContent="space-between">
                             <Button
                                 variant="unstyled"
-                                onClick={useSortMenu ? sortSelector.onToggle : undefined}
-                                _hover={useSortMenu ? { color: "primary.600" } : undefined}
+                                onClick={sortSelector.onToggle}
+                                _hover={{ color: "primary.600" }}
                             >
                                 {sort.label}
                             </Button>
@@ -56,7 +59,7 @@ export default function Schedules() {
                             >
                                 <Icon icon={sorter.direction === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
                             </Button>
-                            {useSortMenu && sortSelector.isOpen && (
+                            {sortSelector.isOpen && (
                                 <Flex
                                     minW="10rem"
                                     flexDir="column"

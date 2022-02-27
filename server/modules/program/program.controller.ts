@@ -1,18 +1,5 @@
-import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Post,
-    Put,
-    Query,
-    Req,
-    UseFilters,
-    UseGuards,
-} from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put, Query, Req, UseGuards } from "@nestjs/common";
 import { Request } from "express";
-import { ProgramNotFoundException } from "../../common/exceptions/ProgramNotFound.exception";
 import { AuthenticatedGuard } from "../../common/guards/authenticated.guard";
 import { CreateProgramWithExercisesDto } from "../../common/validators/createProgramWithExercises.validator";
 import { FindOneParams } from "../../common/validators/findOneParams.validator";
@@ -25,36 +12,20 @@ export class ProgramController {
 
     @Post("/")
     @UseGuards(AuthenticatedGuard)
-    public create(
-        @Body() createProgramWithExercisesDto: CreateProgramWithExercisesDto,
-        @Req() req: Request
-    ) {
-        return this.programService.store(
-            createProgramWithExercisesDto,
-            req.user!.id
-        );
+    public create(@Body() createProgramWithExercisesDto: CreateProgramWithExercisesDto, @Req() req: Request) {
+        return this.programService.store(createProgramWithExercisesDto, req.user!.id);
     }
 
     @Get("/:id")
-    @UseFilters(ProgramNotFoundException)
     @UseGuards(AuthenticatedGuard)
-    public getProgramWithExercises(
-        @Param() params: FindOneParams,
-        @Req() req: Request
-    ) {
-        return this.programService.getProgramWithExercises(
-            params.id,
-            req.user!.id
-        );
+    public getProgramWithExercises(@Param() params: FindOneParams, @Req() req: Request) {
+        return this.programService.getProgramWithExercises(params.id, req.user!.id);
     }
 
     @Get("/")
     @UseGuards(AuthenticatedGuard)
     public all(@Req() req: Request, @Query() query: GetProgramsQueryDto) {
-        return this.programService.all(
-            req.user!.id,
-            query.withExercises === "true"
-        );
+        return this.programService.all(req.user!.id, query.withExercises === "true");
     }
 
     @Delete("/:id")
@@ -70,10 +41,6 @@ export class ProgramController {
         @Body() createProgramWithExercisesDto: CreateProgramWithExercisesDto,
         @Param() params: FindOneParams
     ) {
-        return this.programService.update(
-            createProgramWithExercisesDto,
-            params.id,
-            req.user!.id
-        );
+        return this.programService.update(createProgramWithExercisesDto, params.id, req.user!.id);
     }
 }

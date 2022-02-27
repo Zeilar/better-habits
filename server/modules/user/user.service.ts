@@ -1,78 +1,51 @@
-import {
-    ConflictException,
-    Injectable,
-    NotFoundException,
-} from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
 import { FindOneId } from "../../@types/repository";
 import { UserSchema } from "../../@types/user";
 import { EditUserDto } from "../../common/validators/editUser.validator";
 import { CreateUserDto } from "../../common/validators/register.validator";
-import { HashService } from "../hash/hash.service";
 import { User } from "./user.entity";
 
 @Injectable()
 export class UserService {
-    public constructor(
-        @InjectRepository(User)
-        private readonly userRepository: Repository<User>,
-        private readonly hashService: HashService
-    ) {}
-
-    public async all() {
-        const users = await this.userRepository.find();
-        return users.map(user => {
-            const { password, ...rest } = user;
-            return rest;
-        });
-    }
-
     public findOne(column: keyof UserSchema, value: any) {
-        return this.userRepository.findOne({ [column]: value });
+        return User.findOne({ [column]: value });
     }
 
     public findById(id?: FindOneId) {
-        return this.userRepository.findOne(id);
+        return User.findOne(id);
     }
 
-    public async exists(idOrcolumn: FindOneId): Promise<boolean>;
-    public async exists(
-        idOrColumn: keyof UserSchema,
-        value: any
-    ): Promise<boolean>;
     public async exists(idOrColumn: keyof UserSchema | FindOneId, value?: any) {
-        const where =
-            value !== undefined ? { [idOrColumn]: value } : { id: idOrColumn };
-        const userCount = await this.userRepository.count({ where });
+        const userCount = await User.count({ [idOrColumn]: value });
         return userCount > 0;
     }
 
-    public async create(userDto: CreateUserDto) {
-        if (await this.exists("email", userDto.email)) {
+    public async create(createUserDto: CreateUserDto) {
+        if (await this.exists("email", createUserDto.email)) {
             throw new ConflictException("That email is taken.");
         }
-        const user = this.userRepository.create({
-            ...userDto,
-            password: await this.hashService.hash(userDto.password),
-        });
-        await this.userRepository.insert(user);
-        const { password, ...result } = user;
-        return result;
+        const user = new User();
+        user.email = createUserDto.email;
+        user.password = createUserDto.password;
+        await user.save();
+        return user.withoutPassword();
     }
 
     public async edit(id: FindOneId, editUserDto: EditUserDto) {
         if (await this.exists("email", editUserDto.email)) {
             throw new ConflictException();
         }
-        if (!(await this.exists(id))) {
+        if (!(await this.exists("id", id))) {
             throw new NotFoundException();
         }
-        const data: EditUserDto = { ...editUserDto };
-        if (editUserDto.password) {
-            data.password = await this.hashService.hash(editUserDto.password);
+        const user = new User();
+        user.id = typeof id !== "number" ? parseInt(id) : id;
+        if (editUserDto.email) {
+            user.email = editUserDto.email;
         }
-        // Using TypeORM entity events don't work when calling update like this as it doesn't create an instance
-        this.userRepository.update(id, data);
+        if (editUserDto.password) {
+            user.password = editUserDto.password;
+        }
+        return user.save();
     }
 }

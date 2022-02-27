@@ -1,36 +1,28 @@
 import { ForbiddenException, Injectable, NotFoundException } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
 import { CreateProgramDto } from "../../common/validators/createProgram.validator";
 import { CreateProgramWithExercisesDto } from "../../common/validators/createProgramWithExercises.validator";
-import { ExerciseService } from "../exercise/exercise.service";
+import { Exercise } from "../exercise/exercise.entity";
 import { Program } from "./program.entity";
 
 @Injectable()
 export class ProgramService {
-    public constructor(
-        @InjectRepository(Program)
-        private readonly programRepository: Repository<Program>,
-        private readonly exerciseService: ExerciseService
-    ) {}
-
     public all(userId: number, withExercises?: boolean) {
         const relations = [];
         if (withExercises) {
             relations.push("exercises");
         }
-        return this.programRepository.find({ where: { userId }, relations });
+        return Program.find({ where: { userId }, relations });
     }
 
     public create(createProgramDto: CreateProgramDto) {
-        return this.programRepository.create(createProgramDto);
+        return Program.create(createProgramDto);
     }
 
     public store(createProgramWithExercisesDto: CreateProgramWithExercisesDto, userId: number) {
         const program = this.create(createProgramWithExercisesDto.program);
-        program.exercises = this.exerciseService.create(createProgramWithExercisesDto.exercises);
+        program.exercises = Exercise.create(createProgramWithExercisesDto.exercises);
         program.userId = userId;
-        return this.programRepository.save(program);
+        return Program.save(program);
     }
 
     public async update(
@@ -38,32 +30,32 @@ export class ProgramService {
         programId: number,
         userId: number
     ) {
-        const program = await this.programRepository.findOne(programId);
+        const program = await Program.findOne(programId);
         if (!program) {
             throw new NotFoundException();
         }
         if (program.userId !== userId) {
             throw new ForbiddenException();
         }
-        await this.exerciseService.destroyAllInProgram(programId);
-        program.exercises = this.exerciseService.create(createProgramWithExercisesDto.exercises);
+        await Exercise.delete({ programId });
+        program.exercises = Exercise.create(createProgramWithExercisesDto.exercises);
         program.name = createProgramWithExercisesDto.program.name;
-        this.programRepository.save(program);
+        Program.save(program);
     }
 
     public async destroy(userId: number) {
-        const program = await this.programRepository.findOne({ userId });
+        const program = await Program.findOne({ userId });
         if (!program) {
             throw new NotFoundException();
         }
         if (program.userId !== userId) {
             throw new ForbiddenException();
         }
-        this.programRepository.delete(program);
+        Program.delete(program);
     }
 
     public async getProgramWithExercises(programId: number, userId: number) {
-        const program = await this.programRepository.findOne(programId, {
+        const program = await Program.findOne(programId, {
             relations: ["exercises"],
         });
         if (!program) {
