@@ -1,4 +1,15 @@
-import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
+import {
+    Grid,
+    Skeleton,
+    Text,
+    Link,
+    Divider,
+    Flex,
+    Box,
+    Button,
+    useDisclosure,
+    AbsoluteCenter,
+} from "@chakra-ui/react";
 import { useCSR, useOnClickOutside, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
@@ -104,12 +115,13 @@ export default function Schedules() {
                             </Button>
                             {sortSelector.isOpen && (
                                 <Flex
+                                    p={2}
                                     minW="10rem"
                                     flexDir="column"
                                     pos="absolute"
                                     top={10}
                                     left={0}
-                                    bgColor="gray.800"
+                                    bgColor="gray.500"
                                     boxShadow="card"
                                     rounded="md"
                                 >
@@ -117,12 +129,13 @@ export default function Schedules() {
                                         <Box
                                             key={i}
                                             onClick={() => onSortChange(i)}
-                                            p={4}
+                                            py={2}
+                                            px={4}
                                             userSelect="none"
                                             cursor="pointer"
-                                            _first={{ roundedTop: "md" }}
-                                            _last={{ roundedBottom: "md" }}
-                                            _hover={{ bgColor: "gray.500" }}
+                                            rounded="md"
+                                            fontWeight={600}
+                                            _hover={{ bgColor: "primary.600", color: "black" }}
                                         >
                                             {sort.label}
                                         </Box>
@@ -132,6 +145,16 @@ export default function Schedules() {
                         </Flex>
                     </Box>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
+                        {schedules.length === 0 && (
+                            <AbsoluteCenter w="100%" px={4}>
+                                <Flex flexDir="column" alignItems="center">
+                                    <Icon icon="mdiGhost" w={12} h={12} />
+                                    <Text as="h3" textStyle="h3" textAlign="center" mt={4}>
+                                        No programs were found
+                                    </Text>
+                                </Flex>
+                            </AbsoluteCenter>
+                        )}
                         {schedules.map(schedule => (
                             <Link as={ReactLink} to={`/schedule/${schedule.id}`} key={schedule.id} color="text.default">
                                 <Card>

@@ -10,7 +10,7 @@ import Program from "./pages/Program";
 import Programs from "./pages/Programs";
 import NewProgram from "./pages/Programs/new";
 import Register from "./pages/Register";
-import Schedule from "./pages/Schedule";
+import Schedule from "./pages/Schedules";
 import Settings from "./pages/Settings";
 
 export default function App() {
