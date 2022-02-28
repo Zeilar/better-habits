@@ -82,6 +82,7 @@ export default function Schedules() {
                                     minW="10rem"
                                     flexDir="column"
                                     pos="absolute"
+                                    zIndex={100}
                                     top={10}
                                     left={0}
                                     bgColor="gray.600"
