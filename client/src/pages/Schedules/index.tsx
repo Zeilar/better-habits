@@ -121,7 +121,7 @@ export default function Schedules() {
                                     pos="absolute"
                                     top={10}
                                     left={0}
-                                    bgColor="gray.500"
+                                    bgColor="gray.600"
                                     boxShadow="card"
                                     rounded="md"
                                 >
