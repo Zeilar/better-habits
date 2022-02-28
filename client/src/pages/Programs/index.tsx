@@ -112,7 +112,7 @@ export default function Programs() {
                             </Button>
                         </Flex>
                     </Box>
-                    <Divider m={4} />
+                    <Divider w="auto" m={4} />
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {data.length === 0 && (
                             <AbsoluteCenter w="100%" px={4}>

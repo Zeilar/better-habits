@@ -49,7 +49,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
         <Flex as="form" onSubmit={handleSubmit(onSubmit)} h="100%" flexDir="column" flexGrow={1} overflow="hidden">
             {(submitting || formState.isSubmitting) && <ContainerSpinner />}
             <Flex pt={4} flexDir="column" overflowY="auto">
-                <FormControl isInvalid={Boolean(formState.errors.name)} mb={8} px={4}>
+                <FormControl isInvalid={Boolean(formState.errors.name)} mb={4} px={4}>
                     <FormLabel htmlFor="name">
                         <Text textStyle="h3" as="h3">
                             Name

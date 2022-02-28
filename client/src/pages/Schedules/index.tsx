@@ -1,15 +1,4 @@
-import {
-    Grid,
-    Skeleton,
-    Text,
-    Link,
-    Divider,
-    Flex,
-    Box,
-    Button,
-    useDisclosure,
-    AbsoluteCenter,
-} from "@chakra-ui/react";
+import { Grid, Skeleton, Text, Divider, Flex, Box, Button, useDisclosure, AbsoluteCenter } from "@chakra-ui/react";
 import { useCSR, useOnClickOutside, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
@@ -154,30 +143,40 @@ export default function Schedules() {
                             </AbsoluteCenter>
                         )}
                         {schedules.map(schedule => (
-                            <Link as={ReactLink} to={`/schedule/${schedule.id}`} key={schedule.id} color="text.default">
-                                <Card>
-                                    <Flex flexDir="column">
-                                        <Flex alignItems="center">
-                                            <Icon icon="mdiCalendar" />
-                                            <Text ml={2} as="span" textTransform="capitalize">
-                                                {getDay(schedule.day)}
+                            <Card key={schedule.id}>
+                                <Flex flexDir="column">
+                                    <Flex alignItems="center">
+                                        <Icon icon="mdiCalendar" />
+                                        <Text ml={2} as="span" textTransform="capitalize">
+                                            {getDay(schedule.day)}
+                                        </Text>
+                                        {isToday(schedule.day) && (
+                                            <Text color="primary.600" as="span" ml="auto">
+                                                Today
                                             </Text>
-                                            {isToday(schedule.day) && (
-                                                <Text color="primary.600" as="span" ml="auto">
-                                                    Today
-                                                </Text>
-                                            )}
-                                        </Flex>
-                                        <Divider my={4} />
-                                        <Flex alignItems="center">
-                                            <Icon icon="mdiClock" />
-                                            <Text ml={2} as="span">
-                                                {schedule.start} - {schedule.end}
-                                            </Text>
-                                        </Flex>
+                                        )}
                                     </Flex>
-                                </Card>
-                            </Link>
+                                    <Divider my={4} />
+                                    <Flex alignItems="center">
+                                        <Icon icon="mdiDumbbell" />
+                                        <Text
+                                            ml={2}
+                                            as={ReactLink}
+                                            to={`/program/${schedule.program.id}`}
+                                            color="text.default"
+                                        >
+                                            {schedule.program.name}
+                                        </Text>
+                                    </Flex>
+                                    <Divider my={4} />
+                                    <Flex alignItems="center">
+                                        <Icon icon="mdiClock" />
+                                        <Text ml={2} as="span">
+                                            {schedule.start} - {schedule.end}
+                                        </Text>
+                                    </Flex>
+                                </Flex>
+                            </Card>
                         ))}
                     </Flex>
                 </>
