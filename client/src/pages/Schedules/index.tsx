@@ -61,43 +61,6 @@ export default function Schedules() {
                         <Text textStyle="h3" as="h3" mb={4}>
                             My schedule
                         </Text>
-                        <Card p={1} rounded="pill">
-                            <Flex
-                                pos="relative"
-                                h={10}
-                                rounded="pill"
-                                alignItems="center"
-                                justifyContent="space-between"
-                            >
-                                <Box
-                                    pos="absolute"
-                                    top={0}
-                                    rounded="pill"
-                                    transitionDuration="0.15s"
-                                    transitionProperty="left"
-                                    bgColor="primary.600"
-                                    left={onlyToday ? "50%" : 0}
-                                    h="100%"
-                                    w="50%"
-                                />
-                                <Button
-                                    w="50%"
-                                    variant="unstyled"
-                                    onClick={() => setOnlyToday(false)}
-                                    color={!onlyToday ? "black" : undefined}
-                                >
-                                    All
-                                </Button>
-                                <Button
-                                    w="50%"
-                                    variant="unstyled"
-                                    onClick={() => setOnlyToday(true)}
-                                    color={onlyToday ? "black" : undefined}
-                                >
-                                    Today
-                                </Button>
-                            </Flex>
-                        </Card>
                         <Flex pos="relative" ref={sortSelectorEl} justifyContent="space-between">
                             <Button
                                 variant="unstyled"
@@ -145,6 +108,37 @@ export default function Schedules() {
                         </Flex>
                     </Box>
                     <Divider m={4} w="auto" />
+                    <Card p={1} rounded="pill" mx={4} mb={4}>
+                        <Flex pos="relative" h={10} rounded="pill" alignItems="center" justifyContent="space-between">
+                            <Box
+                                pos="absolute"
+                                top={0}
+                                rounded="pill"
+                                transitionDuration="0.15s"
+                                transitionProperty="left"
+                                bgColor="primary.600"
+                                left={onlyToday ? "50%" : 0}
+                                h="100%"
+                                w="50%"
+                            />
+                            <Button
+                                w="50%"
+                                variant="unstyled"
+                                onClick={() => setOnlyToday(false)}
+                                color={!onlyToday ? "black" : undefined}
+                            >
+                                All
+                            </Button>
+                            <Button
+                                w="50%"
+                                variant="unstyled"
+                                onClick={() => setOnlyToday(true)}
+                                color={onlyToday ? "black" : undefined}
+                            >
+                                Today
+                            </Button>
+                        </Flex>
+                    </Card>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {schedules.length === 0 && (
                             <AbsoluteCenter w="100%" px={4}>
