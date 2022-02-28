@@ -49,7 +49,7 @@ export default function Programs() {
             )}
             {success && (
                 <>
-                    <Box px={4} mb={2}>
+                    <Box px={4}>
                         <Text textStyle="h3" as="h3" mb={4}>
                             My programs
                         </Text>
@@ -97,6 +97,7 @@ export default function Programs() {
                             )}
                         </Flex>
                     </Box>
+                    <Divider m={4} />
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {sortBy(sorter.sort, sort.property).map(program => (
                             <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
