@@ -150,18 +150,6 @@ export default function Schedules() {
                             <Card key={schedule.id}>
                                 <Flex flexDir="column">
                                     <Flex alignItems="center">
-                                        <Icon icon="mdiCalendar" />
-                                        <Text ml={2} as="span" textTransform="capitalize">
-                                            {getDay(schedule.day)}
-                                        </Text>
-                                        {isToday(schedule.day) && (
-                                            <Text color="primary.600" as="span" ml="auto">
-                                                Today
-                                            </Text>
-                                        )}
-                                    </Flex>
-                                    <Divider my={4} />
-                                    <Flex alignItems="center">
                                         <Icon icon="mdiDumbbell" />
                                         <Text
                                             ml={2}
@@ -171,6 +159,18 @@ export default function Schedules() {
                                         >
                                             {schedule.program.name}
                                         </Text>
+                                    </Flex>
+                                    <Divider my={4} />
+                                    <Flex alignItems="center">
+                                        <Icon icon="mdiCalendar" />
+                                        <Text ml={2} as="span" textTransform="capitalize">
+                                            {getDay(schedule.day)}
+                                        </Text>
+                                        {isToday(schedule.day) && (
+                                            <Text color="primary.600" as="span" ml="auto">
+                                                Today
+                                            </Text>
+                                        )}
                                     </Flex>
                                     <Divider my={4} />
                                     <Flex alignItems="center">
