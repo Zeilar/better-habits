@@ -1,7 +1,7 @@
 import { Flex, Link, Text } from "@chakra-ui/react";
 import { useAuth } from "../hooks";
 import Icon, { MdiIcon } from "./Icon";
-import { NavLink as ReactLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface NavitemProps {
     label: string;
@@ -13,7 +13,7 @@ function Navitem({ label, icon, href }: NavitemProps) {
     return (
         <Link
             fontSize="0.75rem"
-            as={ReactLink}
+            as={NavLink}
             w="100%"
             display="flex"
             flexDir="column"
