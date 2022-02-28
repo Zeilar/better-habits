@@ -104,10 +104,14 @@ export default function Programs() {
                                 )}
                             </Box>
                             <Button
+                                display="flex"
                                 variant="unstyled"
                                 _hover={{ color: "primary.600" }}
                                 onClick={sorter.toggleDirection}
                             >
+                                <Text textTransform="capitalize" mr={1}>
+                                    {sorter.direction === "asc" ? "Ascending" : "Descending"}
+                                </Text>
                                 <Icon icon={sorter.direction === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
                             </Button>
                         </Flex>
