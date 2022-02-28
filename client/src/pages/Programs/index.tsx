@@ -64,14 +64,45 @@ export default function Programs() {
                         <Text textStyle="h3" as="h3" mb={4}>
                             My programs
                         </Text>
-                        <Flex pos="relative" ref={sortSelectorEl} justifyContent="space-between">
-                            <Button
-                                variant="unstyled"
-                                onClick={sortSelector.onToggle}
-                                _hover={{ color: "primary.600" }}
-                            >
-                                {sort.label}
-                            </Button>
+                        <Flex pos="relative" justifyContent="space-between">
+                            <Box ref={sortSelectorEl}>
+                                <Button
+                                    variant="unstyled"
+                                    onClick={sortSelector.onToggle}
+                                    _hover={{ color: "primary.600" }}
+                                >
+                                    {sort.label}
+                                </Button>
+                                {sortSelector.isOpen && (
+                                    <Flex
+                                        p={2}
+                                        minW="10rem"
+                                        flexDir="column"
+                                        pos="absolute"
+                                        top={10}
+                                        left={0}
+                                        bgColor="gray.600"
+                                        boxShadow="card"
+                                        rounded="md"
+                                    >
+                                        {sorts.map((sort, i) => (
+                                            <Box
+                                                key={i}
+                                                onClick={() => onSortChange(i)}
+                                                py={2}
+                                                px={4}
+                                                userSelect="none"
+                                                cursor="pointer"
+                                                rounded="md"
+                                                fontWeight={600}
+                                                _hover={{ bgColor: "primary.600", color: "black" }}
+                                            >
+                                                {sort.label}
+                                            </Box>
+                                        ))}
+                                    </Flex>
+                                )}
+                            </Box>
                             <Button
                                 variant="unstyled"
                                 _hover={{ color: "primary.600" }}
@@ -79,35 +110,6 @@ export default function Programs() {
                             >
                                 <Icon icon={sorter.direction === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
                             </Button>
-                            {sortSelector.isOpen && (
-                                <Flex
-                                    p={2}
-                                    minW="10rem"
-                                    flexDir="column"
-                                    pos="absolute"
-                                    top={10}
-                                    left={0}
-                                    bgColor="gray.600"
-                                    boxShadow="card"
-                                    rounded="md"
-                                >
-                                    {sorts.map((sort, i) => (
-                                        <Box
-                                            key={i}
-                                            onClick={() => onSortChange(i)}
-                                            py={2}
-                                            px={4}
-                                            userSelect="none"
-                                            cursor="pointer"
-                                            rounded="md"
-                                            fontWeight={600}
-                                            _hover={{ bgColor: "primary.600", color: "black" }}
-                                        >
-                                            {sort.label}
-                                        </Box>
-                                    ))}
-                                </Flex>
-                            )}
                         </Flex>
                     </Box>
                     <Divider m={4} />
