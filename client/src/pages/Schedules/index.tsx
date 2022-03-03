@@ -7,6 +7,10 @@ import Card from "../../components/Card";
 import { getDay, isToday, sortBy, sorts } from "./service";
 import { useState } from "react";
 import { Schedule } from "../../../@types/schedule";
+import { ArrowDownShort, ArrowUpShort, Plus } from "styled-icons/bootstrap";
+import { Ghost } from "styled-icons/boxicons-regular";
+import { ClipboardBulletListLtr, Dumbbell } from "styled-icons/fluentui-system-regular";
+import { Clock } from "styled-icons/fa-regular";
 
 export default function Schedules() {
     const { data, success, loading } = useCSR<Schedule[]>("/schedules");
@@ -99,7 +103,7 @@ export default function Schedules() {
                                 <Text textTransform="capitalize" mr={1}>
                                     {sorter.direction === "asc" ? "Ascending" : "Descending"}
                                 </Text>
-                                <Icon icon={sorter.direction === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
+                                <Icon icon={sorter.direction === "asc" ? ArrowUpShort : ArrowDownShort} />
                             </Button>
                         </Flex>
                     </Box>
@@ -139,7 +143,7 @@ export default function Schedules() {
                         {schedules.length === 0 && (
                             <AbsoluteCenter w="100%" px={4}>
                                 <Flex flexDir="column" alignItems="center">
-                                    <Icon icon="mdiGhost" w={12} h={12} />
+                                    <Icon icon={Ghost} w={12} h={12} />
                                     <Text as="h3" textStyle="h3" textAlign="center" mt={4}>
                                         No programs were found
                                     </Text>
@@ -150,7 +154,7 @@ export default function Schedules() {
                             <Card key={schedule.id}>
                                 <Flex flexDir="column">
                                     <Flex alignItems="center">
-                                        <Icon icon="mdiDumbbell" />
+                                        <Icon icon={Dumbbell} />
                                         <Text
                                             ml={2}
                                             as={ReactLink}
@@ -162,7 +166,7 @@ export default function Schedules() {
                                     </Flex>
                                     <Divider my={4} />
                                     <Flex alignItems="center">
-                                        <Icon icon="mdiCalendar" />
+                                        <Icon icon={ClipboardBulletListLtr} />
                                         <Text ml={2} as="span" textTransform="capitalize">
                                             {getDay(schedule.day)}
                                         </Text>
@@ -174,7 +178,7 @@ export default function Schedules() {
                                     </Flex>
                                     <Divider my={4} />
                                     <Flex alignItems="center">
-                                        <Icon icon="mdiClock" />
+                                        <Icon icon={Clock} />
                                         <Text ml={2} as="span">
                                             {schedule.start} - {schedule.end}
                                         </Text>
@@ -201,7 +205,7 @@ export default function Schedules() {
                 to="/schedule/new"
                 p={1}
             >
-                <Icon icon="mdiPlus" w={6} h={6} color="black" />
+                <Icon icon={Plus} w={6} h={6} color="black" />
             </Flex>
         </PageWrapper>
     );

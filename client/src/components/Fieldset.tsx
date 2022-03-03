@@ -1,4 +1,6 @@
-import { Box, forwardRef, Input } from "@chakra-ui/react";
+import { forwardRef } from "@chakra-ui/system";
+import { Box } from "@chakra-ui/layout";
+import { Input } from "@chakra-ui/input";
 
 interface Props {
     label: string;

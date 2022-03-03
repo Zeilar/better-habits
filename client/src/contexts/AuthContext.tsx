@@ -1,9 +1,8 @@
-import { Flex } from "@chakra-ui/react";
 import { createContext, useEffect, useState } from "react";
 import { User } from "../../@types/user";
 import { apiService } from "../services";
 import { Response, ErrorResponse } from "../services/ApiService";
-import BrandSpinner from "../components/BrandSpinner";
+import PageSpinner from "../components/PageSpinner";
 import { useToast } from "../hooks";
 
 interface IAuthContext {
@@ -85,11 +84,7 @@ export function AuthContextProvider({ children }: AuthProps) {
     };
 
     if (loading) {
-        return (
-            <Flex h="100vh" alignItems="center" justifyContent="center">
-                <BrandSpinner />
-            </Flex>
-        );
+        return <PageSpinner />;
     }
 
     return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;

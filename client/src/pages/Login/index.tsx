@@ -6,6 +6,7 @@ import { Link as ReactLink } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper";
 import Icon from "../../components/Icon";
 import { useState } from "react";
+import { CloseOutline } from "styled-icons/evaicons-outline";
 
 interface Fields {
     email: string;
@@ -37,7 +38,7 @@ export default function Login() {
                 <Alert status="error" variant="border" my={4}>
                     <Text>{error}</Text>
                     <Button variant="unstyled" ml="auto" onClick={() => setError(null)}>
-                        <Icon icon="mdiClose" color="danger" />
+                        <Icon icon={CloseOutline} color="danger" />
                     </Button>
                 </Alert>
             )}

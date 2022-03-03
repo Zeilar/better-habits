@@ -1,12 +1,18 @@
 import { Flex, Link, Text } from "@chakra-ui/react";
 import { useAuth } from "../hooks";
-import Icon, { MdiIcon } from "./Icon";
+import Icon from "./Icon";
 import { NavLink } from "react-router-dom";
+import type { StyledIcon } from "@styled-icons/styled-icon";
+import { Home } from "styled-icons/ionicons-outline";
+import { Dumbbell } from "styled-icons/fluentui-system-regular";
+import { ClipboardBulletListLtr } from "styled-icons/fluentui-system-regular";
+import { Cog, UserPlus } from "styled-icons/boxicons-regular";
+import { SignIn } from "styled-icons/octicons";
 
 interface NavitemProps {
     label: string;
-    icon: MdiIcon;
     href: string;
+    icon: StyledIcon;
 }
 
 function Navitem({ label, icon, href }: NavitemProps) {
@@ -63,16 +69,16 @@ export default function Navbar() {
         >
             {authenticated ? (
                 <>
-                    <Navitem href="/" label="Home" icon="mdiHome" />
-                    <Navitem href="/programs" label="Programs" icon="mdiDumbbell" />
-                    <Navitem href="/schedule" label="Schedule" icon="mdiCalendar" />
-                    <Navitem href="/settings" label="Settings" icon="mdiCog" />
+                    <Navitem href="/" label="Home" icon={Home} />
+                    <Navitem href="/programs" label="Programs" icon={Dumbbell} />
+                    <Navitem href="/schedule" label="Schedule" icon={ClipboardBulletListLtr} />
+                    <Navitem href="/settings" label="Settings" icon={Cog} />
                 </>
             ) : (
                 <>
-                    <Navitem href="/guest" label="Welcome" icon="mdiHome" />
-                    <Navitem href="/register" label="Register" icon="mdiAccountPlus" />
-                    <Navitem href="/login" label="Login" icon="mdiLock" />
+                    <Navitem href="/guest" label="Welcome" icon={Home} />
+                    <Navitem href="/register" label="Register" icon={UserPlus} />
+                    <Navitem href="/login" label="Login" icon={SignIn} />
                 </>
             )}
         </Flex>

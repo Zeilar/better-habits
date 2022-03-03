@@ -1,6 +1,7 @@
 import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useCallback, useEffect, useRef } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
+import { CloseOutline } from "styled-icons/evaicons-outline";
 import { Program } from "../../@types/program";
 import Card from "./Card";
 import ContainerSpinner from "./ContainerSpinner";
@@ -92,7 +93,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                             top={1}
                                             zIndex={10}
                                         >
-                                            <Icon icon="mdiClose" />
+                                            <Icon icon={CloseOutline} />
                                         </Button>
                                     )}
                                     <FormControl isInvalid={Boolean(errors?.name)}>

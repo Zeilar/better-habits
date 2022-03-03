@@ -1,6 +1,7 @@
 import { Button, Grid, Link } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link as ReactLink, useNavigate, useParams } from "react-router-dom";
+import { ArrowLeftShort } from "styled-icons/bootstrap";
 import { Program } from "../../../@types/program";
 import Icon from "../../components/Icon";
 import PageWrapper from "../../components/PageWrapper";
@@ -45,7 +46,7 @@ export default function SingleProgram() {
     return (
         <PageWrapper noScroll>
             <Link as={ReactLink} to="/programs" w="fit-content" p={4} pb={0}>
-                <Icon icon="mdiArrowLeft" mr={1} />
+                <Icon icon={ArrowLeftShort} mr={1} />
                 Go back
             </Link>
             <ProgramForm

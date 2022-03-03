@@ -18,6 +18,10 @@ import Icon from "../../components/Icon";
 import Card from "../../components/Card";
 import { exercisesCombinedDuration, sortBy, SortProperty } from "./service";
 import { useState } from "react";
+import { ArrowDownShort, ArrowUpShort, Plus } from "styled-icons/bootstrap";
+import { Ghost } from "styled-icons/boxicons-regular";
+import { Dumbbell } from "styled-icons/fluentui-system-regular";
+import { Clock } from "styled-icons/fa-regular";
 
 interface Sort {
     property: SortProperty;
@@ -112,7 +116,7 @@ export default function Programs() {
                                 <Text textTransform="capitalize" mr={1}>
                                     {sorter.direction === "asc" ? "Ascending" : "Descending"}
                                 </Text>
-                                <Icon icon={sorter.direction === "asc" ? "mdiArrowUp" : "mdiArrowDown"} />
+                                <Icon icon={sorter.direction === "asc" ? ArrowUpShort : ArrowDownShort} />
                             </Button>
                         </Flex>
                     </Box>
@@ -121,7 +125,7 @@ export default function Programs() {
                         {data.length === 0 && (
                             <AbsoluteCenter w="100%" px={4}>
                                 <Flex flexDir="column" alignItems="center">
-                                    <Icon icon="mdiGhost" w={12} h={12} />
+                                    <Icon icon={Ghost} w={12} h={12} />
                                     <Text as="h3" textStyle="h3" textAlign="center" mt={4}>
                                         No programs were found
                                     </Text>
@@ -135,14 +139,14 @@ export default function Programs() {
                                     <Divider my={4} borderColor="border.default" />
                                     <Flex alignItems="center">
                                         <Flex alignItems="center">
-                                            <Icon icon="mdiWeightLifter" />
+                                            <Icon icon={Dumbbell} />
                                             <Text ml={2} as="span">
                                                 {program.exercises.length}
                                             </Text>
                                         </Flex>
                                         <Divider orientation="vertical" mx={4} height={4} />
                                         <Flex alignItems="center">
-                                            <Icon icon="mdiClock" />
+                                            <Icon icon={Clock} />
                                             <Text ml={2} as="span">
                                                 {exercisesCombinedDuration(program.exercises)}
                                             </Text>
@@ -170,7 +174,7 @@ export default function Programs() {
                 to="/programs/new"
                 p={1}
             >
-                <Icon icon="mdiPlus" w={6} h={6} color="black" />
+                <Icon icon={Plus} w={6} h={6} color="black" />
             </Flex>
         </PageWrapper>
     );

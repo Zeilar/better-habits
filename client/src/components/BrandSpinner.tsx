@@ -1,4 +1,5 @@
-import { Flex, Text, keyframes, FlexProps } from "@chakra-ui/react";
+import { Flex, Text, FlexProps } from "@chakra-ui/layout";
+import { keyframes } from "@chakra-ui/system";
 
 const pulse = keyframes`
     0% {

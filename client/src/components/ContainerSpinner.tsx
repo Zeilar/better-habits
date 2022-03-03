@@ -1,4 +1,5 @@
-import { Box, Flex, Spinner } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/layout";
+import { Spinner } from "@chakra-ui/spinner";
 import { useEffect } from "react";
 
 export default function ContainerSpinner() {
