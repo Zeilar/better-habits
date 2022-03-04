@@ -29,7 +29,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
     const shouldScroll = useRef(false);
 
     const addExercise = useCallback(() => {
-        exercises.append({ name: "", duration: 0, sets: 0 });
+        exercises.prepend({ name: "", duration: 0, sets: 0 });
         shouldScroll.current = true;
     }, [exercises]);
 
@@ -41,7 +41,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
 
     useEffect(() => {
         if (exercises.fields.length > 1 && shouldScroll.current) {
-            exercisesEl.current?.scrollTo({ top: 99999, behavior: "smooth" });
+            exercisesEl.current?.scrollTo({ top: 0 });
             shouldScroll.current = false;
         }
     }, [exercises.fields.length]);
@@ -49,7 +49,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
     return (
         <Flex as="form" onSubmit={handleSubmit(onSubmit)} h="100%" flexDir="column" flexGrow={1} overflow="hidden">
             {(submitting || formState.isSubmitting) && <ContainerSpinner />}
-            <Flex pt={4} flexDir="column" overflowY="auto">
+            <Flex pt={4} flexDir="column" overflowY="auto" scrollBehavior="smooth">
                 <FormControl isInvalid={Boolean(formState.errors.name)} mb={4} px={4}>
                     <FormLabel htmlFor="name">
                         <Text textStyle="h3" as="h3">
@@ -67,11 +67,13 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                     <Text textStyle="h3" as="h3">
                         Exercises
                     </Text>
-                    <Text textStyle="h3" as="h3">
-                        {exercises.fields.length}
-                    </Text>
+                    <Button onClick={addExercise} variant="link">
+                        <Text textStyle="h3" as="span">
+                            Add
+                        </Text>
+                    </Button>
                 </Flex>
-                <Box ref={exercisesEl} overflowY="auto" px={4} pb={4}>
+                <Box ref={exercisesEl} overflowY="auto" scrollBehavior="smooth" px={4} pb={4}>
                     <Flex flexDir="column" gridGap={4}>
                         {exercises.fields.map((_, i) => {
                             const label = `exercises.${i}`;
@@ -139,9 +141,6 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                             );
                         })}
                     </Flex>
-                    <Button mt={4} onClick={addExercise} w="100%">
-                        Add Exercise
-                    </Button>
                 </Box>
             </Flex>
             <Box pos="sticky" bottom={0} mt="auto" zIndex={100}>
