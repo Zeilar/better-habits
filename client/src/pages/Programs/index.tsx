@@ -19,9 +19,9 @@ import Card from "../../components/Card";
 import { exercisesCombinedDuration, sortBy, SortProperty } from "./service";
 import { useState } from "react";
 import { ArrowDownShort, ArrowUpShort, Plus } from "styled-icons/bootstrap";
-import { Ghost } from "styled-icons/boxicons-regular";
 import { Dumbbell } from "styled-icons/fluentui-system-regular";
 import { Clock } from "styled-icons/fa-regular";
+import AssetIcon from "../../components/AssetIcon";
 
 interface Sort {
     property: SortProperty;
@@ -124,8 +124,8 @@ export default function Programs() {
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {data.length === 0 && (
                             <AbsoluteCenter w="100%" px={4}>
+                                <AssetIcon icon="void" />
                                 <Flex flexDir="column" alignItems="center">
-                                    <Icon icon={Ghost} w={12} h={12} />
                                     <Text as="h3" textStyle="h3" textAlign="center" mt={4}>
                                         No programs were found
                                     </Text>
