@@ -43,7 +43,7 @@ export default function Schedules() {
 
     if (success) {
         schedules = sortBy(sorter.sort, sort.property);
-        if (show) {
+        if (show === "today") {
             schedules = schedules.filter(schedule => isToday(schedule.day));
         }
     }
