@@ -2,6 +2,7 @@ import { Button, Grid } from "@chakra-ui/react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Program } from "../../../@types/program";
+import PageSpinner from "../../components/PageSpinner";
 import PageWrapper from "../../components/PageWrapper";
 import ProgramForm, { Fields } from "../../components/ProgramForm";
 import { useCSR, useToast } from "../../hooks";
@@ -15,7 +16,7 @@ export default function SingleProgram() {
     const navigate = useNavigate();
 
     if (loading) {
-        return <h1>Not yet</h1>;
+        return <PageSpinner />;
     }
 
     async function edit({ exercises, ...program }: Fields) {
