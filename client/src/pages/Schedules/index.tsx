@@ -1,18 +1,22 @@
 import { Grid, Skeleton, Text, Divider, Flex, Box, Button, useDisclosure, AbsoluteCenter } from "@chakra-ui/react";
 import { useCSR, useOnClickOutside, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
-import { Link as ReactLink } from "react-router-dom";
+import { Link as ReactLink, useNavigate, useSearchParams } from "react-router-dom";
 import Icon from "../../components/Icon";
 import Card from "../../components/Card";
 import { getDay, isToday, sortBy, sorts } from "./service";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Schedule } from "../../../@types/schedule";
 import { ArrowDownShort, ArrowUpShort, Plus } from "styled-icons/bootstrap";
-import { Ghost } from "styled-icons/boxicons-regular";
 import { ClipboardBulletListLtr, Dumbbell } from "styled-icons/fluentui-system-regular";
 import { Clock } from "styled-icons/fa-regular";
+import AssetIcon from "../../components/AssetIcon";
+
+type Show = "all" | "today";
 
 export default function Schedules() {
+    const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
     const { data, success, loading } = useCSR<Schedule[]>("/schedules");
     const [sortIndex, setSortIndex] = useState(0);
     const sortSelector = useDisclosure();
@@ -21,7 +25,14 @@ export default function Schedules() {
     });
     const sorter = useSort<Schedule>(data, { defaultDirection: "desc" });
     const sort = sorts[sortIndex];
-    const [onlyToday, setOnlyToday] = useState(false);
+    const [show, setShow] = useState<Show>(() => {
+        const show = searchParams.get("show");
+        return show !== "all" && show !== "today" ? "all" : show;
+    });
+
+    useEffect(() => {
+        navigate({ search: `?show=${show}` });
+    }, [show, navigate]);
 
     function onSortChange(index: number) {
         sortSelector.onClose();
@@ -32,7 +43,7 @@ export default function Schedules() {
 
     if (success) {
         schedules = sortBy(sorter.sort, sort.property);
-        if (onlyToday) {
+        if (show) {
             schedules = schedules.filter(schedule => isToday(schedule.day));
         }
     }
@@ -117,23 +128,23 @@ export default function Schedules() {
                                 transitionDuration="0.15s"
                                 transitionProperty="left"
                                 bgColor="primary.600"
-                                left={onlyToday ? "50%" : 0}
+                                left={show === "today" ? "50%" : 0}
                                 h="100%"
                                 w="50%"
                             />
                             <Button
                                 w="50%"
                                 variant="unstyled"
-                                onClick={() => setOnlyToday(false)}
-                                color={!onlyToday ? "black" : undefined}
+                                onClick={() => setShow("all")}
+                                color={show === "all" ? "black" : undefined}
                             >
                                 All
                             </Button>
                             <Button
                                 w="50%"
                                 variant="unstyled"
-                                onClick={() => setOnlyToday(true)}
-                                color={onlyToday ? "black" : undefined}
+                                onClick={() => setShow("today")}
+                                color={show === "today" ? "black" : undefined}
                             >
                                 Today
                             </Button>
@@ -142,8 +153,8 @@ export default function Schedules() {
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {schedules.length === 0 && (
                             <AbsoluteCenter w="100%" px={4}>
+                                <AssetIcon icon="void" />
                                 <Flex flexDir="column" alignItems="center">
-                                    <Icon icon={Ghost} w={12} h={12} />
                                     <Text as="h3" textStyle="h3" textAlign="center" mt={4}>
                                         No programs were found
                                     </Text>
