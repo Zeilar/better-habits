@@ -11,6 +11,7 @@ import { ArrowDownShort, ArrowUpShort, Plus } from "styled-icons/bootstrap";
 import { ClipboardBulletListLtr, Dumbbell } from "styled-icons/fluentui-system-regular";
 import { Clock } from "styled-icons/fa-regular";
 import AssetIcon from "../../components/AssetIcon";
+import PageBanner from "../../components/PageBanner";
 
 type Show = "all" | "today";
 
@@ -49,7 +50,7 @@ export default function Schedules() {
     }
 
     return (
-        <PageWrapper pt={4} noScroll>
+        <PageWrapper noScroll>
             {loading && (
                 <Grid p={4} gridGap={2}>
                     {Array(5)
@@ -61,11 +62,13 @@ export default function Schedules() {
             )}
             {success && (
                 <>
-                    <Box px={4}>
-                        <Text textStyle="h3" as="h3" mb={4}>
-                            My schedule
-                        </Text>
-                        <Flex pos="relative" justifyContent="space-between">
+                    <Box>
+                        <PageBanner mb={4}>
+                            <Text textStyle="h3" as="h3">
+                                My schedule
+                            </Text>
+                        </PageBanner>
+                        <Flex pos="relative" justifyContent="space-between" px={4}>
                             <Box ref={sortSelectorEl}>
                                 <Button
                                     variant="unstyled"

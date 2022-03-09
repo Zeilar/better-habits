@@ -4,11 +4,11 @@ export const Link: StyleConfig = {
     baseStyle: {
         fontWeight: 600,
         transition: "none",
-        color: "primary.600",
         _focus: {
             boxShadow: "none",
         },
         _hover: {
+            color: "primary.600",
             textDecor: "none",
         },
     },
