@@ -27,7 +27,7 @@ export default function Schedules() {
     const sort = sorts[sortIndex];
     const [show, setShow] = useState<Show>(() => {
         const show = searchParams.get("show");
-        return show !== "all" && show !== "today" ? "all" : show;
+        return show !== "all" && show !== "today" ? "today" : show;
     });
 
     useEffect(() => {
@@ -128,18 +128,10 @@ export default function Schedules() {
                                 transitionDuration="0.15s"
                                 transitionProperty="left"
                                 bgColor="primary.600"
-                                left={show === "today" ? "50%" : 0}
+                                left={show === "all" ? "50%" : 0}
                                 h="100%"
                                 w="50%"
                             />
-                            <Button
-                                w="50%"
-                                variant="unstyled"
-                                onClick={() => setShow("all")}
-                                color={show === "all" ? "black" : undefined}
-                            >
-                                All
-                            </Button>
                             <Button
                                 w="50%"
                                 variant="unstyled"
@@ -147,6 +139,14 @@ export default function Schedules() {
                                 color={show === "today" ? "black" : undefined}
                             >
                                 Today
+                            </Button>
+                            <Button
+                                w="50%"
+                                variant="unstyled"
+                                onClick={() => setShow("all")}
+                                color={show === "all" ? "black" : undefined}
+                            >
+                                All
                             </Button>
                         </Flex>
                     </Card>
