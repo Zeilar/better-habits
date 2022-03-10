@@ -4,7 +4,7 @@ import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink, useNavigate, useSearchParams } from "react-router-dom";
 import Icon from "../../components/Icon";
 import Card from "../../components/Card";
-import { getDay, isToday, sortBy, sorts } from "./service";
+import { sortBy, sorts } from "./service";
 import { useEffect, useState } from "react";
 import { Schedule } from "../../../@types/schedule";
 import { ArrowDownShort, ArrowUpShort, Plus } from "styled-icons/bootstrap";
@@ -12,6 +12,7 @@ import { ClipboardBulletListLtr, Dumbbell } from "styled-icons/fluentui-system-r
 import { Clock } from "styled-icons/fa-regular";
 import AssetIcon from "../../components/AssetIcon";
 import PageBanner from "../../components/PageBanner";
+import { isToday, getDay } from "../../utils/date";
 
 type Show = "all" | "today";
 

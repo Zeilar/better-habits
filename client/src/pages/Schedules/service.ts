@@ -1,26 +1,13 @@
 import { SortFunction } from "../../hooks";
 import { Schedule } from "../../../@types/schedule";
+import { days } from "../../utils/constants";
+import { getDay } from "../../utils/date";
 
 export type SortProperty = "date" | "day";
 
 export interface Sort {
     property: SortProperty;
     label: string;
-}
-
-const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
-
-export function parseTime(time: string) {
-    const [hours, minutes] = time.split(":");
-    return { hours, minutes };
-}
-
-export function getDay(day: number) {
-    return days[day];
-}
-
-export function isToday(day: number) {
-    return new Date().getDay() === day;
 }
 
 export const sorts: Sort[] = [
