@@ -13,8 +13,9 @@ const Program = lazy(() => import("./pages/Program"));
 const Programs = lazy(() => import("./pages/Programs"));
 const NewProgram = lazy(() => import("./pages/Programs/new"));
 const Register = lazy(() => import("./pages/Register"));
-const Schedule = lazy(() => import("./pages/Schedules"));
 const Settings = lazy(() => import("./pages/Settings"));
+const Schedule = lazy(() => import("./pages/Schedules"));
+const NewSchedule = lazy(() => import("./pages/Schedules/new"));
 
 export default function App() {
     return (
@@ -82,6 +83,14 @@ export default function App() {
                         element={
                             <ProtectedRoute>
                                 <Schedule />
+                            </ProtectedRoute>
+                        }
+                    />
+                    <Route
+                        path="/schedule/new"
+                        element={
+                            <ProtectedRoute>
+                                <NewSchedule />
                             </ProtectedRoute>
                         }
                     />
