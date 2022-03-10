@@ -4,6 +4,7 @@ import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
 import { Link as ReactLink } from "react-router-dom";
 import PageWrapper from "../../components/PageWrapper";
+import PageBanner from "../../components/PageBanner";
 
 interface Fields {
     email: string;
@@ -21,11 +22,13 @@ export default function Register() {
     } = useForm<Fields>();
 
     return (
-        <PageWrapper as="form" onSubmit={handleSubmit(auth.register)} p={4}>
-            <Text as="h2" textStyle="h2">
-                Sign up
-            </Text>
-            <Flex my={4} flexDir="column">
+        <PageWrapper as="form" onSubmit={handleSubmit(auth.register)}>
+            <PageBanner>
+                <Text as="h2" textStyle="h2">
+                    Register
+                </Text>
+            </PageBanner>
+            <Flex flexDir="column" p={4}>
                 <FormControl isInvalid={Boolean(errors.email)} mb={6}>
                     <FormLabel htmlFor="email">Email</FormLabel>
                     <Input
