@@ -87,7 +87,7 @@ export default function Programs() {
                                         flexDir="column"
                                         pos="absolute"
                                         top={10}
-                                        left={0}
+                                        left={4}
                                         bgColor="gray.600"
                                         boxShadow="card"
                                         rounded="md"

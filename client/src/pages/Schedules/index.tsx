@@ -85,7 +85,7 @@ export default function Schedules() {
                                         pos="absolute"
                                         zIndex={100}
                                         top={10}
-                                        left={0}
+                                        left={4}
                                         bgColor="gray.600"
                                         boxShadow="card"
                                         rounded="md"
