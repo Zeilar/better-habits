@@ -8,7 +8,6 @@ interface Props extends FormErrorMessageProps {
 }
 
 export default function FormError({ message, ...props }: Props) {
-    console.log("FormError:", message);
     return (
         <FormErrorMessage {...props}>
             <Icon icon={AlertCircleOutline} mr={1} w={5} h={5} />

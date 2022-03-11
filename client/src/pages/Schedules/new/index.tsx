@@ -1,8 +1,8 @@
-import { Button, FormControl, FormLabel, FormLabelProps, Grid, Input, Link, Text } from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, FormLabelProps, Grid, Input, Link, Text } from "@chakra-ui/react";
 import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
-import { ArrowLeftShort } from "styled-icons/bootstrap";
+import { ArrowLeftShort, CheckCircleFill, Circle } from "styled-icons/bootstrap";
 import Icon from "../../../components/Icon";
 import { days } from "../../../utils/constants";
 import { useForm, UseFormRegister } from "react-hook-form";
@@ -23,23 +23,25 @@ function DayRadioButton({ day, register, active }: DayRadioButtonProps) {
     const activeStyling: FormLabelProps = active
         ? {
               borderColor: "primary.600",
+              color: "primary.600",
           }
         : {};
     return (
         <FormLabel
+            cursor="pointer"
             boxShadow="card"
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
             border="2px solid"
-            borderColor="transparent"
             w="100%"
+            borderColor="transparent"
             htmlFor={day}
             textTransform="capitalize"
+            transition="none"
             bgColor="gray.700"
             rounded="md"
+            fontWeight={600}
+            pos="relative"
+            p={4}
             m={0}
-            h={16}
             {...activeStyling}
         >
             {day}
@@ -49,6 +51,13 @@ function DayRadioButton({ day, register, active }: DayRadioButtonProps) {
                 type="radio"
                 id={day}
                 {...register("day", { required: "You must pick a day." })}
+            />
+            <Icon
+                pos="absolute"
+                icon={active ? CheckCircleFill : Circle}
+                color={active ? "primary.600" : "border.default"}
+                right={2}
+                top={2}
             />
         </FormLabel>
     );
@@ -63,8 +72,6 @@ export default function NewSchedule() {
 
     const activeDay = watch("day");
 
-    console.log("formState error:", formState.errors.day?.message);
-
     return (
         <PageWrapper>
             <PageBanner mb={4}>
@@ -76,15 +83,19 @@ export default function NewSchedule() {
                 </Text>
             </PageBanner>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Text>Day</Text>
-                <Grid gridGap={2} p={4}>
-                    {days.map(day => (
-                        <DayRadioButton active={day === activeDay} key={day} day={day} register={register} />
-                    ))}
-                    <FormControl isInvalid={Boolean(formState.errors.day)}>
-                        {formState.errors.day?.message && <FormError message={formState.errors.day.message} />}
-                    </FormControl>
-                </Grid>
+                <Box p={4}>
+                    <Text textStyle="h3" as="h3" mb={4}>
+                        Day
+                    </Text>
+                    <Grid gridGap={2} gridTemplateColumns="repeat(2, 1fr)">
+                        {days.map(day => (
+                            <DayRadioButton active={day === activeDay} key={day} day={day} register={register} />
+                        ))}
+                        <FormControl isInvalid={Boolean(formState.errors.day)}>
+                            {formState.errors.day?.message && <FormError message={formState.errors.day.message} />}
+                        </FormControl>
+                    </Grid>
+                </Box>
                 <Button type="submit">Submit</Button>
             </form>
         </PageWrapper>
