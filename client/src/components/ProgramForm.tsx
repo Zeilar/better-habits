@@ -1,10 +1,11 @@
-import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useCallback, useEffect, useRef } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { CloseOutline } from "styled-icons/evaicons-outline";
 import { Program } from "../../@types/program";
 import Card from "./Card";
 import ContainerSpinner from "./ContainerSpinner";
+import FormError from "./FormError";
 import Icon from "./Icon";
 
 interface ExerciseField {
@@ -61,7 +62,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                         id="name"
                         {...register("name", { required: "Field is required" })}
                     />
-                    {formState.errors.name && <FormErrorMessage>{formState.errors.name.message}</FormErrorMessage>}
+                    {formState.errors.name?.message && <FormError message={formState.errors.name.message} />}
                 </FormControl>
                 <Flex justifyContent="space-between" mb={2} px={4}>
                     <Text textStyle="h3" as="h3">
@@ -107,7 +108,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                                 required: "Field is required",
                                             })}
                                         />
-                                        {errors?.name && <FormErrorMessage>{errors.name.message}</FormErrorMessage>}
+                                        {errors.name?.message && <FormError message={errors.name.message} />}
                                     </FormControl>
                                     <Flex gridGap={4}>
                                         <FormControl isInvalid={Boolean(errors?.sets)}>
@@ -120,7 +121,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                                     setValueAs: value => Number(value) || null,
                                                 })}
                                             />
-                                            {errors?.sets && <FormErrorMessage>{errors.sets.message}</FormErrorMessage>}
+                                            {errors.sets?.message && <FormError message={errors.sets.message} />}
                                         </FormControl>
                                         <FormControl isInvalid={Boolean(errors?.duration)}>
                                             <FormLabel htmlFor={duration}>Duration</FormLabel>
@@ -132,8 +133,8 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                                     setValueAs: value => Number(value) || null,
                                                 })}
                                             />
-                                            {errors?.duration && (
-                                                <FormErrorMessage>{errors.duration.message}</FormErrorMessage>
+                                            {errors.duration?.message && (
+                                                <FormError message={errors.duration.message} />
                                             )}
                                         </FormControl>
                                     </Flex>
