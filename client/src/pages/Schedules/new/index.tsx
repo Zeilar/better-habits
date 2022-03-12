@@ -1,16 +1,32 @@
-import { Box, Button, FormControl, FormLabel, FormLabelProps, Grid, Input, Link, Text } from "@chakra-ui/react";
+import {
+    Box,
+    Button,
+    Flex,
+    FormControl,
+    FormLabel,
+    FormLabelProps,
+    Grid,
+    Input,
+    Link,
+    Select,
+    Text,
+} from "@chakra-ui/react";
 import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import { ArrowLeftShort, CheckCircleFill, Circle } from "styled-icons/bootstrap";
 import Icon from "../../../components/Icon";
-import { days } from "../../../utils/constants";
+import { days, numberMinuteOptions } from "../../../utils/constants";
 import { useForm, UseFormRegister } from "react-hook-form";
 import { Day } from "../../../../@types/date";
 import FormError from "../../../components/FormError";
 
 interface Fields {
     day?: Day;
+    fromHour: string;
+    fromMinute: string;
+    toHour: string;
+    toMinute: string;
 }
 
 interface DayRadioButtonProps {
@@ -63,11 +79,43 @@ function DayRadioButton({ day, register, active }: DayRadioButtonProps) {
     );
 }
 
+function HourOptions() {
+    return (
+        <>
+            {Array(24)
+                .fill(null)
+                .map((_, i) => {
+                    const number = i < 10 ? `0${i}` : i;
+                    return (
+                        <option key={number} value={number}>
+                            {number}
+                        </option>
+                    );
+                })}
+        </>
+    );
+}
+
+function MinuteOptions() {
+    return (
+        <>
+            {numberMinuteOptions.map(number => (
+                <option key={number} value={number}>
+                    {number}
+                </option>
+            ))}
+        </>
+    );
+}
+
 export default function NewSchedule() {
     const { register, handleSubmit, formState, watch } = useForm<Fields>();
 
     function onSubmit(fields: Fields) {
-        console.log(fields);
+        const { fromHour, fromMinute, toHour, toMinute, ...rest } = fields;
+        const from = `${fromHour}:${fromMinute}`;
+        const to = `${toHour}:${toMinute}`;
+        console.log({ ...rest, from, to });
     }
 
     const activeDay = watch("day");
@@ -96,6 +144,22 @@ export default function NewSchedule() {
                         </FormControl>
                     </Grid>
                 </Box>
+                <Flex>
+                    <Select {...register("toHour")}>
+                        <HourOptions />
+                    </Select>
+                    <Select {...register("toMinute")}>
+                        <MinuteOptions />
+                    </Select>
+                </Flex>
+                <Flex>
+                    <Select {...register("fromHour")}>
+                        <HourOptions />
+                    </Select>
+                    <Select {...register("fromMinute")}>
+                        <MinuteOptions />
+                    </Select>
+                </Flex>
                 <Button type="submit">Submit</Button>
             </form>
         </PageWrapper>
