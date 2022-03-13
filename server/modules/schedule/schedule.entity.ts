@@ -28,10 +28,10 @@ export class Schedule extends BaseEntity implements ScheduleSchema {
     public day: Day;
 
     @Column()
-    public start: string;
+    public from: string;
 
     @Column()
-    public end: string;
+    public to: string;
 
     @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
     public createdAt: ISOString;

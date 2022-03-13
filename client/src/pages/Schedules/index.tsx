@@ -12,7 +12,7 @@ import { ClipboardBulletListLtr, Dumbbell } from "styled-icons/fluentui-system-r
 import { Clock } from "styled-icons/fa-regular";
 import AssetIcon from "../../components/AssetIcon";
 import PageBanner from "../../components/PageBanner";
-import { isToday, getDay } from "../../utils/date";
+import { isToday } from "../../utils/date";
 
 type Show = "all" | "today";
 
@@ -183,7 +183,7 @@ export default function Schedules() {
                                     <Flex alignItems="center">
                                         <Icon icon={ClipboardBulletListLtr} />
                                         <Text ml={2} as="span" textTransform="capitalize">
-                                            {getDay(schedule.day)}
+                                            {schedule.day}
                                         </Text>
                                         {isToday(schedule.day) && (
                                             <Text color="primary.600" as="span" ml="auto">
@@ -195,7 +195,7 @@ export default function Schedules() {
                                     <Flex alignItems="center">
                                         <Icon icon={Clock} />
                                         <Text ml={2} as="span">
-                                            {schedule.start} - {schedule.end}
+                                            {schedule.from} - {schedule.to}
                                         </Text>
                                     </Flex>
                                 </Flex>

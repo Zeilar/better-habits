@@ -9,10 +9,10 @@ export class CreateScheduleDto {
     public day: Day;
 
     @Matches(hourMinuteRegex)
-    public start: string;
+    public from: string;
 
     @Matches(hourMinuteRegex)
-    public end: string;
+    public to: string;
 
     @IsNumber()
     public programId: number;

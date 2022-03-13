@@ -1,13 +1,13 @@
 import { ISOString } from "./date";
 
-export type Day = 0 | 1 | 2 | 3 | 4 | 5 | 6; // Starts at Monday
-export type Days = [0, 1, 2, 3, 4, 5, 6];
+export type Day = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+export type Days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
 export interface ScheduleSchema {
     id: number;
     day: Day;
-    start: string;
-    end: string;
+    from: string;
+    to: string;
     userId: number;
     programId: number;
     createdAt: ISOString;

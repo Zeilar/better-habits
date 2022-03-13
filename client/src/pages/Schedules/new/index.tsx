@@ -20,9 +20,11 @@ import { days, numberMinuteOptions } from "../../../utils/constants";
 import { useForm, UseFormRegister } from "react-hook-form";
 import { Day } from "../../../../@types/date";
 import FormError from "../../../components/FormError";
+import { apiService } from "../../../services";
+import { useAuth } from "../../../hooks";
 
 interface Fields {
-    day?: Day;
+    day: Day;
     fromHour: string;
     fromMinute: string;
     toHour: string;
@@ -109,13 +111,27 @@ function MinuteOptions() {
 }
 
 export default function NewSchedule() {
-    const { register, handleSubmit, formState, watch } = useForm<Fields>();
+    const { register, handleSubmit, formState, watch } = useForm<Fields>({
+        defaultValues: { day: new Intl.DateTimeFormat("en-US", { weekday: "long" }).format().toLowerCase() as Day },
+    });
+    const { user } = useAuth();
 
-    function onSubmit(fields: Fields) {
+    async function onSubmit(fields: Fields) {
         const { fromHour, fromMinute, toHour, toMinute, ...rest } = fields;
         const from = `${fromHour}:${fromMinute}`;
         const to = `${toHour}:${toMinute}`;
         console.log({ ...rest, from, to });
+        const response = await apiService.request("/schedules", {
+            method: "POST",
+            data: {
+                programId: 1,
+                userId: user!.id,
+                from,
+                to,
+                ...rest,
+            },
+        });
+        console.log(response.ok);
     }
 
     const activeDay = watch("day");

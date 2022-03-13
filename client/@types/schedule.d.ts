@@ -6,8 +6,8 @@ export interface Schedule {
     id: number;
     userId: number;
     day: Day;
-    start: string;
-    end: string;
+    from: string;
+    to: string;
     program: Program;
     createdAt: ISOString;
     updatedAt: ISOString;
