@@ -1,27 +1,18 @@
-import {
-    Box,
-    Button,
-    Flex,
-    FormControl,
-    FormLabel,
-    FormLabelProps,
-    Grid,
-    Input,
-    Link,
-    Select,
-    Text,
-} from "@chakra-ui/react";
+import { Box, Button, FormControl, FormLabel, FormLabelProps, Grid, Input, Link, Text } from "@chakra-ui/react";
 import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
-import { ArrowLeftShort, CheckCircleFill, Circle } from "styled-icons/bootstrap";
+import { ArrowLeftShort, CheckCircleFill } from "styled-icons/bootstrap";
 import Icon from "../../../components/Icon";
 import { days, numberMinuteOptions } from "../../../utils/constants";
 import { useForm, UseFormRegister } from "react-hook-form";
 import { Day } from "../../../../@types/date";
 import FormError from "../../../components/FormError";
 import { apiService } from "../../../services";
-import { useAuth } from "../../../hooks";
+import { useAuth, useCSR } from "../../../hooks";
+import ComboSelect from "../../../components/ComboSelect";
+import Select from "../../../components/Select";
+import { Program } from "../../../../@types/program";
 
 interface Fields {
     day: Day;
@@ -38,12 +29,16 @@ interface DayRadioButtonProps {
 }
 
 function DayRadioButton({ day, register, active }: DayRadioButtonProps) {
-    const activeStyling: FormLabelProps = active
+    const css: FormLabelProps = active
         ? {
               borderColor: "primary.600",
               color: "primary.600",
           }
-        : {};
+        : {
+              _hover: {
+                  bgColor: "gray.500",
+              },
+          };
     return (
         <FormLabel
             cursor="pointer"
@@ -56,11 +51,12 @@ function DayRadioButton({ day, register, active }: DayRadioButtonProps) {
             transition="none"
             bgColor="gray.700"
             rounded="md"
-            fontWeight={600}
+            fontWeight={500}
+            userSelect="none"
             pos="relative"
             p={4}
             m={0}
-            {...activeStyling}
+            {...css}
         >
             {day}
             <Input
@@ -70,13 +66,16 @@ function DayRadioButton({ day, register, active }: DayRadioButtonProps) {
                 id={day}
                 {...register("day", { required: "You must pick a day." })}
             />
-            <Icon
-                pos="absolute"
-                icon={active ? CheckCircleFill : Circle}
-                color={active ? "primary.600" : "border.default"}
-                right={2}
-                top={2}
-            />
+            {active && (
+                <Icon
+                    pos="absolute"
+                    icon={CheckCircleFill}
+                    color="primary.600"
+                    transform="translateY(-50%)"
+                    right={4}
+                    top="50%"
+                />
+            )}
         </FormLabel>
     );
 }
@@ -115,12 +114,12 @@ export default function NewSchedule() {
         defaultValues: { day: new Intl.DateTimeFormat("en-US", { weekday: "long" }).format().toLowerCase() as Day },
     });
     const { user } = useAuth();
+    const programsQuery = useCSR<Program[]>("/programs");
 
     async function onSubmit(fields: Fields) {
         const { fromHour, fromMinute, toHour, toMinute, ...rest } = fields;
         const from = `${fromHour}:${fromMinute}`;
         const to = `${toHour}:${toMinute}`;
-        console.log({ ...rest, from, to });
         const response = await apiService.request("/schedules", {
             method: "POST",
             data: {
@@ -160,7 +159,24 @@ export default function NewSchedule() {
                         </FormControl>
                     </Grid>
                 </Box>
-                <Flex>
+                <Box p={4}>
+                    {programsQuery.success && (
+                        <ComboSelect
+                            items={programsQuery.data.map(program => ({
+                                value: program.id.toString(),
+                                label: program.name,
+                            }))}
+                        />
+                    )}
+                    <Box h={4} />
+                    <Select
+                        items={[
+                            { label: "Test", value: "test" },
+                            { label: "2", value: "2" },
+                        ]}
+                    />
+                </Box>
+                {/* <Flex>
                     <Select {...register("toHour")}>
                         <HourOptions />
                     </Select>
@@ -175,7 +191,7 @@ export default function NewSchedule() {
                     <Select {...register("fromMinute")}>
                         <MinuteOptions />
                     </Select>
-                </Flex>
+                </Flex> */}
                 <Button type="submit">Submit</Button>
             </form>
         </PageWrapper>

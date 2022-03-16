@@ -1,4 +1,4 @@
-import { Grid, Skeleton, Text, Divider, Flex, Box, Button, useDisclosure, AbsoluteCenter } from "@chakra-ui/react";
+import { Grid, Skeleton, Text, Divider, Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
 import { useCSR, useOnClickOutside, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink, useNavigate, useSearchParams } from "react-router-dom";
@@ -156,14 +156,14 @@ export default function Schedules() {
                     </Card>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {schedules.length === 0 && (
-                            <AbsoluteCenter w="100%" px={4}>
-                                <AssetIcon icon="void" />
+                            <Flex flexDir="column" alignItems="center">
+                                <AssetIcon size="75%" icon="void" />
                                 <Flex flexDir="column" alignItems="center">
                                     <Text as="h3" textStyle="h3" textAlign="center" mt={4}>
                                         No programs were found
                                     </Text>
                                 </Flex>
-                            </AbsoluteCenter>
+                            </Flex>
                         )}
                         {schedules.map(schedule => (
                             <Card key={schedule.id}>

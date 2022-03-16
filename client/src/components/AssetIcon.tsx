@@ -6,9 +6,9 @@ interface Props extends IconProps {
      * The name of the svg file excluding file extension
      */
     icon: keyof typeof Icons;
-    size?: number | string; // For some reason TS doesn't think this exists on IconProps
+    size?: number | string;
 }
 
-export default function AssetIcon({ icon, ...props }: Props) {
-    return <ChakraIcon as={Icons[icon]} w="100%" h="100%" verticalAlign="middle" {...props} />;
+export default function AssetIcon({ icon, size, ...props }: Props) {
+    return <ChakraIcon as={Icons[icon]} w={size} h={size} maxW="100%" maxH="100%" verticalAlign="middle" {...props} />;
 }

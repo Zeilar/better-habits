@@ -1,15 +1,4 @@
-import {
-    Grid,
-    Skeleton,
-    Text,
-    Link,
-    Divider,
-    Flex,
-    Box,
-    Button,
-    useDisclosure,
-    AbsoluteCenter,
-} from "@chakra-ui/react";
+import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
 import { useCSR, useOnClickOutside, useSort } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
@@ -126,14 +115,14 @@ export default function Programs() {
                     <Divider w="auto" m={4} />
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {data.length === 0 && (
-                            <AbsoluteCenter w="100%" px={4}>
-                                <AssetIcon icon="void" />
+                            <Flex flexDir="column" alignItems="center">
+                                <AssetIcon size="75%" icon="void" />
                                 <Flex flexDir="column" alignItems="center">
                                     <Text as="h3" textStyle="h3" textAlign="center" mt={4}>
                                         No programs were found
                                     </Text>
                                 </Flex>
-                            </AbsoluteCenter>
+                            </Flex>
                         )}
                         {sortBy(sorter.sort, sort.property).map(program => (
                             <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
