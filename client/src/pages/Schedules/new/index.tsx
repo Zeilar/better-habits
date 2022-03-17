@@ -112,7 +112,7 @@ export default function NewSchedule() {
     const activeDay = watch("day");
 
     return (
-        <PageWrapper>
+        <PageWrapper noScroll>
             <PageBanner>
                 <Link as={ReactLink} to="/schedule" mr={2}>
                     <Icon icon={ArrowLeftShort} size={8} />
@@ -187,7 +187,22 @@ export default function NewSchedule() {
                         />
                     </Flex>
                 </Flex>
-                <Button type="submit">Submit</Button>
+                <Flex h={16} />
+                <Grid
+                    pos="sticky"
+                    bottom={0}
+                    gridTemplateColumns="repeat(2, 1fr)"
+                    boxShadow="elevate.top"
+                    bgColor="gray.700"
+                    p={4}
+                    gridGap={4}
+                    h="controlsHeight"
+                >
+                    <Button type="submit">Create</Button>
+                    <Link as={ReactLink} to="/programs" display="flex">
+                        <Text m="auto">Cancel</Text>
+                    </Link>
+                </Grid>
             </form>
         </PageWrapper>
     );
