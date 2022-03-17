@@ -4,14 +4,14 @@ export const Input: StyleConfig = {
     variants: {
         filled: {
             field: {
-                bgColor: "gray.700",
+                bgColor: "gray.600",
                 _hover: {
-                    bgColor: "gray.500",
+                    bgColor: "gray.600",
                 },
                 _focus: {
                     borderColor: "primary.600",
                     boxShadow: "none",
-                    bgColor: "gray.500",
+                    bgColor: "gray.600",
                 },
                 _invalid: {
                     borderColor: "danger",

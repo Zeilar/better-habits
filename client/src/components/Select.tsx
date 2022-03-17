@@ -1,25 +1,28 @@
-import { Box, Flex, Grid } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 import { Listbox } from "@headlessui/react";
-import { useState } from "react";
 import { Selector } from "styled-icons/heroicons-outline";
 import Icon from "./Icon";
 
-interface Item {
+export interface SelectItem {
     value: string;
     label: string;
 }
 
 interface Props {
-    items: Item[];
+    items: SelectItem[];
+    value: SelectItem;
+    onChange(item: SelectItem): void;
 }
 
-export default function Select({ items }: Props) {
-    const [selected, setSelected] = useState(items[0]);
+export default function Select({ items, value, onChange }: Props) {
+    function onChangeHandler(item: SelectItem) {
+        onChange(item);
+    }
 
     return (
         <Listbox
-            value={selected}
-            onChange={setSelected}
+            value={value}
+            onChange={onChangeHandler}
             as={Box}
             fontWeight={500}
             pos="relative"
@@ -32,7 +35,7 @@ export default function Select({ items }: Props) {
                 textAlign="left"
                 py={2}
                 px={4}
-                bgColor="gray.700"
+                bgColor="gray.600"
                 rounded="md"
                 justifyContent="space-between"
                 alignItems="center"
@@ -42,10 +45,21 @@ export default function Select({ items }: Props) {
                 _hover={{ bgColor: "gray.500" }}
                 _focus={{ bg: "red" }}
             >
-                {selected.label}
+                {value.label}
                 <Icon size={4} icon={Selector} />
             </Listbox.Button>
-            <Listbox.Options as={Box} w="100%" pos="absolute" zIndex={10} top="2.65rem" rounded="md" boxShadow="card">
+            <Listbox.Options
+                as={Box}
+                w="100%"
+                pos="absolute"
+                zIndex={10}
+                top="2.65rem"
+                rounded="md"
+                boxShadow="card"
+                maxH="20vh"
+                overflowY="auto"
+                outline="none"
+            >
                 {items.map((item, i) => (
                     <Listbox.Option
                         key={i}
@@ -54,7 +68,7 @@ export default function Select({ items }: Props) {
                         cursor="pointer"
                         py={2}
                         px={4}
-                        bgColor="gray.700"
+                        bgColor="gray.600"
                         _first={{ roundedTop: "md" }}
                         _last={{ roundedBottom: "md" }}
                         _hover={{ bgColor: "gray.500" }}

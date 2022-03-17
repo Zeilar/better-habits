@@ -186,7 +186,16 @@ export default function Schedules() {
                                             {schedule.day}
                                         </Text>
                                         {isToday(schedule.day) && (
-                                            <Text color="primary.600" as="span" ml="auto">
+                                            <Text
+                                                fontWeight={600}
+                                                px={2}
+                                                color="black"
+                                                bgColor="primary.600"
+                                                as="span"
+                                                ml={4}
+                                                rounded="md"
+                                                textTransform="uppercase"
+                                            >
                                                 Today
                                             </Text>
                                         )}
