@@ -136,37 +136,6 @@ export default function NewSchedule() {
                         )}
                     />
                 )}
-                <Box px={4} mb={4}>
-                    <Text textStyle="h3" as="h3" mb={2}>
-                        Day
-                    </Text>
-                    <Controller
-                        name="days"
-                        control={control}
-                        rules={{ required: "Field is required" }}
-                        render={({ field, fieldState }) => {
-                            function onToggle(day: Day) {
-                                field.onChange(
-                                    field.value.includes(day)
-                                        ? field.value.filter(value => value !== day)
-                                        : [...field.value, day]
-                                );
-                            }
-                            return (
-                                <FormControl as={Grid} gridGap={2} isInvalid={Boolean(fieldState.error)}>
-                                    {days.map((day, i) => (
-                                        <DayRadioButton
-                                            onToggle={() => onToggle(day)}
-                                            day={day}
-                                            key={i}
-                                            active={field.value.includes(day)}
-                                        />
-                                    ))}
-                                </FormControl>
-                            );
-                        }}
-                    />
-                </Box>
                 <Flex flexDir="column" px={4} mb={4}>
                     <Text textStyle="h3" as="h3" mb={2}>
                         From
@@ -225,6 +194,37 @@ export default function NewSchedule() {
                         />
                     </Flex>
                 </Flex>
+                <Box px={4} mb={4}>
+                    <Text textStyle="h3" as="h3" mb={2}>
+                        Day
+                    </Text>
+                    <Controller
+                        name="days"
+                        control={control}
+                        rules={{ required: "Field is required" }}
+                        render={({ field, fieldState }) => {
+                            function onToggle(day: Day) {
+                                field.onChange(
+                                    field.value.includes(day)
+                                        ? field.value.filter(value => value !== day)
+                                        : [...field.value, day]
+                                );
+                            }
+                            return (
+                                <FormControl as={Grid} gridGap={2} isInvalid={Boolean(fieldState.error)}>
+                                    {days.map((day, i) => (
+                                        <DayRadioButton
+                                            onToggle={() => onToggle(day)}
+                                            day={day}
+                                            key={i}
+                                            active={field.value.includes(day)}
+                                        />
+                                    ))}
+                                </FormControl>
+                            );
+                        }}
+                    />
+                </Box>
                 <Grid
                     pos="sticky"
                     bottom={0}

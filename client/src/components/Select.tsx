@@ -71,7 +71,7 @@ export default function Select({ items, value, onChange }: Props) {
                         bgColor="gray.600"
                         _first={{ roundedTop: "md" }}
                         _last={{ roundedBottom: "md" }}
-                        _hover={{ bgColor: "gray.500" }}
+                        _hover={{ bgColor: "gray.500", color: "primary.600" }}
                     >
                         {item.label}
                     </Listbox.Option>

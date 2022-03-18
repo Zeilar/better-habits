@@ -57,7 +57,7 @@ export default function ComboSelect({ items, value, onChange }: Props) {
                         px={4}
                         _first={{ roundedTop: "md" }}
                         _last={{ roundedBottom: "md" }}
-                        _hover={{ bgColor: "gray.500" }}
+                        _hover={{ bgColor: "gray.500", color: "primary.600" }}
                     >
                         {item.label}
                     </Combobox.Option>
