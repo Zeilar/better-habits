@@ -1,11 +1,11 @@
-import { Box, Button, Flex, FormControl, FormLabel, FormLabelProps, Grid, Input, Link, Text } from "@chakra-ui/react";
+import { Box, Button, ButtonProps, Flex, FormControl, Grid, Link, Text } from "@chakra-ui/react";
 import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import { ArrowLeftShort, CheckCircleFill } from "styled-icons/bootstrap";
 import Icon from "../../../components/Icon";
 import { days, hourSelection, minuteSelection } from "../../../utils/constants";
-import { Controller, useForm, UseFormRegister } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { Day } from "../../../../@types/date";
 import FormError from "../../../components/FormError";
 import { apiService } from "../../../services";
@@ -15,7 +15,7 @@ import Select, { SelectItem } from "../../../components/Select";
 import { Program } from "../../../../@types/program";
 
 interface Fields {
-    day: Day;
+    days: Day[];
     fromHour: SelectItem;
     fromMinute: SelectItem;
     toHour: SelectItem;
@@ -25,12 +25,12 @@ interface Fields {
 
 interface DayRadioButtonProps {
     day: Day;
-    register: UseFormRegister<Fields>;
     active: boolean;
+    onToggle(): void;
 }
 
-function DayRadioButton({ day, register, active }: DayRadioButtonProps) {
-    const css: FormLabelProps = active
+function DayRadioButton({ day, active, onToggle }: DayRadioButtonProps) {
+    const css: ButtonProps = active
         ? {
               borderColor: "primary.600",
               color: "primary.600",
@@ -41,50 +41,36 @@ function DayRadioButton({ day, register, active }: DayRadioButtonProps) {
               },
           };
     return (
-        <FormLabel
-            cursor="pointer"
+        <Button
+            variant="unstyled"
             boxShadow="card"
+            display="flex"
+            justifyContent="space-between"
             border="2px solid"
-            w="100%"
             borderColor="transparent"
-            htmlFor={day}
             textTransform="capitalize"
             transition="none"
             bgColor="gray.600"
             rounded="md"
             fontWeight={500}
             userSelect="none"
-            pos="relative"
-            p={4}
+            textAlign="left"
             m={0}
+            paddingInline={4}
+            h={12}
+            onClick={onToggle}
             {...css}
         >
             {day}
-            <Input
-                hidden
-                value={day}
-                type="radio"
-                id={day}
-                {...register("day", { required: "You must pick a day." })}
-            />
-            {active && (
-                <Icon
-                    pos="absolute"
-                    icon={CheckCircleFill}
-                    color="primary.600"
-                    transform="translateY(-50%)"
-                    right={4}
-                    top="50%"
-                />
-            )}
-        </FormLabel>
+            {active && <Icon ml={4} icon={CheckCircleFill} color="primary.600" />}
+        </Button>
     );
 }
 
 export default function NewSchedule() {
-    const { register, handleSubmit, formState, watch, control } = useForm<Fields>({
+    const { handleSubmit, control } = useForm<Fields>({
         defaultValues: {
-            day: new Intl.DateTimeFormat("en-US", { weekday: "long" }).format().toLowerCase() as Day,
+            days: [new Intl.DateTimeFormat("en-US", { weekday: "long" }).format().toLowerCase() as Day],
             fromHour: hourSelection[0],
             fromMinute: minuteSelection[0],
             toHour: hourSelection[0],
@@ -96,6 +82,13 @@ export default function NewSchedule() {
 
     async function onSubmit(fields: Fields) {
         const { fromHour, fromMinute, toHour, toMinute, programId, ...rest } = fields;
+        console.log({
+            userId: user!.id,
+            from: `${fromHour.value}:${fromMinute.value}`,
+            to: `${toHour.value}:${toMinute.value}`,
+            programId: parseInt(programId.value),
+            ...rest,
+        });
         const response = await apiService.request("/schedules", {
             method: "POST",
             data: {
@@ -108,8 +101,6 @@ export default function NewSchedule() {
         });
         console.log(response.ok);
     }
-
-    const activeDay = watch("day");
 
     return (
         <PageWrapper noScroll>
@@ -149,14 +140,32 @@ export default function NewSchedule() {
                     <Text textStyle="h3" as="h3" mb={2}>
                         Day
                     </Text>
-                    <Grid gridGap={2} gridTemplateColumns="repeat(2, 1fr)">
-                        {days.map(day => (
-                            <DayRadioButton active={day === activeDay} key={day} day={day} register={register} />
-                        ))}
-                        <FormControl isInvalid={Boolean(formState.errors.day)}>
-                            {formState.errors.day?.message && <FormError message={formState.errors.day.message} />}
-                        </FormControl>
-                    </Grid>
+                    <Controller
+                        name="days"
+                        control={control}
+                        rules={{ required: "Field is required" }}
+                        render={({ field, fieldState }) => {
+                            function onToggle(day: Day) {
+                                field.onChange(
+                                    field.value.includes(day)
+                                        ? field.value.filter(value => value !== day)
+                                        : [...field.value, day]
+                                );
+                            }
+                            return (
+                                <FormControl as={Grid} gridGap={2} isInvalid={Boolean(fieldState.error)}>
+                                    {days.map((day, i) => (
+                                        <DayRadioButton
+                                            onToggle={() => onToggle(day)}
+                                            day={day}
+                                            key={i}
+                                            active={field.value.includes(day)}
+                                        />
+                                    ))}
+                                </FormControl>
+                            );
+                        }}
+                    />
                 </Box>
                 <Flex flexDir="column" px={4} mb={4}>
                     <Text textStyle="h3" as="h3" mb={2}>

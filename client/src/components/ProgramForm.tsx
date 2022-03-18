@@ -14,7 +14,10 @@ interface ExerciseField {
     duration?: number;
 }
 
-export type Fields = { name: string; exercises: ExerciseField[] };
+export interface Fields {
+    name: string;
+    exercises: ExerciseField[];
+}
 
 interface Props {
     program?: Program<true>;
