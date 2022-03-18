@@ -1,11 +1,11 @@
 import { ISOString } from "./date";
 
 export type Day = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
-export type Days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+export type Week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
 
 export interface ScheduleSchema {
     id: number;
-    day: Day;
+    days: Day[];
     from: string;
     to: string;
     userId: number;

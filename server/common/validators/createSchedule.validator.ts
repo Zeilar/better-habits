@@ -5,8 +5,8 @@ import { days } from "common/constants";
 const hourMinuteRegex = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/;
 
 export class CreateScheduleDto {
-    @Matches(new RegExp(days.join("|")))
-    public day: Day;
+    @Matches(new RegExp(days.join("|")), { each: true })
+    public days: Day[];
 
     @Matches(hourMinuteRegex)
     public from: string;

@@ -1,3 +1,3 @@
-import { Days } from "../@types/schedule";
+import { Week } from "../@types/schedule";
 
-export const days: Days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+export const days: Week = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];

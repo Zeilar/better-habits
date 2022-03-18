@@ -3,7 +3,6 @@ import { Program } from "modules/program/program.entity";
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, BaseEntity } from "typeorm";
 import { ISOString } from "../../@types/date";
 import { User } from "../user/user.entity";
-import { days } from "common/constants";
 
 @Entity()
 export class Schedule extends BaseEntity implements ScheduleSchema {
@@ -24,8 +23,8 @@ export class Schedule extends BaseEntity implements ScheduleSchema {
     @Column()
     public programId: number;
 
-    @Column({ type: "enum", enum: days })
-    public day: Day;
+    @Column({ type: "json", nullable: false })
+    public days: Day[];
 
     @Column()
     public from: string;

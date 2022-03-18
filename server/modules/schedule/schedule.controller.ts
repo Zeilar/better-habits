@@ -18,6 +18,6 @@ export class ScheduleController {
     @UseGuards(AuthenticatedGuard, CreateScheduleGuard)
     @Post("/")
     public create(@Body() createScheduleDto: CreateScheduleDto) {
-        return this.scheduleService.store(createScheduleDto);
+        this.scheduleService.store(createScheduleDto);
     }
 }
