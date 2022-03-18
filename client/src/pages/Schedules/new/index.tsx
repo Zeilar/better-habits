@@ -202,7 +202,7 @@ export default function NewSchedule() {
                     bottom={0}
                     gridTemplateColumns="repeat(2, 1fr)"
                     boxShadow="elevate.top"
-                    bgColor="gray.700"
+                    bgColor="gray.600"
                     p={4}
                     gridGap={4}
                     h="controlsHeight"

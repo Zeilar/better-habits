@@ -5,10 +5,10 @@ import { Program } from "./program";
 export interface Schedule {
     id: number;
     userId: number;
-    day: Day;
     from: string;
     to: string;
     program: Program;
+    days: Day[];
     createdAt: ISOString;
     updatedAt: ISOString;
 }

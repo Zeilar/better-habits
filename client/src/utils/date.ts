@@ -5,6 +5,9 @@ export function parseTime(time: string) {
     return { hours, minutes };
 }
 
-export function isToday(day: Day) {
-    return (new Intl.DateTimeFormat("en-US", { weekday: "long" }).format().toLowerCase() as Day) === day;
+export function isToday(days: Day[]): boolean;
+export function isToday(day: Day): boolean;
+export function isToday(day: Day | Day[]) {
+    const today = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format().toLowerCase() as Day;
+    return Array.isArray(day) ? day.includes(today) : day === today;
 }

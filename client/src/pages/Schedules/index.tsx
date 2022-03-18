@@ -46,7 +46,7 @@ export default function Schedules() {
     if (success) {
         schedules = sortBy(sorter.sort, sort.property);
         if (show === "today") {
-            schedules = schedules.filter(schedule => isToday(schedule.day));
+            schedules = schedules.filter(schedule => isToday(schedule.days));
         }
     }
 
@@ -183,16 +183,16 @@ export default function Schedules() {
                                     <Flex alignItems="center">
                                         <Icon icon={ClipboardBulletListLtr} />
                                         <Text ml={2} as="span" textTransform="capitalize">
-                                            {schedule.day}
+                                            {schedule.days.join(", ")}
                                         </Text>
-                                        {isToday(schedule.day) && (
+                                        {isToday(schedule.days) && (
                                             <Text
                                                 fontWeight={600}
                                                 px={2}
                                                 color="black"
                                                 bgColor="primary.600"
                                                 as="span"
-                                                ml={4}
+                                                ml={2}
                                                 rounded="md"
                                                 textTransform="uppercase"
                                             >

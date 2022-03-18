@@ -51,7 +51,7 @@ export default function SingleProgram() {
                 controls={
                     <Grid
                         boxShadow="elevate.top"
-                        bgColor="gray.700"
+                        bgColor="gray.600"
                         gridTemplateColumns="repeat(2, 1fr)"
                         h="controlsHeight"
                         gridGap={4}
