@@ -1,7 +1,7 @@
 import { Box, Button, ButtonProps, Flex, FormControl, Grid, Link, Text } from "@chakra-ui/react";
 import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
-import { Link as ReactLink } from "react-router-dom";
+import { Link as ReactLink, useNavigate } from "react-router-dom";
 import { ArrowLeftShort, CheckCircleFill } from "styled-icons/bootstrap";
 import Icon from "../../../components/Icon";
 import { days, hourSelection, minuteSelection } from "../../../utils/constants";
@@ -9,7 +9,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Day } from "../../../../@types/date";
 import FormError from "../../../components/FormError";
 import { apiService } from "../../../services";
-import { useAuth, useCSR } from "../../../hooks";
+import { useAuth, useCSR, useToast } from "../../../hooks";
 import ComboSelect from "../../../components/ComboSelect";
 import Select, { SelectItem } from "../../../components/Select";
 import { Program } from "../../../../@types/program";
@@ -79,6 +79,8 @@ export default function NewSchedule() {
     });
     const { user } = useAuth();
     const programsQuery = useCSR<Program[]>("/programs");
+    const navigate = useNavigate();
+    const toast = useToast();
 
     async function onSubmit(fields: Fields) {
         const { fromHour, fromMinute, toHour, toMinute, programId, ...rest } = fields;
@@ -99,7 +101,11 @@ export default function NewSchedule() {
                 ...rest,
             },
         });
-        console.log(response.ok);
+        if (response.ok) {
+            navigate("/schedule");
+        } else {
+            toast({ title: "Something went wrong", status: "error" });
+        }
     }
 
     return (
