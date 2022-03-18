@@ -196,7 +196,35 @@ export default function NewSchedule() {
                         />
                     </Flex>
                 </Flex>
-                <Flex h={16} />
+                <Flex flexDir="column" px={4} mb={4}>
+                    <Text textStyle="h3" as="h3" mb={2}>
+                        To
+                    </Text>
+                    <Flex gridGap={2}>
+                        <Controller
+                            name="toHour"
+                            control={control}
+                            rules={{ required: "Field is required." }}
+                            render={({ field, fieldState }) => (
+                                <FormControl isInvalid={Boolean(fieldState.error)}>
+                                    <Select value={field.value} onChange={field.onChange} items={hourSelection} />
+                                    {fieldState.error?.message && <FormError message={fieldState.error.message} />}
+                                </FormControl>
+                            )}
+                        />
+                        <Controller
+                            name="toMinute"
+                            control={control}
+                            rules={{ required: "Field is required." }}
+                            render={({ field, fieldState }) => (
+                                <FormControl isInvalid={Boolean(fieldState.error)}>
+                                    <Select value={field.value} onChange={field.onChange} items={minuteSelection} />
+                                    {fieldState.error?.message && <FormError message={fieldState.error.message} />}
+                                </FormControl>
+                            )}
+                        />
+                    </Flex>
+                </Flex>
                 <Grid
                     pos="sticky"
                     bottom={0}
