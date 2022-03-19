@@ -242,7 +242,7 @@ export default function NewSchedule() {
                     h="controlsHeight"
                 >
                     <Button type="submit">Create</Button>
-                    <Link as={ReactLink} to="/programs" display="flex">
+                    <Link as={ReactLink} to="/schedule" display="flex">
                         <Text m="auto">Cancel</Text>
                     </Link>
                 </Grid>
