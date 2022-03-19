@@ -3,6 +3,7 @@ import { CreateScheduleDto } from "common/validators/createSchedule.validator";
 import { Schedule } from "./schedule.entity";
 import { FindOneId } from "../../@types/repository";
 import { ScheduleSchema } from "../../@types/schedule";
+import { ScheduleDay } from "modules/scheduleDay/scheduleDay.entity";
 
 @Injectable()
 export class ScheduleService {
@@ -12,11 +13,15 @@ export class ScheduleService {
     }
 
     public all(userId: number) {
-        return Schedule.find({ where: { userId }, relations: ["program"] });
+        return Schedule.find({ where: { userId }, relations: ["program", "days"] });
     }
 
     public store(createScheduleDto: CreateScheduleDto) {
-        return Schedule.insert(createScheduleDto);
+        const schedule = Schedule.create({
+            ...createScheduleDto,
+            days: createScheduleDto.days.map(day => ScheduleDay.create({ day })),
+        });
+        return schedule.save();
     }
 
     public destroy(id: FindOneId) {

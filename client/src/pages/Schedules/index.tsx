@@ -8,11 +8,10 @@ import { sortBy, sorts } from "./service";
 import { useEffect, useState } from "react";
 import { Schedule } from "../../../@types/schedule";
 import { ArrowDownShort, ArrowUpShort, Plus } from "styled-icons/bootstrap";
-import { ClipboardBulletListLtr, Dumbbell } from "styled-icons/fluentui-system-regular";
-import { Clock } from "styled-icons/fa-regular";
 import AssetIcon from "../../components/AssetIcon";
 import PageBanner from "../../components/PageBanner";
 import { isToday } from "../../utils/date";
+import Event from "../../components/Event";
 
 type Show = "all" | "today";
 
@@ -166,35 +165,7 @@ export default function Schedules() {
                             </Flex>
                         )}
                         {schedules.map(schedule => (
-                            <Card key={schedule.id}>
-                                <Flex flexDir="column">
-                                    <Flex alignItems="center">
-                                        <Icon icon={Dumbbell} />
-                                        <Text
-                                            ml={2}
-                                            as={ReactLink}
-                                            to={`/program/${schedule.program.id}`}
-                                            color="text.default"
-                                        >
-                                            {schedule.program.name}
-                                        </Text>
-                                    </Flex>
-                                    <Divider my={4} />
-                                    <Flex alignItems="center">
-                                        <Icon icon={ClipboardBulletListLtr} />
-                                        <Text ml={2} as="span" textTransform="capitalize">
-                                            {schedule.days.join(", ")}
-                                        </Text>
-                                    </Flex>
-                                    <Divider my={4} />
-                                    <Flex alignItems="center">
-                                        <Icon icon={Clock} />
-                                        <Text ml={2} as="span">
-                                            {schedule.from} - {schedule.to}
-                                        </Text>
-                                    </Flex>
-                                </Flex>
-                            </Card>
+                            <Event schedule={schedule} key={schedule.id} />
                         ))}
                     </Flex>
                 </>

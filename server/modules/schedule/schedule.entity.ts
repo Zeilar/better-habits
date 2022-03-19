@@ -1,8 +1,9 @@
 import { Day, ScheduleSchema } from "../../@types/schedule";
 import { Program } from "modules/program/program.entity";
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, BaseEntity } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, BaseEntity, OneToMany } from "typeorm";
 import { ISOString } from "../../@types/date";
 import { User } from "../user/user.entity";
+import { ScheduleDay } from "modules/scheduleDay/scheduleDay.entity";
 
 @Entity()
 export class Schedule extends BaseEntity implements ScheduleSchema {
@@ -23,8 +24,8 @@ export class Schedule extends BaseEntity implements ScheduleSchema {
     @Column()
     public programId: number;
 
-    @Column({ type: "json", nullable: false })
-    public days: Day[];
+    @OneToMany(() => ScheduleDay, scheduleDay => scheduleDay.schedule, { cascade: true })
+    public days: ScheduleDay[];
 
     @Column()
     public from: string;

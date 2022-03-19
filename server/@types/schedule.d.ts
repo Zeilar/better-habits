@@ -5,7 +5,6 @@ export type Week = ["monday", "tuesday", "wednesday", "thursday", "friday", "sat
 
 export interface ScheduleSchema {
     id: number;
-    days: Day[];
     from: string;
     to: string;
     userId: number;

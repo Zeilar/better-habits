@@ -84,13 +84,6 @@ export default function NewSchedule() {
 
     async function onSubmit(fields: Fields) {
         const { fromHour, fromMinute, toHour, toMinute, programId, ...rest } = fields;
-        console.log({
-            userId: user!.id,
-            from: `${fromHour.value}:${fromMinute.value}`,
-            to: `${toHour.value}:${toMinute.value}`,
-            programId: parseInt(programId.value),
-            ...rest,
-        });
         const response = await apiService.request("/schedules", {
             method: "POST",
             data: {
@@ -123,7 +116,7 @@ export default function NewSchedule() {
                     <Controller
                         name="programId"
                         control={control}
-                        rules={{ required: "Field is required." }}
+                        rules={{ required: "Please pick a program" }}
                         render={({ field, fieldState }) => (
                             <FormControl isInvalid={Boolean(fieldState.error)} px={4} my={4}>
                                 <Text textStyle="h3" as="h3" mb={2}>
@@ -150,7 +143,7 @@ export default function NewSchedule() {
                         <Controller
                             name="fromHour"
                             control={control}
-                            rules={{ required: "Field is required." }}
+                            rules={{ required: "Field is required" }}
                             render={({ field, fieldState }) => (
                                 <FormControl isInvalid={Boolean(fieldState.error)}>
                                     <Select value={field.value} onChange={field.onChange} items={hourSelection} />
@@ -161,7 +154,7 @@ export default function NewSchedule() {
                         <Controller
                             name="fromMinute"
                             control={control}
-                            rules={{ required: "Field is required." }}
+                            rules={{ required: "Field is required" }}
                             render={({ field, fieldState }) => (
                                 <FormControl isInvalid={Boolean(fieldState.error)}>
                                     <Select value={field.value} onChange={field.onChange} items={minuteSelection} />
@@ -179,7 +172,7 @@ export default function NewSchedule() {
                         <Controller
                             name="toHour"
                             control={control}
-                            rules={{ required: "Field is required." }}
+                            rules={{ required: "Field is required" }}
                             render={({ field, fieldState }) => (
                                 <FormControl isInvalid={Boolean(fieldState.error)}>
                                     <Select value={field.value} onChange={field.onChange} items={hourSelection} />
@@ -190,7 +183,7 @@ export default function NewSchedule() {
                         <Controller
                             name="toMinute"
                             control={control}
-                            rules={{ required: "Field is required." }}
+                            rules={{ required: "Field is required" }}
                             render={({ field, fieldState }) => (
                                 <FormControl isInvalid={Boolean(fieldState.error)}>
                                     <Select value={field.value} onChange={field.onChange} items={minuteSelection} />
@@ -207,7 +200,7 @@ export default function NewSchedule() {
                     <Controller
                         name="days"
                         control={control}
-                        rules={{ required: "Field is required" }}
+                        rules={{ required: "Please pick at least one day" }}
                         render={({ field, fieldState }) => {
                             function onToggle(day: Day) {
                                 field.onChange(
@@ -226,6 +219,7 @@ export default function NewSchedule() {
                                             active={field.value.includes(day)}
                                         />
                                     ))}
+                                    {fieldState.error?.message && <FormError message={fieldState.error.message} />}
                                 </FormControl>
                             );
                         }}
