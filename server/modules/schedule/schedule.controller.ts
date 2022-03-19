@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post, Req, UseGuards } from "@nestjs/common";
+import { Body, Controller, Get, Post, Query, Req, UseGuards } from "@nestjs/common";
 import { AuthenticatedGuard } from "common/guards/authenticated.guard";
 import { CreateScheduleGuard } from "common/guards/createSchedule.guard";
 import { CreateScheduleDto } from "common/validators/createSchedule.validator";
+import { GetScheduleTodayQuery } from "common/validators/getScheduleTodayQuery.validator";
 import { Request } from "express";
 import { ScheduleService } from "./schedule.service";
 
@@ -11,8 +12,8 @@ export class ScheduleController {
 
     @UseGuards(AuthenticatedGuard)
     @Get("/")
-    public all(@Req() req: Request) {
-        return this.scheduleService.all(req.user!.id);
+    public all(@Req() req: Request, @Query() query?: GetScheduleTodayQuery) {
+        return this.scheduleService.all(req.user!.id, query);
     }
 
     @UseGuards(AuthenticatedGuard, CreateScheduleGuard)
