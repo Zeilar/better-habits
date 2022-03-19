@@ -1,8 +1,8 @@
-import { Box, Button, ButtonProps, Flex, FormControl, Grid, Link, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, Grid, Link, Text } from "@chakra-ui/react";
 import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
 import { Link as ReactLink, useNavigate } from "react-router-dom";
-import { ArrowLeftShort, CheckCircleFill } from "styled-icons/bootstrap";
+import { ArrowLeftShort } from "styled-icons/bootstrap";
 import Icon from "../../../components/Icon";
 import { days, hourSelection, minuteSelection } from "../../../utils/constants";
 import { Controller, useForm } from "react-hook-form";
@@ -13,6 +13,7 @@ import { useAuth, useCSR, useToast } from "../../../hooks";
 import ComboSelect from "../../../components/ComboSelect";
 import Select, { SelectItem } from "../../../components/Select";
 import { Program } from "../../../../@types/program";
+import DayRadioButton from "./DayRadioButton";
 
 interface Fields {
     days: Day[];
@@ -21,50 +22,6 @@ interface Fields {
     toHour: SelectItem;
     toMinute: SelectItem;
     programId: SelectItem;
-}
-
-interface DayRadioButtonProps {
-    day: Day;
-    active: boolean;
-    onToggle(): void;
-}
-
-function DayRadioButton({ day, active, onToggle }: DayRadioButtonProps) {
-    const css: ButtonProps = active
-        ? {
-              borderColor: "primary.600",
-              color: "primary.600",
-          }
-        : {
-              _hover: {
-                  bgColor: "gray.500",
-              },
-          };
-    return (
-        <Button
-            variant="unstyled"
-            boxShadow="card"
-            display="flex"
-            justifyContent="space-between"
-            border="2px solid"
-            borderColor="transparent"
-            textTransform="capitalize"
-            transition="none"
-            bgColor="gray.600"
-            rounded="md"
-            fontWeight={500}
-            userSelect="none"
-            textAlign="left"
-            m={0}
-            paddingInline={4}
-            h={12}
-            onClick={onToggle}
-            {...css}
-        >
-            {day}
-            {active && <Icon ml={4} icon={CheckCircleFill} color="primary.600" />}
-        </Button>
-    );
 }
 
 export default function NewSchedule() {
