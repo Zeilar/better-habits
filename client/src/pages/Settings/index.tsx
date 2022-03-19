@@ -14,7 +14,7 @@ export default function Settings() {
                 </Text>
             </PageBanner>
             <Grid
-                bgColor="gray.600"
+                bgColor="gray.700"
                 h="calc(100vh - var(--chakra-sizes-navbarHeight) - 4rem)"
                 overflowY="auto"
                 gridTemplateRows="repeat(1, 4rem)"
