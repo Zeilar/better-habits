@@ -17,9 +17,11 @@ export default function Home() {
                         Today
                     </Text>
                     <Grid gridGap={2}>
-                        {todayQuery.data.map(schedule => (
-                            <Event schedule={schedule} key={schedule.id} />
-                        ))}
+                        {[...todayQuery.data]
+                            .sort((a, b) => (a.from > b.from ? 1 : -1))
+                            .map(schedule => (
+                                <Event schedule={schedule} key={schedule.id} />
+                            ))}
                     </Grid>
                 </Box>
             )}
