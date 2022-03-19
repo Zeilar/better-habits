@@ -61,7 +61,7 @@ export function AuthContextProvider({ children }: AuthProps) {
         });
         if (response.ok) {
             setUser(response.data);
-            toast({ description: "Created your account!", status: "success" });
+            toast({ title: "Created your account!", status: "success" });
         }
         return response;
     }
@@ -70,7 +70,9 @@ export function AuthContextProvider({ children }: AuthProps) {
         const response = await apiService.request("/auth/logout");
         if (response.ok) {
             setUser(null);
-            toast({ description: "Logged out", status: "success" });
+            toast({ title: "Logged out", status: "success" });
+        } else {
+            toast({ title: "Failed logging out", status: "error" });
         }
     }
 

@@ -54,6 +54,8 @@ export const Button: StyleConfig = {
         unstyled: {
             border: 0,
             paddingInline: 0,
+            borderTopRadius: 0,
+            borderBottomRadius: 0,
             minWidth: "unset",
         },
         icon: {
