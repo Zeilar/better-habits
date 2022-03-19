@@ -1,5 +1,5 @@
-import { Grid, Skeleton, Text, Divider, Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
-import { useCSR, useOnClickOutside, useSort } from "../../hooks";
+import { Grid, Skeleton, Text, Divider, Flex, Box, Button } from "@chakra-ui/react";
+import { useCSR, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink, useNavigate, useSearchParams } from "react-router-dom";
 import Icon from "../../components/Icon";
@@ -12,20 +12,19 @@ import AssetIcon from "../../components/AssetIcon";
 import PageBanner from "../../components/PageBanner";
 import { isToday } from "../../utils/date";
 import Event from "../../components/Event";
+import Select, { SelectItem } from "../../components/Select";
 
 type Show = "all" | "today";
+
+const sortOptions: SelectItem[] = [{ label: "Date", value: "0" }];
 
 export default function Schedules() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
     const { data, success, loading } = useCSR<Schedule[]>("/schedules");
-    const [sortIndex, setSortIndex] = useState(0);
-    const sortSelector = useDisclosure();
-    const sortSelectorEl = useOnClickOutside<HTMLDivElement>(() => {
-        sortSelector.onClose();
-    });
+    const [sortOptionsSelection, setSortOptionsSelection] = useState(0);
     const sorter = useSort<Schedule>(data, { defaultDirection: "desc" });
-    const sort = sorts[sortIndex];
+    const sort = sorts[sortOptionsSelection];
     const [show, setShow] = useState<Show>(() => {
         const show = searchParams.get("show");
         return show !== "all" && show !== "today" ? "today" : show;
@@ -34,11 +33,6 @@ export default function Schedules() {
     useEffect(() => {
         navigate({ search: `?show=${show}` });
     }, [show, navigate]);
-
-    function onSortChange(index: number) {
-        sortSelector.onClose();
-        setSortIndex(index);
-    }
 
     let schedules: Schedule[] = [];
 
@@ -62,65 +56,30 @@ export default function Schedules() {
             )}
             {success && (
                 <>
-                    <Box>
-                        <PageBanner mb={4}>
-                            <Text textStyle="h3" as="h3">
-                                My schedule
+                    <PageBanner mb={4}>
+                        <Text textStyle="h3" as="h3">
+                            My schedule
+                        </Text>
+                    </PageBanner>
+                    <Flex px={4}>
+                        <Select
+                            value={sortOptions[sortOptionsSelection]}
+                            items={sortOptions}
+                            onChange={item => setSortOptionsSelection(parseInt(item.value))}
+                        />
+                        <Button
+                            ml="auto"
+                            display="flex"
+                            variant="unstyled"
+                            _hover={{ color: "primary.600" }}
+                            onClick={sorter.toggleDirection}
+                        >
+                            <Text textTransform="capitalize" mr={1}>
+                                {sorter.direction === "asc" ? "Ascending" : "Descending"}
                             </Text>
-                        </PageBanner>
-                        <Flex pos="relative" justifyContent="space-between" px={4}>
-                            <Box ref={sortSelectorEl}>
-                                <Button
-                                    variant="unstyled"
-                                    onClick={sortSelector.onToggle}
-                                    _hover={{ color: "primary.600" }}
-                                >
-                                    {sort.label}
-                                </Button>
-                                {sortSelector.isOpen && (
-                                    <Flex
-                                        p={2}
-                                        minW="10rem"
-                                        flexDir="column"
-                                        pos="absolute"
-                                        zIndex={100}
-                                        top={10}
-                                        left={4}
-                                        bgColor="gray.600"
-                                        boxShadow="card"
-                                        rounded="md"
-                                    >
-                                        {sorts.map((sort, i) => (
-                                            <Box
-                                                key={i}
-                                                onClick={() => onSortChange(i)}
-                                                py={2}
-                                                px={4}
-                                                userSelect="none"
-                                                cursor="pointer"
-                                                rounded="md"
-                                                fontWeight={600}
-                                                _hover={{ bgColor: "primary.600", color: "black" }}
-                                            >
-                                                {sort.label}
-                                            </Box>
-                                        ))}
-                                    </Flex>
-                                )}
-                            </Box>
-                            <Button
-                                display="flex"
-                                variant="unstyled"
-                                _hover={{ color: "primary.600" }}
-                                onClick={sorter.toggleDirection}
-                            >
-                                <Text textTransform="capitalize" mr={1}>
-                                    {sorter.direction === "asc" ? "Ascending" : "Descending"}
-                                </Text>
-                                <Icon icon={sorter.direction === "asc" ? ArrowUpShort : ArrowDownShort} />
-                            </Button>
-                        </Flex>
-                    </Box>
+                            <Icon icon={sorter.direction === "asc" ? ArrowUpShort : ArrowDownShort} />
+                        </Button>
+                    </Flex>
                     <Divider m={4} w="auto" />
                     <Card p={1} rounded="pill" mx={4} mb={4}>
                         <Flex pos="relative" h={10} rounded="pill" alignItems="center" justifyContent="space-between">

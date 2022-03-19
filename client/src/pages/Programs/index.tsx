@@ -1,5 +1,5 @@
-import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button, useDisclosure } from "@chakra-ui/react";
-import { useCSR, useOnClickOutside, useSort } from "../../hooks";
+import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button } from "@chakra-ui/react";
+import { useCSR, useSort } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
@@ -12,6 +12,7 @@ import { Dumbbell } from "styled-icons/fluentui-system-regular";
 import { Clock } from "styled-icons/fa-regular";
 import AssetIcon from "../../components/AssetIcon";
 import PageBanner from "../../components/PageBanner";
+import Select, { SelectItem } from "../../components/Select";
 
 interface Sort {
     property: SortProperty;
@@ -25,21 +26,14 @@ const sorts: Sort[] = [
     { property: "exercises", label: "Exercises" },
 ];
 
+const sortOptions: SelectItem[] = sorts.map((sort, i) => ({ label: sort.label, value: i.toString() }));
+
 export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
-    const [sortIndex, setSortIndex] = useState(0);
-    const sortSelector = useDisclosure();
-    const sortSelectorEl = useOnClickOutside<HTMLDivElement>(() => {
-        sortSelector.onClose();
-    });
+    const [sortOptionsSelection, setSortOptionsSelection] = useState(0);
     const sorter = useSort<Program<true>>(data, { defaultDirection: "desc" });
 
-    const sort = sorts[sortIndex];
-
-    function onSortChange(index: number) {
-        sortSelector.onClose();
-        setSortIndex(index);
-    }
+    const sort = sorts[sortOptionsSelection];
 
     return (
         <PageWrapper noScroll>
@@ -60,46 +54,14 @@ export default function Programs() {
                                 My programs
                             </Text>
                         </PageBanner>
-                        <Flex pos="relative" justifyContent="space-between" px={4}>
-                            <Box ref={sortSelectorEl}>
-                                <Button
-                                    variant="unstyled"
-                                    onClick={sortSelector.onToggle}
-                                    _hover={{ color: "primary.600" }}
-                                >
-                                    {sort.label}
-                                </Button>
-                                {sortSelector.isOpen && (
-                                    <Flex
-                                        p={2}
-                                        minW="10rem"
-                                        flexDir="column"
-                                        pos="absolute"
-                                        top={10}
-                                        left={4}
-                                        bgColor="gray.600"
-                                        boxShadow="card"
-                                        rounded="md"
-                                    >
-                                        {sorts.map((sort, i) => (
-                                            <Box
-                                                key={i}
-                                                onClick={() => onSortChange(i)}
-                                                py={2}
-                                                px={4}
-                                                userSelect="none"
-                                                cursor="pointer"
-                                                rounded="md"
-                                                fontWeight={600}
-                                                _hover={{ bgColor: "primary.600", color: "black" }}
-                                            >
-                                                {sort.label}
-                                            </Box>
-                                        ))}
-                                    </Flex>
-                                )}
-                            </Box>
+                        <Flex px={4}>
+                            <Select
+                                value={sortOptions[sortOptionsSelection]}
+                                items={sortOptions}
+                                onChange={item => setSortOptionsSelection(parseInt(item.value))}
+                            />
                             <Button
+                                ml="auto"
                                 display="flex"
                                 variant="unstyled"
                                 _hover={{ color: "primary.600" }}

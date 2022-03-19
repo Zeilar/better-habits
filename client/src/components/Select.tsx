@@ -1,4 +1,4 @@
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, BoxProps, Flex } from "@chakra-ui/react";
 import { Listbox } from "@headlessui/react";
 import { Selector } from "styled-icons/heroicons-outline";
 import Icon from "./Icon";
@@ -8,13 +8,14 @@ export interface SelectItem {
     label: string;
 }
 
-interface Props {
+// @ts-ignore
+interface Props extends BoxProps {
     items: SelectItem[];
     value: SelectItem;
     onChange(item: SelectItem): void;
 }
 
-export default function Select({ items, value, onChange }: Props) {
+export default function Select({ items, value, onChange, ...props }: Props) {
     function onChangeHandler(item: SelectItem) {
         onChange(item);
     }
@@ -28,10 +29,10 @@ export default function Select({ items, value, onChange }: Props) {
             pos="relative"
             userSelect="none"
             _focus={{ bg: "red" }}
+            {...props}
         >
             <Listbox.Button
                 as={Flex}
-                w="100%"
                 textAlign="left"
                 py={2}
                 px={4}
@@ -46,17 +47,18 @@ export default function Select({ items, value, onChange }: Props) {
                 _focus={{ bg: "red" }}
             >
                 {value.label}
-                <Icon size={4} icon={Selector} />
+                <Icon ml={4} size={4} icon={Selector} />
             </Listbox.Button>
             <Listbox.Options
                 as={Box}
-                w="100%"
+                w="fit-content"
+                minW="100%"
                 pos="absolute"
                 zIndex={10}
                 top="2.65rem"
                 rounded="md"
                 boxShadow="card"
-                maxH="20vh"
+                maxH="30vh"
                 overflowY="auto"
                 outline="none"
             >
@@ -66,6 +68,7 @@ export default function Select({ items, value, onChange }: Props) {
                         value={item}
                         as={Box}
                         cursor="pointer"
+                        whiteSpace="nowrap"
                         py={2}
                         px={4}
                         bgColor="gray.600"

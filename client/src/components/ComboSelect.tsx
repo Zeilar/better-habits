@@ -36,12 +36,13 @@ export default function ComboSelect({ items, value, onChange }: Props) {
             </Combobox.Button>
             <Combobox.Options
                 as={Box}
-                w="100%"
+                minW="100%"
+                w="fit-content"
                 pos="absolute"
                 zIndex={10}
                 top="2.65rem"
                 boxShadow="card"
-                maxH="20vh"
+                maxH="30vh"
                 overflowY="auto"
             >
                 {filtered.map((item, i) => (
@@ -53,6 +54,7 @@ export default function ComboSelect({ items, value, onChange }: Props) {
                         userSelect="none"
                         bgColor="gray.600"
                         zIndex={20}
+                        whiteSpace="nowrap"
                         py={2}
                         px={4}
                         _first={{ roundedTop: "md" }}
