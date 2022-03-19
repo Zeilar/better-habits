@@ -185,20 +185,6 @@ export default function Schedules() {
                                         <Text ml={2} as="span" textTransform="capitalize">
                                             {schedule.days.join(", ")}
                                         </Text>
-                                        {isToday(schedule.days) && (
-                                            <Text
-                                                fontWeight={600}
-                                                px={2}
-                                                color="black"
-                                                bgColor="primary.600"
-                                                as="span"
-                                                ml={2}
-                                                rounded="md"
-                                                textTransform="uppercase"
-                                            >
-                                                Today
-                                            </Text>
-                                        )}
                                     </Flex>
                                     <Divider my={4} />
                                     <Flex alignItems="center">
