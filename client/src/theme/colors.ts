@@ -25,7 +25,7 @@ export const colors = {
     },
     danger: "var(--chakra-colors-red-500)",
     success: "#27c219",
-    body: "var(--chakra-colors-gray-900)",
+    body: "var(--chakra-colors-gray-800)",
     text: {
         default: "var(--chakra-colors-whiteAlpha-900)",
         muted: "#828c96",

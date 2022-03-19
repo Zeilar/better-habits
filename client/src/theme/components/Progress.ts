@@ -7,7 +7,7 @@ export const Progress: StyleConfig = {
             transition: "width 1s ease-in-out",
         },
         track: {
-            bgColor: "gray.700",
+            bgColor: "gray.600",
         },
     },
 };
