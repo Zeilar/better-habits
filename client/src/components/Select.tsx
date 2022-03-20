@@ -36,14 +36,14 @@ export default function Select({ items, value, onChange, ...props }: Props) {
                 textAlign="left"
                 py={2}
                 px={4}
-                bgColor="gray.600"
+                bgColor="gray.400"
                 rounded="md"
                 justifyContent="space-between"
                 alignItems="center"
                 boxShadow="card"
                 cursor="pointer"
                 zIndex={20}
-                _hover={{ bgColor: "gray.500" }}
+                _hover={{ bgColor: "gray.200" }}
                 _focus={{ bg: "red" }}
             >
                 {value.label}
@@ -71,10 +71,10 @@ export default function Select({ items, value, onChange, ...props }: Props) {
                         whiteSpace="nowrap"
                         py={2}
                         px={4}
-                        bgColor="gray.600"
+                        bgColor="gray.400"
                         _first={{ roundedTop: "md" }}
                         _last={{ roundedBottom: "md" }}
-                        _hover={{ bgColor: "gray.500", color: "primary.600" }}
+                        _hover={{ bgColor: "gray.200" }}
                     >
                         {item.label}
                     </Listbox.Option>

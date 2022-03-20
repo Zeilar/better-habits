@@ -3,7 +3,6 @@ import { useCSR, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink, useNavigate, useSearchParams } from "react-router-dom";
 import Icon from "../../components/Icon";
-import Card from "../../components/Card";
 import { sortBy, sorts } from "./service";
 import { useEffect, useState } from "react";
 import { Schedule } from "../../../@types/schedule";
@@ -81,37 +80,45 @@ export default function Schedules() {
                         </Button>
                     </Flex>
                     <Divider m={4} w="auto" />
-                    <Card p={1} rounded="pill" mx={4} mb={4}>
-                        <Flex pos="relative" h={10} rounded="pill" alignItems="center" justifyContent="space-between">
-                            <Box
-                                pos="absolute"
-                                top={0}
-                                rounded="pill"
-                                transitionDuration="0.15s"
-                                transitionProperty="left"
-                                bgColor="primary.600"
-                                left={show === "all" ? "50%" : 0}
-                                h="100%"
-                                w="50%"
-                            />
-                            <Button
-                                w="50%"
-                                variant="unstyled"
-                                onClick={() => setShow("today")}
-                                color={show === "today" ? "black" : undefined}
-                            >
-                                Today
-                            </Button>
-                            <Button
-                                w="50%"
-                                variant="unstyled"
-                                onClick={() => setShow("all")}
-                                color={show === "all" ? "black" : undefined}
-                            >
-                                All
-                            </Button>
-                        </Flex>
-                    </Card>
+                    <Flex
+                        bgColor="gray.400"
+                        pos="relative"
+                        h={10}
+                        p={1}
+                        rounded="pill"
+                        mx={4}
+                        mb={4}
+                        alignItems="center"
+                        justifyContent="space-between"
+                    >
+                        <Box
+                            pos="absolute"
+                            top={0}
+                            rounded="pill"
+                            transitionDuration="0.15s"
+                            transitionProperty="left"
+                            bgColor="primary.600"
+                            left={show === "all" ? "50%" : 0}
+                            h="100%"
+                            w="50%"
+                        />
+                        <Button
+                            w="50%"
+                            variant="unstyled"
+                            onClick={() => setShow("today")}
+                            color={show === "today" ? "black" : undefined}
+                        >
+                            Today
+                        </Button>
+                        <Button
+                            w="50%"
+                            variant="unstyled"
+                            onClick={() => setShow("all")}
+                            color={show === "all" ? "black" : undefined}
+                        >
+                            All
+                        </Button>
+                    </Flex>
                     <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
                         {schedules.length === 0 && (
                             <Flex flexDir="column" alignItems="center">
