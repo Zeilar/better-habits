@@ -43,7 +43,7 @@ function Navitem({ label, icon, href }: NavitemProps) {
             _activeLink={{
                 color: "primary.600",
                 bgColor: "transparent",
-                _after: { display: "block " },
+                _after: { display: "block" },
             }}
         >
             <Icon icon={icon} w={6} h={6} mb={1} />
@@ -57,15 +57,15 @@ export default function Navbar() {
 
     return (
         <Flex
+            as="nav"
             boxShadow="elevate.top"
             alignItems="center"
+            justifyContent="center"
             h="navbarHeight"
-            as="nav"
             bgColor="gray.600"
             pos="sticky"
             bottom={0}
             zIndex={1000}
-            justifyContent="center"
         >
             {authenticated ? (
                 <>
