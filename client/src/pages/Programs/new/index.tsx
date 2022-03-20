@@ -33,7 +33,7 @@ export default function NewProgram() {
     return (
         <PageWrapper noScroll>
             <PageBanner mb={4}>
-                <Link as={ReactLink} to="/programs" mr={2}>
+                <Link as={ReactLink} to="/programs" mr={4}>
                     <Icon icon={ArrowLeftShort} size={8} />
                 </Link>
                 <Text textStyle="h3" as="h3">

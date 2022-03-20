@@ -61,7 +61,7 @@ export default function NewSchedule() {
     return (
         <PageWrapper noScroll>
             <PageBanner>
-                <Link as={ReactLink} to="/schedule" mr={2}>
+                <Link as={ReactLink} to="/schedule" mr={4}>
                     <Icon icon={ArrowLeftShort} size={8} />
                 </Link>
                 <Text textStyle="h3" as="h3">
