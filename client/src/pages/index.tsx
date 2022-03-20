@@ -1,5 +1,6 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
 import { Schedule } from "../../@types/schedule";
+import Card from "../components/Card";
 import Event from "../components/Event";
 import PageSpinner from "../components/PageSpinner";
 import PageWrapper from "../components/PageWrapper";
@@ -17,6 +18,11 @@ export default function Home() {
                         Today
                     </Text>
                     <Grid gridGap={2}>
+                        {todayQuery.data.length === 0 && (
+                            <Card>
+                                <Text>Nothing to do today!</Text>
+                            </Card>
+                        )}
                         {[...todayQuery.data]
                             .sort((a, b) => (a.from > b.from ? 1 : -1))
                             .map(schedule => (
