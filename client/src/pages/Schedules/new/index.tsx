@@ -68,7 +68,7 @@ export default function NewSchedule() {
                     Create event
                 </Text>
             </PageBanner>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <Box as="form" onSubmit={handleSubmit(onSubmit)} overflowY="auto">
                 {programsQuery.success && (
                     <Controller
                         name="programId"
@@ -197,7 +197,7 @@ export default function NewSchedule() {
                         <Text m="auto">Cancel</Text>
                     </Link>
                 </Grid>
-            </form>
+            </Box>
         </PageWrapper>
     );
 }
