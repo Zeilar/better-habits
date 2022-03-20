@@ -53,7 +53,7 @@ function Navitem({ label, icon, href }: NavitemProps) {
 }
 
 export default function Navbar() {
-    const { logout, authenticated } = useAuth();
+    const { authenticated } = useAuth();
 
     return (
         <Flex
