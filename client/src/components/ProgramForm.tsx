@@ -1,6 +1,7 @@
 import { Box, Button, Flex, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
 import { useCallback, useEffect, useRef } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
+import { Plus } from "styled-icons/bootstrap";
 import { CloseOutline } from "styled-icons/evaicons-outline";
 import { Program } from "../../@types/program";
 import Card from "./Card";
@@ -71,10 +72,8 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                     <Text textStyle="h3" as="h3">
                         Exercises
                     </Text>
-                    <Button onClick={addExercise} variant="link">
-                        <Text textStyle="h3" as="span">
-                            Add
-                        </Text>
+                    <Button onClick={addExercise} variant="unstyled">
+                        <Icon icon={Plus} size={8} />
                     </Button>
                 </Flex>
                 <Box ref={exercisesEl} overflowY="auto" scrollBehavior="smooth" px={4} pb={4}>
