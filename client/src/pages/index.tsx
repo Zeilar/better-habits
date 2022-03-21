@@ -15,7 +15,7 @@ export default function Home() {
             {todayQuery.success && (
                 <Box>
                     <Text textStyle="h3" as="h3" mb={2}>
-                        Today
+                        Agenda
                     </Text>
                     <Grid gridGap={2}>
                         {todayQuery.data.length === 0 && (
