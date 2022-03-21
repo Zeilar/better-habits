@@ -1,11 +1,12 @@
 import { Button, Grid, Text } from "@chakra-ui/react";
 import PageBanner from "../../components/PageBanner";
 import PageWrapper from "../../components/PageWrapper";
-import { useAuth } from "../../hooks";
+import { useAuth, useTitle } from "../../hooks";
+import { BRAND_NAME } from "../../utils/constants";
 
 export default function Settings() {
     const { logout } = useAuth();
-
+    useTitle(`Settings | ${BRAND_NAME}`);
     return (
         <PageWrapper>
             <PageBanner zIndex={10} h={16}>

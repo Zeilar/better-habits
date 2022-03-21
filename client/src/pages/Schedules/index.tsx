@@ -1,5 +1,5 @@
 import { Grid, Skeleton, Text, Divider, Flex, Box, Button } from "@chakra-ui/react";
-import { useCSR, useSort } from "../../hooks";
+import { useCSR, useSort, useTitle } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink, useNavigate, useSearchParams } from "react-router-dom";
 import Icon from "../../components/Icon";
@@ -12,6 +12,7 @@ import PageBanner from "../../components/PageBanner";
 import { isToday } from "../../utils/date";
 import Event from "../../components/Event";
 import Select, { SelectItem } from "../../components/Select";
+import { BRAND_NAME } from "../../utils/constants";
 
 type Show = "all" | "today";
 
@@ -28,6 +29,7 @@ export default function Schedules() {
         const show = searchParams.get("show");
         return show !== "all" && show !== "today" ? "today" : show;
     });
+    useTitle(`Schedule | ${BRAND_NAME}`);
 
     useEffect(() => {
         navigate({ search: `?show=${show}` });

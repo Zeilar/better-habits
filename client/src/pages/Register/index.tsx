@@ -1,6 +1,6 @@
 import { Alert, Box, Button, Flex, FormControl, FormLabel, Input, Link, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../hooks";
+import { useAuth, useTitle } from "../../hooks";
 import FormError from "../../components/FormError";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
@@ -8,6 +8,7 @@ import { useState } from "react";
 import { CloseOutline } from "styled-icons/evaicons-outline";
 import { hero } from "../../assets/images";
 import { ArrowLeftShort } from "styled-icons/bootstrap";
+import { BRAND_NAME } from "../../utils/constants";
 
 interface Fields {
     email: string;
@@ -23,6 +24,7 @@ export default function Register() {
         formState: { errors, isSubmitting },
     } = useForm<Fields>();
     const [error, setError] = useState<string | null>(null);
+    useTitle(`Register | ${BRAND_NAME}`);
 
     return (
         <Flex

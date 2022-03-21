@@ -4,11 +4,12 @@ import Card from "../components/Card";
 import Event from "../components/Event";
 import PageSpinner from "../components/PageSpinner";
 import PageWrapper from "../components/PageWrapper";
-import { useCSR } from "../hooks";
+import { useCSR, useTitle } from "../hooks";
+import { BRAND_NAME } from "../utils/constants";
 
 export default function Home() {
     const todayQuery = useCSR<Schedule[]>("/schedules", { params: { today: true } });
-
+    useTitle(`Home | ${BRAND_NAME}`);
     return (
         <PageWrapper p={4}>
             {todayQuery.loading && <PageSpinner />}

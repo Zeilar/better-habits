@@ -4,12 +4,12 @@ import PageWrapper from "../../../components/PageWrapper";
 import { Link as ReactLink, useNavigate } from "react-router-dom";
 import { ArrowLeftShort } from "styled-icons/bootstrap";
 import Icon from "../../../components/Icon";
-import { days, hourSelection, minuteSelection } from "../../../utils/constants";
+import { BRAND_NAME, days, hourSelection, minuteSelection } from "../../../utils/constants";
 import { Controller, useForm } from "react-hook-form";
 import { Day } from "../../../../@types/date";
 import FormError from "../../../components/FormError";
 import { apiService } from "../../../services";
-import { useAuth, useCSR, useToast } from "../../../hooks";
+import { useAuth, useCSR, useTitle, useToast } from "../../../hooks";
 import ComboSelect from "../../../components/ComboSelect";
 import Select, { SelectItem } from "../../../components/Select";
 import { Program } from "../../../../@types/program";
@@ -38,6 +38,7 @@ export default function NewSchedule() {
     const programsQuery = useCSR<Program[]>("/programs");
     const navigate = useNavigate();
     const toast = useToast();
+    useTitle(`Create event | ${BRAND_NAME}`);
 
     async function onSubmit(fields: Fields) {
         const { fromHour, fromMinute, toHour, toMinute, programId, ...rest } = fields;

@@ -7,13 +7,15 @@ import Icon from "../../../components/Icon";
 import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
 import ProgramForm, { Fields } from "../../../components/ProgramForm";
-import { useToast } from "../../../hooks";
+import { useTitle, useToast } from "../../../hooks";
 import { apiService } from "../../../services";
+import { BRAND_NAME } from "../../../utils/constants";
 
 export default function NewProgram() {
     const toast = useToast();
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
+    useTitle(`Create program | ${BRAND_NAME}`);
 
     async function create({ exercises, ...program }: Fields) {
         setSubmitting(true);

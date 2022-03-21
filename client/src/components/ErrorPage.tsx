@@ -1,4 +1,6 @@
 import { Flex, Text, Divider } from "@chakra-ui/layout";
+import { useTitle } from "../hooks";
+import { BRAND_NAME } from "../utils/constants";
 
 interface Props {
     code: number;
@@ -6,6 +8,7 @@ interface Props {
 }
 
 export default function ErrorPage({ code, message }: Props) {
+    useTitle(`${code} | ${BRAND_NAME}`);
     return (
         <Flex
             flexGrow={1}

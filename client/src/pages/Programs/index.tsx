@@ -1,5 +1,5 @@
 import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button } from "@chakra-ui/react";
-import { useCSR, useSort } from "../../hooks";
+import { useCSR, useSort, useTitle } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
@@ -13,6 +13,7 @@ import { Clock } from "styled-icons/fa-regular";
 import AssetIcon from "../../components/AssetIcon";
 import PageBanner from "../../components/PageBanner";
 import Select, { SelectItem } from "../../components/Select";
+import { BRAND_NAME } from "../../utils/constants";
 
 interface Sort {
     property: SortProperty;
@@ -32,7 +33,7 @@ export default function Programs() {
     const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
     const [sortOptionsSelection, setSortOptionsSelection] = useState(0);
     const sorter = useSort<Program<true>>(data, { defaultDirection: "desc" });
-
+    useTitle(`Programs | ${BRAND_NAME}`);
     const sort = sorts[sortOptionsSelection];
 
     return (

@@ -5,15 +5,17 @@ import { Program } from "../../../@types/program";
 import PageSpinner from "../../components/PageSpinner";
 import PageWrapper from "../../components/PageWrapper";
 import ProgramForm, { Fields } from "../../components/ProgramForm";
-import { useCSR, useToast } from "../../hooks";
+import { useCSR, useTitle, useToast } from "../../hooks";
 import { apiService } from "../../services";
+import { BRAND_NAME } from "../../utils/constants";
 
 export default function SingleProgram() {
     const { id } = useParams<{ id: string }>();
-    const { data, loading } = useCSR<Program<true>>(`/programs/${id}`);
+    const { data, loading, success } = useCSR<Program<true>>(`/programs/${id}`);
     const [submitting, setSubmitting] = useState(false);
     const toast = useToast();
     const navigate = useNavigate();
+    useTitle(`${success ? data.name : "Loading..."} | ${BRAND_NAME}`);
 
     if (loading) {
         return <PageSpinner />;
