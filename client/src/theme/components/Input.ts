@@ -19,5 +19,22 @@ export const Input: StyleConfig = {
                 },
             },
         },
+        flushed: {
+            field: {
+                height: "auto",
+                pb: 2,
+                _hover: {
+                    borderBottomColor: "primary.600",
+                },
+                _focus: {
+                    borderBottomColor: "primary.600",
+                    boxShadow: "0 1px 0 0 var(--chakra-colors-primary-600)",
+                },
+                _invalid: {
+                    borderBottomColor: "danger",
+                    boxShadow: "0 1px 0 0 var(--chakra-colors-danger)",
+                },
+            },
+        },
     },
 };

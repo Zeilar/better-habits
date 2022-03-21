@@ -1,5 +1,6 @@
 import { Flex, Text, FlexProps } from "@chakra-ui/layout";
 import { keyframes } from "@chakra-ui/system";
+import { BRAND_NAME } from "../utils/constants";
 
 const pulse = keyframes`
     0% {
@@ -28,7 +29,7 @@ export default function BrandSpinner(props: FlexProps) {
             {...props}
         >
             <Text as="h1" fontWeight={700} textAlign="center" whiteSpace="nowrap" color="black">
-                BH
+                {BRAND_NAME[0]}
             </Text>
         </Flex>
     );

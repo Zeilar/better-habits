@@ -1,13 +1,11 @@
 import { Flex, Link, Text } from "@chakra-ui/react";
-import { useAuth } from "../hooks";
 import Icon from "./Icon";
 import { NavLink } from "react-router-dom";
 import type { StyledIcon } from "@styled-icons/styled-icon";
 import { Home } from "styled-icons/ionicons-outline";
 import { Dumbbell } from "styled-icons/fluentui-system-regular";
 import { ClipboardBulletListLtr } from "styled-icons/fluentui-system-regular";
-import { Cog, UserPlus } from "styled-icons/boxicons-regular";
-import { SignIn } from "styled-icons/octicons";
+import { Cog } from "styled-icons/boxicons-regular";
 
 interface NavitemProps {
     label: string;
@@ -53,8 +51,6 @@ function Navitem({ label, icon, href }: NavitemProps) {
 }
 
 export default function Navbar() {
-    const { authenticated } = useAuth();
-
     return (
         <Flex
             as="nav"
@@ -67,20 +63,10 @@ export default function Navbar() {
             bottom={0}
             zIndex={1000}
         >
-            {authenticated ? (
-                <>
-                    <Navitem href="/" label="Home" icon={Home} />
-                    <Navitem href="/programs" label="Programs" icon={Dumbbell} />
-                    <Navitem href="/schedule" label="Schedule" icon={ClipboardBulletListLtr} />
-                    <Navitem href="/settings" label="Settings" icon={Cog} />
-                </>
-            ) : (
-                <>
-                    <Navitem href="/guest" label="Welcome" icon={Home} />
-                    <Navitem href="/register" label="Register" icon={UserPlus} />
-                    <Navitem href="/login" label="Login" icon={SignIn} />
-                </>
-            )}
+            <Navitem href="/" label="Home" icon={Home} />
+            <Navitem href="/programs" label="Programs" icon={Dumbbell} />
+            <Navitem href="/schedule" label="Schedule" icon={ClipboardBulletListLtr} />
+            <Navitem href="/settings" label="Settings" icon={Cog} />
         </Flex>
     );
 }

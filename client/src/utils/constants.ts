@@ -17,3 +17,5 @@ export const hourSelection: SelectItem[] = Array(24)
             value: option,
         };
     });
+
+export const BRAND_NAME = "Habitizer";

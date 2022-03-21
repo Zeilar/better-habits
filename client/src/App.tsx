@@ -4,6 +4,7 @@ import GuestRoute from "./components/GuestRoute";
 import Navbar from "./components/Navbar";
 import PageSpinner from "./components/PageSpinner";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { useAuth } from "./hooks";
 
 const NotFoundError = lazy(() => import("./pages/404"));
 const Guest = lazy(() => import("./pages/Guest"));
@@ -18,6 +19,8 @@ const Schedule = lazy(() => import("./pages/Schedules"));
 const NewSchedule = lazy(() => import("./pages/Schedules/new"));
 
 export default function App() {
+    const { authenticated } = useAuth();
+
     return (
         <>
             <Suspense fallback={<PageSpinner />}>
@@ -104,8 +107,8 @@ export default function App() {
                     />
                     <Route path="*" element={<NotFoundError />} />
                 </Routes>
+                {authenticated && <Navbar />}
             </Suspense>
-            <Navbar />
         </>
     );
 }
