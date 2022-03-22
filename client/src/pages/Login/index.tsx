@@ -75,7 +75,9 @@ export default function Login() {
                 )}
                 <Flex flexDir="column" w="100%">
                     <FormControl isInvalid={Boolean(errors.email)} mb={8}>
-                        <FormLabel htmlFor="email">Email</FormLabel>
+                        <FormLabel mb={0} htmlFor="email">
+                            Email
+                        </FormLabel>
                         <Input
                             id="email"
                             type="email"
@@ -85,7 +87,9 @@ export default function Login() {
                         {errors.email?.message && <FormError message={errors.email.message} />}
                     </FormControl>
                     <FormControl isInvalid={Boolean(errors.password)} mb={8}>
-                        <FormLabel htmlFor="password">Password</FormLabel>
+                        <FormLabel mb={0} htmlFor="password">
+                            Password
+                        </FormLabel>
                         <Input
                             id="password"
                             isInvalid={Boolean(errors.password)}

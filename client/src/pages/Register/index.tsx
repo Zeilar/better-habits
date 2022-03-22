@@ -69,7 +69,9 @@ export default function Register() {
                 )}
                 <Flex flexDir="column" w="100%">
                     <FormControl isInvalid={Boolean(errors.email)} mb={8}>
-                        <FormLabel htmlFor="email">Email</FormLabel>
+                        <FormLabel mb={0} htmlFor="email">
+                            Email
+                        </FormLabel>
                         <Input
                             id="email"
                             type="email"
@@ -79,7 +81,9 @@ export default function Register() {
                         {errors.email?.message && <FormError message={errors.email.message} />}
                     </FormControl>
                     <FormControl isInvalid={Boolean(errors.password)} mb={8}>
-                        <FormLabel htmlFor="password">Password</FormLabel>
+                        <FormLabel mb={0} htmlFor="password">
+                            Password
+                        </FormLabel>
                         <Input
                             id="password"
                             isInvalid={Boolean(errors.password)}
@@ -90,7 +94,9 @@ export default function Register() {
                         {errors.password?.message && <FormError message={errors.password.message} />}
                     </FormControl>
                     <FormControl isInvalid={Boolean(errors.passwordConfirm)} mb={8}>
-                        <FormLabel htmlFor="passwordConfirm">PasswordConfirm</FormLabel>
+                        <FormLabel mb={0} htmlFor="passwordConfirm">
+                            PasswordConfirm
+                        </FormLabel>
                         <Input
                             id="passwordConfirm"
                             isInvalid={Boolean(errors.passwordConfirm)}

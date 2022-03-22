@@ -22,7 +22,7 @@ export const Input: StyleConfig = {
         flushed: {
             field: {
                 height: "auto",
-                pb: 2,
+                py: 2,
                 _hover: {
                     borderBottomColor: "primary.600",
                 },
