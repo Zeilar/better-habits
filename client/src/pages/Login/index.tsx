@@ -28,7 +28,7 @@ export default function Login() {
     async function submit(fields: Fields) {
         const response = await auth.login(fields);
         if (!response.ok) {
-            setError(response.status === 401 ? "Incorrect email or password" : "Something went wrong");
+            setError(response.status === 401 ? "Incorrect credentials" : "Something went wrong");
         }
     }
 
