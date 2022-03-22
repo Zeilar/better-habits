@@ -97,11 +97,9 @@ export default function Login() {
                     </FormControl>
                     <Text my={4}>
                         {`Need an account? `}
-                        <Link as={ReactLink} to="/register">
-                            Create one
-                        </Link>
+                        <ReactLink to="/register">Create one</ReactLink>
                     </Text>
-                    <Button variant="secondary" rounded="pill" isLoading={isSubmitting} type="submit">
+                    <Button rounded="md" isLoading={isSubmitting} type="submit">
                         Login
                     </Button>
                 </Flex>
