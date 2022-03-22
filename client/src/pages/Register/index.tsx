@@ -101,7 +101,7 @@ export default function Register() {
                         {errors.passwordConfirm?.message && <FormError message={errors.passwordConfirm.message} />}
                     </FormControl>
                     <Text my={4}>
-                        {`Already got an account? `}
+                        {`Already registered? `}
                         <ReactLink to="/login">Login</ReactLink>
                     </Text>
                     <Button rounded="md" isLoading={isSubmitting} type="submit">

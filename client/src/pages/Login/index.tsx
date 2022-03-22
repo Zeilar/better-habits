@@ -96,7 +96,7 @@ export default function Login() {
                         {errors.password?.message && <FormError message={errors.password.message} />}
                     </FormControl>
                     <Text my={4}>
-                        {`Need an account? `}
+                        {`Not registered? `}
                         <ReactLink to="/register">Create one</ReactLink>
                     </Text>
                     <Button rounded="md" isLoading={isSubmitting} type="submit">
