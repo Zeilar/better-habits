@@ -93,7 +93,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                 const sets = `${label}.sets`;
                                 const duration = `${label}.duration`;
                                 const errors = formState.errors.exercises ? formState.errors.exercises[i] : {};
-                                const shouldAnimate = i > 0;
+                                const shouldAnimate = exercises.fields.length > 1;
                                 return (
                                     <CardMotionBox
                                         key={id}
