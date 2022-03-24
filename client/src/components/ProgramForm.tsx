@@ -1,6 +1,6 @@
 import { Box, Button, Flex, FlexProps, FormControl, FormLabel, forwardRef, Input, Text } from "@chakra-ui/react";
 import { AnimatePresence, motion } from "framer-motion";
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { Plus } from "styled-icons/bootstrap";
 import { CloseOutline } from "styled-icons/evaicons-outline";
@@ -40,6 +40,11 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
     const exercises = useFieldArray({ name: "exercises", control });
     const exercisesEl = useRef<HTMLDivElement>(null);
     const shouldScroll = useRef(false);
+    const [hasLoaded, setHasLoaded] = useState(false);
+
+    useEffect(() => {
+        setHasLoaded(true);
+    }, [program?.exercises]);
 
     const addExercise = useCallback(() => {
         exercises.append({ name: "", duration: 0, sets: 0 });
@@ -93,7 +98,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                 const sets = `${label}.sets`;
                                 const duration = `${label}.duration`;
                                 const errors = formState.errors.exercises ? formState.errors.exercises[i] : {};
-                                const shouldAnimate = exercises.fields.length > 1;
+                                const shouldAnimate = hasLoaded && exercises.fields.length > 1;
                                 return (
                                     <CardMotionBox
                                         key={id}
