@@ -22,7 +22,7 @@ interface Sort {
 
 const sorts: Sort[] = [
     { property: "name", label: "Name" },
-    { property: "lastUpdated", label: "Last updated" },
+    { property: "updatedAt", label: "Last updated" },
     { property: "duration", label: "Duration" },
     { property: "exercises", label: "Exercises" },
 ];
