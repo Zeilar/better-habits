@@ -98,15 +98,16 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                 const sets = `${label}.sets`;
                                 const duration = `${label}.duration`;
                                 const errors = formState.errors.exercises ? formState.errors.exercises[i] : {};
-                                const shouldAnimate = hasLoaded && exercises.fields.length > 1;
                                 return (
                                     <CardMotionBox
                                         key={id}
                                         initial={
-                                            shouldAnimate ? { opacity: 0, transform: "translateX(-100%)" } : undefined
+                                            hasLoaded && exercises.fields.length > 1
+                                                ? { opacity: 0, transform: "translateX(-100%)" }
+                                                : undefined
                                         }
                                         animate={
-                                            shouldAnimate
+                                            hasLoaded
                                                 ? {
                                                       opacity: 1,
                                                       transform: "translateX(0%)",
@@ -115,7 +116,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                                 : undefined
                                         }
                                         exit={
-                                            shouldAnimate
+                                            hasLoaded
                                                 ? {
                                                       opacity: 0,
                                                       transform: "translateX(-100%)",
