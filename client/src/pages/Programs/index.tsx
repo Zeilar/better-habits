@@ -1,5 +1,5 @@
 import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button } from "@chakra-ui/react";
-import { useCSR, useSort, useTitle } from "../../hooks";
+import { useCSR, useSort } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
@@ -14,6 +14,7 @@ import AssetIcon from "../../components/AssetIcon";
 import PageBanner from "../../components/PageBanner";
 import Select, { SelectItem } from "../../components/Select";
 import { BRAND_NAME } from "../../utils/constants";
+import { useTitle } from "@zeilar/hooks";
 
 interface Sort {
     property: SortProperty;

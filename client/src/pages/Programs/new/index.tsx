@@ -1,4 +1,5 @@
 import { Button, Grid, Link, Text } from "@chakra-ui/react";
+import { useTitle } from "@zeilar/hooks";
 import { useState } from "react";
 import { Link as ReactLink, useNavigate } from "react-router-dom";
 import { ArrowLeftShort } from "styled-icons/bootstrap";
@@ -7,7 +8,7 @@ import Icon from "../../../components/Icon";
 import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
 import ProgramForm, { Fields } from "../../../components/ProgramForm";
-import { useTitle, useToast } from "../../../hooks";
+import { useToast } from "../../../hooks";
 import { apiService } from "../../../services";
 import { BRAND_NAME } from "../../../utils/constants";
 

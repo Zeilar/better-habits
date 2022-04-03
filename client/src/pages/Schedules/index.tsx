@@ -1,5 +1,5 @@
 import { Grid, Skeleton, Text, Divider, Flex, Box, Button } from "@chakra-ui/react";
-import { useCSR, useSort, useTitle } from "../../hooks";
+import { useCSR, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink, useNavigate, useSearchParams } from "react-router-dom";
 import Icon from "../../components/Icon";
@@ -13,6 +13,7 @@ import { isToday } from "../../utils/date";
 import Event from "../../components/Event";
 import Select, { SelectItem } from "../../components/Select";
 import { BRAND_NAME } from "../../utils/constants";
+import { useTitle } from "@zeilar/hooks";
 
 type Show = "all" | "today";
 

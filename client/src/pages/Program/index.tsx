@@ -1,11 +1,12 @@
 import { Button, Grid } from "@chakra-ui/react";
+import { useTitle } from "@zeilar/hooks";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Program } from "../../../@types/program";
 import PageSpinner from "../../components/PageSpinner";
 import PageWrapper from "../../components/PageWrapper";
 import ProgramForm, { Fields } from "../../components/ProgramForm";
-import { useCSR, useTitle, useToast } from "../../hooks";
+import { useCSR, useToast } from "../../hooks";
 import { apiService } from "../../services";
 import { BRAND_NAME } from "../../utils/constants";
 

@@ -1,6 +1,6 @@
 import { Alert, Box, Button, Flex, FormControl, FormLabel, Input, Link, Text } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { useAuth, useTitle } from "../../hooks";
+import { useAuth } from "../../hooks";
 import FormError from "../../components/FormError";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
@@ -9,6 +9,7 @@ import { CloseOutline } from "styled-icons/evaicons-outline";
 import { hero } from "../../assets/images";
 import { ArrowLeftShort } from "styled-icons/bootstrap";
 import { BRAND_NAME } from "../../utils/constants";
+import { useTitle } from "@zeilar/hooks";
 
 interface Fields {
     email: string;

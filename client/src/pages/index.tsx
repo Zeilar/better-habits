@@ -1,10 +1,11 @@
 import { Box, Grid, Text } from "@chakra-ui/react";
+import { useTitle } from "@zeilar/hooks";
 import { Schedule } from "../../@types/schedule";
 import Card from "../components/Card";
 import Event from "../components/Event";
 import PageSpinner from "../components/PageSpinner";
 import PageWrapper from "../components/PageWrapper";
-import { useCSR, useTitle } from "../hooks";
+import { useCSR } from "../hooks";
 import { BRAND_NAME } from "../utils/constants";
 
 export default function Home() {

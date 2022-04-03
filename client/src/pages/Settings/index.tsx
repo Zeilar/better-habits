@@ -1,7 +1,8 @@
 import { Button, Grid, Text } from "@chakra-ui/react";
 import PageBanner from "../../components/PageBanner";
 import PageWrapper from "../../components/PageWrapper";
-import { useAuth, useTitle } from "../../hooks";
+import { useAuth } from "../../hooks";
+import { useTitle } from "@zeilar/hooks";
 import { BRAND_NAME } from "../../utils/constants";
 
 export default function Settings() {

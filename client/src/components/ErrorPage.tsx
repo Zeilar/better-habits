@@ -1,5 +1,5 @@
 import { Flex, Text, Divider } from "@chakra-ui/layout";
-import { useTitle } from "../hooks";
+import { useTitle } from "@zeilar/hooks";
 import { BRAND_NAME } from "../utils/constants";
 
 interface Props {

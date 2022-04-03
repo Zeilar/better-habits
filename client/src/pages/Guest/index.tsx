@@ -3,7 +3,7 @@ import { Button } from "@chakra-ui/button";
 import { Link } from "react-router-dom";
 import { hero } from "../../assets/images";
 import { BRAND_NAME } from "../../utils/constants";
-import { useTitle } from "../../hooks";
+import { useTitle } from "@zeilar/hooks";
 
 export default function Guest() {
     useTitle(`Welcome | ${BRAND_NAME}`);
