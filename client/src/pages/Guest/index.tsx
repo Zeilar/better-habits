@@ -23,7 +23,7 @@ export default function Guest() {
                 pos: "absolute",
                 h: "100%",
                 w: "100%",
-                bgColor: "blackAlpha.800",
+                bgColor: "blackAlpha.500",
                 inset: 0,
             }}
         >

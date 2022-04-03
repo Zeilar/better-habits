@@ -50,7 +50,7 @@ export default function Login() {
                 pos: "absolute",
                 h: "100%",
                 w: "100%",
-                bgColor: "blackAlpha.800",
+                bgColor: "blackAlpha.500",
                 inset: 0,
                 zIndex: -1,
             }}
@@ -80,6 +80,7 @@ export default function Login() {
                             Email
                         </FormLabel>
                         <Input
+                            borderColor="text.default"
                             id="email"
                             type="email"
                             variant="flushed"
@@ -92,6 +93,7 @@ export default function Login() {
                             Password
                         </FormLabel>
                         <Input
+                            borderColor="text.default"
                             id="password"
                             isInvalid={Boolean(errors.password)}
                             type="password"
