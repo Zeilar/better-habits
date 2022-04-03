@@ -16,6 +16,7 @@ export default function Guest() {
             justifyContent="center"
             bgImg={hero}
             bgPos="center"
+            bgSize="cover"
             pos="relative"
             _after={{
                 content: `""`,

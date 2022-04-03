@@ -33,6 +33,7 @@ export default function Register() {
             h="100vh"
             bgImg={hero}
             bgPos="center"
+            bgSize="cover"
             pos="relative"
             justifyContent="center"
             alignItems="center"

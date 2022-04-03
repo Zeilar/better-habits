@@ -2,7 +2,7 @@ export const textStyles = {
     textStyles: {
         h1: {
             fontSize: ["2rem", "2.5rem"],
-            fontWeight: 700,
+            fontWeight: 600,
         },
         h2: {
             fontSize: ["1.75rem", "2rem"],
@@ -18,14 +18,11 @@ export const textStyles = {
         },
         h5: {
             fontSize: ["1rem", "1.25rem"],
-            fontWeight: 500,
+            fontWeight: 400,
         },
         h6: {
             fontSize: "1rem",
-            fontWeight: 500,
-        },
-        text: {
-            fontSize: "1rem",
+            fontWeight: 400,
         },
         p: {
             fontSize: "1rem",
