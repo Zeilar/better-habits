@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { Box, Button, Input } from "@chakra-ui/react";
 import Icon from "./Icon";
-import { Selector } from "styled-icons/heroicons-outline";
+import { Selector } from "@styled-icons/heroicons-outline/Selector";
 import { SelectItem } from "./Select";
 
 interface Props {

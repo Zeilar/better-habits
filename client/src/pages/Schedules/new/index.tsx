@@ -2,7 +2,7 @@ import { Box, Button, Flex, FormControl, Grid, Link, Text } from "@chakra-ui/rea
 import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
 import { Link as ReactLink, useNavigate } from "react-router-dom";
-import { ArrowLeftShort } from "styled-icons/bootstrap";
+import { ArrowLeftShort } from "@styled-icons/bootstrap/ArrowLeftShort";
 import Icon from "../../../components/Icon";
 import { BRAND_NAME, days, hourSelection, minuteSelection } from "../../../utils/constants";
 import { Controller, useForm } from "react-hook-form";

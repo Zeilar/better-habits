@@ -1,7 +1,8 @@
 import { Divider, Flex, Text } from "@chakra-ui/react";
 import { Link as ReactLink } from "react-router-dom";
-import { Clock } from "styled-icons/fa-regular";
-import { ClipboardBulletListLtr, Dumbbell } from "styled-icons/fluentui-system-regular";
+import { Clock } from "@styled-icons/fa-regular/Clock";
+import { ClipboardBulletListLtr } from "@styled-icons/fluentui-system-regular/ClipboardBulletListLtr";
+import { Dumbbell } from "@styled-icons/fluentui-system-regular/Dumbbell";
 import { Schedule } from "../../@types/schedule";
 import Card from "./Card";
 import Icon from "./Icon";

@@ -1,5 +1,5 @@
 import { Button, ButtonProps } from "@chakra-ui/react";
-import { CheckCircleFill } from "styled-icons/bootstrap";
+import { CheckCircleFill } from "@styled-icons/bootstrap/CheckCircleFill";
 import { Day } from "../../../../@types/date";
 import Icon from "../../../components/Icon";
 

@@ -2,8 +2,8 @@ import { Box, Button, Flex, FlexProps, FormControl, FormLabel, forwardRef, Input
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { Plus } from "styled-icons/bootstrap";
-import { CloseOutline } from "styled-icons/evaicons-outline";
+import { Plus } from "@styled-icons/bootstrap/Plus";
+import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 import { Program } from "../../@types/program";
 import Card from "./Card";
 import ContainerSpinner from "./ContainerSpinner";

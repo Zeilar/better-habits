@@ -1,6 +1,6 @@
 import { Box, BoxProps, Flex } from "@chakra-ui/react";
 import { Listbox } from "@headlessui/react";
-import { Selector } from "styled-icons/heroicons-outline";
+import { Selector } from "@styled-icons/heroicons-outline/Selector";
 import Icon from "./Icon";
 
 export interface SelectItem {

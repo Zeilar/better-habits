@@ -1,6 +1,6 @@
 import { FormErrorMessage, FormErrorMessageProps } from "@chakra-ui/form-control";
 import { Text } from "@chakra-ui/layout";
-import { AlertCircleOutline } from "styled-icons/evaicons-outline";
+import { AlertCircleOutline } from "@styled-icons/evaicons-outline/AlertCircleOutline";
 import Icon from "./Icon";
 
 interface Props extends FormErrorMessageProps {

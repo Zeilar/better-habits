@@ -5,9 +5,9 @@ import FormError from "../../components/FormError";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
 import { useState } from "react";
-import { CloseOutline } from "styled-icons/evaicons-outline";
+import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 import { hero } from "../../assets/images";
-import { ArrowLeftShort } from "styled-icons/bootstrap";
+import { ArrowLeftShort } from "@styled-icons/bootstrap/ArrowLeftShort";
 import { BRAND_NAME } from "../../utils/constants";
 import { useTitle } from "@zeilar/hooks";
 

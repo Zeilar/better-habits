@@ -1,4 +1,4 @@
 export const sizes = {
-    navbarHeight: "4.5rem",
+    navbarHeight: "3rem",
     controlsHeight: "4.5rem",
 };

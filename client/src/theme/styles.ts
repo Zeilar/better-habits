@@ -1,3 +1,5 @@
+import { hero } from "../assets/images";
+
 export const styles = {
     global: {
         "::selection": {
@@ -8,11 +10,12 @@ export const styles = {
             borderColor: "border.default",
         },
         body: {
+            minH: "100vh",
             bgColor: "body",
             color: "text.default",
-        },
-        "#__next": {
-            minH: "100vh !important", // Need !important due to Chakra default styling
+            bgImg: hero,
+            bgSize: "cover",
+            bgPos: "center",
         },
         "img, svg, ::placeholder": {
             userSelect: "none",

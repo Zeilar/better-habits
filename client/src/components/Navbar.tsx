@@ -1,51 +1,45 @@
-import { Flex, Link, Text } from "@chakra-ui/react";
+import { Flex, Link } from "@chakra-ui/react";
 import Icon from "./Icon";
-import { NavLink } from "react-router-dom";
+import { NavLink, useMatch, useResolvedPath } from "react-router-dom";
 import type { StyledIcon } from "@styled-icons/styled-icon";
-import { Home } from "styled-icons/ionicons-outline";
-import { Dumbbell } from "styled-icons/fluentui-system-regular";
-import { ClipboardBulletListLtr } from "styled-icons/fluentui-system-regular";
-import { Cog } from "styled-icons/boxicons-regular";
+import { Home as HomeOutline } from "@styled-icons/ionicons-outline/Home";
+import { Home } from "@styled-icons/ionicons-solid/Home";
+import { Dumbbell as DumbbellOutline } from "@styled-icons/fluentui-system-regular/Dumbbell";
+import { Dumbbell } from "@styled-icons/fluentui-system-filled/Dumbbell";
+import { ClipboardBulletListLtr as ClipboardBulletListLtrOutline } from "@styled-icons/fluentui-system-regular/ClipboardBulletListLtr";
+import { ClipboardBulletListLtr } from "@styled-icons/fluentui-system-filled/ClipboardBulletListLtr";
+import { Cog as CogOutline } from "@styled-icons/boxicons-regular/Cog";
+import { Cog } from "@styled-icons/boxicons-solid/Cog";
 
 interface NavitemProps {
-    label: string;
     href: string;
     icon: StyledIcon;
+    activeIcon: StyledIcon;
 }
 
-function Navitem({ label, icon, href }: NavitemProps) {
+function Navitem({ icon, activeIcon, href }: NavitemProps) {
+    const resolved = useResolvedPath(href);
+    const match = useMatch({ path: resolved.pathname, end: true });
     return (
         <Link
             fontSize="0.75rem"
-            as={NavLink}
-            w="100%"
+            transition="none"
             display="flex"
-            flexDir="column"
+            justifyContent="center"
             alignItems="center"
-            color={"text.default"}
-            py={3}
-            px={4}
-            pos="relative"
+            as={NavLink}
             to={href}
-            _hover={{ color: "primary.600" }}
-            _after={{
-                display: "none",
-                content: `""`,
-                pos: "absolute",
-                top: 0,
-                left: 0,
-                w: "100%",
-                h: "2px",
-                bgColor: "primary.600",
-            }}
+            w="100%"
+            h="100%"
+            color="text.defaultContrast"
+            p={2}
+            fontWeight={400}
+            _hover={{ color: "blue.500" }}
             _activeLink={{
-                color: "primary.600",
-                bgColor: "transparent",
-                _after: { display: "block" },
+                color: "blue.500",
             }}
         >
-            <Icon icon={icon} w={6} h={6} mb={1} />
-            <Text fontWeight={600}>{label}</Text>
+            <Icon icon={match ? activeIcon : icon} w={6} h={6} />
         </Link>
     );
 }
@@ -53,20 +47,20 @@ function Navitem({ label, icon, href }: NavitemProps) {
 export default function Navbar() {
     return (
         <Flex
-            as="nav"
-            boxShadow="elevate.top"
-            alignItems="center"
-            justifyContent="center"
             h="navbarHeight"
-            bgColor="gray.600"
             pos="sticky"
             bottom={0}
             zIndex={1000}
+            as="nav"
+            boxShadow="elevate.top"
+            alignItems="center"
+            justifyContent="space-between"
+            bgColor="white.900"
         >
-            <Navitem href="/" label="Home" icon={Home} />
-            <Navitem href="/programs" label="Programs" icon={Dumbbell} />
-            <Navitem href="/schedule" label="Schedule" icon={ClipboardBulletListLtr} />
-            <Navitem href="/settings" label="Settings" icon={Cog} />
+            <Navitem href="/" icon={HomeOutline} activeIcon={Home} />
+            <Navitem href="/programs" icon={DumbbellOutline} activeIcon={Dumbbell} />
+            <Navitem href="/schedule" icon={ClipboardBulletListLtrOutline} activeIcon={ClipboardBulletListLtr} />
+            <Navitem href="/settings" icon={CogOutline} activeIcon={Cog} />
         </Flex>
     );
 }

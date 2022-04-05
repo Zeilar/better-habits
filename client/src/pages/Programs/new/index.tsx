@@ -2,7 +2,7 @@ import { Button, Grid, Link, Text } from "@chakra-ui/react";
 import { useTitle } from "@zeilar/hooks";
 import { useState } from "react";
 import { Link as ReactLink, useNavigate } from "react-router-dom";
-import { ArrowLeftShort } from "styled-icons/bootstrap";
+import { ArrowLeftShort } from "@styled-icons/bootstrap/ArrowLeftShort";
 import { Program } from "../../../../@types/program";
 import Icon from "../../../components/Icon";
 import PageBanner from "../../../components/PageBanner";

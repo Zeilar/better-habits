@@ -37,16 +37,8 @@ export default function Guest() {
                         {BRAND_NAME}
                     </Text>
                 </Text>
-                <Text textStyle="h4" as="h4" mb={4} mt={1} color="text.muted">
-                    <cite>
-                        <Text as="span" mr={0.5}>
-                            &ldquo;
-                        </Text>
-                        Improving habits shouldn&apos;t be complicated
-                        <Text as="span" ml={0.5}>
-                            &rdquo;
-                        </Text>
-                    </cite>
+                <Text textStyle="h5" as="h5" mb={4} mt={1} color="text.default" opacity={0.75}>
+                    <cite>&ldquo;Improving habits shouldn&apos;t be complicated&rdquo;</cite>
                 </Text>
                 <Link to="/register">
                     <Button w="100%" mb={2}>
