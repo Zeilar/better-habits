@@ -27,17 +27,17 @@ export default function Guest() {
                 inset: 0,
             }}
         >
-            <Box zIndex={10}>
+            <Box zIndex={10} color="text.default.contrast">
                 <Text textStyle="h1" as="h1">
                     👋
                 </Text>
                 <Text textStyle="h4" as="h4">
                     {`Welcome to `}
-                    <Text as="span" color="primary.600" fontWeight={600}>
+                    <Text as="span" color="cyan.main" fontWeight={600}>
                         {BRAND_NAME}
                     </Text>
                 </Text>
-                <Text textStyle="h5" as="h5" mb={4} mt={1} color="text.default" opacity={0.75}>
+                <Text textStyle="h5" as="h5" mb={4} mt={1} opacity={0.75}>
                     <cite>&ldquo;Improving habits shouldn&apos;t be complicated&rdquo;</cite>
                 </Text>
                 <Link to="/register">

@@ -1,41 +1,46 @@
-import { Divider, Flex, Text } from "@chakra-ui/react";
-import { Link as ReactLink } from "react-router-dom";
-import { Clock } from "@styled-icons/fa-regular/Clock";
-import { ClipboardBulletListLtr } from "@styled-icons/fluentui-system-regular/ClipboardBulletListLtr";
-import { Dumbbell } from "@styled-icons/fluentui-system-regular/Dumbbell";
+import { Flex, FlexProps, Text } from "@chakra-ui/react";
 import { Schedule } from "../../@types/schedule";
-import Card from "./Card";
+import CardBody from "./Card/CardBody";
 import Icon from "./Icon";
+import Card from "./Card/Card";
+import CardHeader from "./Card/CardHeader";
+import { exercisesCombinedDuration } from "../pages/Programs/service";
+import { Clock } from "styled-icons/fa-regular";
+import Chip from "./Chip";
 
-interface Props {
+interface Props extends FlexProps {
     schedule: Schedule;
 }
 
-export default function Event({ schedule }: Props) {
+export default function Event({ schedule, ...props }: Props) {
+    const duration = exercisesCombinedDuration(schedule.program.exercises);
     return (
-        <Card>
-            <Flex flexDir="column">
-                <Flex alignItems="center">
-                    <Icon icon={Dumbbell} />
-                    <Text ml={2} as={ReactLink} to={`/program/${schedule.program.id}`} color="text.default">
-                        {schedule.program.name}
-                    </Text>
-                </Flex>
-                <Divider my={4} />
-                <Flex alignItems="center">
-                    <Icon icon={ClipboardBulletListLtr} />
-                    <Text ml={2} as="span" textTransform="capitalize">
-                        {schedule.days.map(scheduleDay => scheduleDay.day).join(", ")}
-                    </Text>
-                </Flex>
-                <Divider my={4} />
-                <Flex alignItems="center">
-                    <Icon icon={Clock} />
-                    <Text ml={2} as="span">
+        <Card {...props}>
+            <CardHeader>
+                <Text textStyle="h4" as="h4">
+                    {schedule.program.name}
+                </Text>
+            </CardHeader>
+            <CardBody>
+                <Flex justifyContent="space-between">
+                    <Text textStyle="h4">
                         {schedule.from} - {schedule.to}
                     </Text>
+                    {duration > 0 && (
+                        <Flex alignItems="center">
+                            <Text>{duration}</Text>
+                            <Icon icon={Clock} ml={2} />
+                        </Flex>
+                    )}
                 </Flex>
-            </Flex>
+                {schedule.days.length > 0 && (
+                    <Flex gridGap={2} flexWrap="wrap" mt={4}>
+                        {schedule.days.map(({ day, id }) => (
+                            <Chip key={id}>{day}</Chip>
+                        ))}
+                    </Flex>
+                )}
+            </CardBody>
         </Card>
     );
 }

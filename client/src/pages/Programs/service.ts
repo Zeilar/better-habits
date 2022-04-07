@@ -1,16 +1,14 @@
 import { Exercise } from "../../../@types/exercise";
-import humanize from "humanize-duration";
 import { SortFunction } from "../../hooks/useSort";
 import { Program } from "../../../@types/program";
 
 export type SortProperty = "name" | "duration" | "exercises" | "updatedAt";
 
 export function exercisesCombinedDuration(exercises: Exercise[]) {
-    const minutes = exercises.reduce((total, exercise) => total + (exercise.duration ?? 0), 0);
-    return minutes > 0 ? humanize(minutes * 60 * 1000, { maxDecimalPoints: 0 }) : "N/A";
+    return exercises.reduce((total, exercise) => total + (exercise.duration ?? 0), 0);
 }
 
-export function sortBy(cb: SortFunction<Program<true>>, property: SortProperty) {
+export function sortBy(cb: SortFunction<Program>, property: SortProperty) {
     switch (property) {
         case "name":
             return cb((a, b) => [a.name.toUpperCase(), b.name.toUpperCase()]);

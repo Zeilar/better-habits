@@ -5,7 +5,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { Plus } from "@styled-icons/bootstrap/Plus";
 import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 import { Program } from "../../@types/program";
-import Card from "./Card";
+import CardBody from "./Card/CardBody";
 import ContainerSpinner from "./ContainerSpinner";
 import FormError from "./FormError";
 import Icon from "./Icon";
@@ -22,7 +22,7 @@ export interface Fields {
 }
 
 interface Props {
-    program?: Program<true>;
+    program?: Program;
     onSubmit(fields: Fields): Promise<void>;
     submitting?: boolean;
     controls?: React.ReactNode;
@@ -30,10 +30,10 @@ interface Props {
 
 const ForwardedCard = forwardRef<FlexProps, "div">((props, ref) => (
     <Box ref={ref} {...props}>
-        <Card gridGap={4} pos="relative" children={props.children} />
+        <CardBody gridGap={4} pos="relative" children={props.children} rounded="lg" boxShadow="card" />
     </Box>
 ));
-const CardMotionBox = motion<FlexProps>(ForwardedCard);
+const CardBodyMotionBox = motion<FlexProps>(ForwardedCard);
 
 export default function ProgramForm({ program, onSubmit, submitting, controls }: Props) {
     const { handleSubmit, register, formState, control } = useForm<Fields>({ defaultValues: program });
@@ -99,8 +99,10 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                 const duration = `${label}.duration`;
                                 const errors = formState.errors.exercises ? formState.errors.exercises[i] : {};
                                 return (
-                                    <CardMotionBox
+                                    <CardBodyMotionBox
                                         key={id}
+                                        rounded="lg"
+                                        boxShadow="card"
                                         initial={
                                             hasLoaded && exercises.fields.length > 1
                                                 ? { opacity: 0, transform: "translateX(-100%)" }
@@ -179,7 +181,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                                 )}
                                             </FormControl>
                                         </Flex>
-                                    </CardMotionBox>
+                                    </CardBodyMotionBox>
                                 );
                             })}
                         </AnimatePresence>

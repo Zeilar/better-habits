@@ -12,7 +12,7 @@ import { BRAND_NAME } from "../../utils/constants";
 
 export default function SingleProgram() {
     const { id } = useParams<{ id: string }>();
-    const { data, loading, success } = useCSR<Program<true>>(`/programs/${id}`);
+    const { data, loading, success } = useCSR<Program>(`/programs/${id}`);
     const [submitting, setSubmitting] = useState(false);
     const toast = useToast();
     const navigate = useNavigate();
@@ -27,9 +27,9 @@ export default function SingleProgram() {
         const response = await apiService.request(`/programs/${id}`, { method: "PUT", data: { exercises, program } });
         setSubmitting(false);
         if (response.ok) {
-            toast({ description: "Saved program", status: "success" });
+            toast({ title: "Saved program", status: "success" });
         } else {
-            toast({ description: "Error saving program", status: "error" });
+            toast({ title: "Error saving program", status: "error" });
         }
     }
 
@@ -38,10 +38,10 @@ export default function SingleProgram() {
         const response = await apiService.request(`/programs/${id}`, { method: "DELETE" });
         setSubmitting(false);
         if (response.ok) {
-            toast({ description: "Deleted program", status: "success" });
+            toast({ title: "Deleted program", status: "success" });
             navigate("/programs");
         } else {
-            toast({ description: "Error deleting program", status: "error" });
+            toast({ title: "Error deleting program", status: "error" });
         }
     }
 

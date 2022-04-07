@@ -27,20 +27,21 @@ export const Button: StyleConfig = {
     },
     variants: {
         primary: {
-            bgColor: "primary.600",
+            bgColor: "cyan.main",
             color: "black",
         },
         secondary: {
             border: "2px solid",
-            borderColor: "primary.600",
-            color: "primary.600",
+            borderColor: "cyan.main",
+            color: "cyan.main",
+            bgColor: "blackAlpha.400",
             _hover: {
-                bgColor: "primary.600",
+                bgColor: "cyan.main",
                 color: "black",
             },
         },
         link: {
-            color: "primary.600",
+            color: "cyan.main",
         },
         danger: {
             border: "2px solid",
@@ -48,7 +49,7 @@ export const Button: StyleConfig = {
             color: "danger",
             _hover: {
                 bgColor: "danger",
-                color: "text.default",
+                color: "text.default.main",
             },
         },
         unstyled: {

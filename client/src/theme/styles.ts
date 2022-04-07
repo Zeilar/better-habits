@@ -1,21 +1,16 @@
-import { hero } from "../assets/images";
-
 export const styles = {
     global: {
         "::selection": {
-            color: "body",
-            bgColor: "primary.600",
+            color: "text.default.contrast",
+            bgColor: "cyan.main",
         },
         "*, *::before, *::after": {
             borderColor: "border.default",
         },
         body: {
             minH: "100vh",
-            bgColor: "body",
-            color: "text.default",
-            bgImg: hero,
-            bgSize: "cover",
-            bgPos: "center",
+            bgColor: "gray.900",
+            color: "text.default.main",
         },
         "img, svg, ::placeholder": {
             userSelect: "none",

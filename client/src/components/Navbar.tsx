@@ -31,12 +31,12 @@ function Navitem({ icon, activeIcon, href }: NavitemProps) {
             to={href}
             w="100%"
             h="100%"
-            color="text.defaultContrast"
+            color="text.default.main"
             p={2}
             fontWeight={400}
-            _hover={{ color: "blue.500" }}
+            _hover={{ color: "cyan.main" }}
             _activeLink={{
-                color: "blue.500",
+                color: "cyan.main",
             }}
         >
             <Icon icon={match ? activeIcon : icon} w={6} h={6} />
@@ -55,7 +55,7 @@ export default function Navbar() {
             boxShadow="elevate.top"
             alignItems="center"
             justifyContent="space-between"
-            bgColor="white.900"
+            bgColor="gray.800"
         >
             <Navitem href="/" icon={HomeOutline} activeIcon={Home} />
             <Navitem href="/programs" icon={DumbbellOutline} activeIcon={Dumbbell} />

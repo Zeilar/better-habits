@@ -9,7 +9,7 @@ export const Input: StyleConfig = {
                     bgColor: "gray.400",
                 },
                 _focus: {
-                    borderColor: "primary.600",
+                    borderColor: "cyan.main",
                     boxShadow: "none",
                     bgColor: "gray.400",
                 },
@@ -24,10 +24,10 @@ export const Input: StyleConfig = {
                 height: "auto",
                 py: 2,
                 _hover: {
-                    borderBottomColor: "primary.600",
+                    borderBottomColor: "cyan.main",
                 },
                 _focus: {
-                    borderBottomColor: "primary.600",
+                    borderBottomColor: "cyan.main",
                     boxShadow: "0 1px 0 0 var(--chakra-colors-primary-600)",
                 },
                 _invalid: {

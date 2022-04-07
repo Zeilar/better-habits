@@ -5,8 +5,8 @@ export const Checkbox: StyleConfig = {
         filled: {
             control: {
                 _checked: {
-                    bgColor: "primary.600",
-                    borderColor: "primary.600",
+                    bgColor: "cyan.main",
+                    borderColor: "cyan.main",
                 },
                 _focus: {
                     boxShadow: "none",

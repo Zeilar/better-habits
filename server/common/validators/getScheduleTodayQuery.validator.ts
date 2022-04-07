@@ -1,8 +1,8 @@
-import { IsOptional, IsString } from "class-validator";
+import { IsOptional, IsDateString } from "class-validator";
 import { BooleanString } from "../../@types/common";
 
 export class GetScheduleTodayQuery {
-    @IsString()
+    @IsDateString()
     @IsOptional()
-    public today?: BooleanString;
+    public day?: BooleanString;
 }

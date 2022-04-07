@@ -54,7 +54,7 @@ export default function Schedules() {
                     {Array(5)
                         .fill(null)
                         .map((_, i) => (
-                            <Skeleton height="7rem" key={i} rounded="md" />
+                            <Skeleton height="7rem" key={i} rounded="lg" />
                         ))}
                 </Grid>
             )}
@@ -75,7 +75,7 @@ export default function Schedules() {
                             ml="auto"
                             display="flex"
                             variant="unstyled"
-                            _hover={{ color: "primary.600" }}
+                            _hover={{ color: "cyan.main" }}
                             onClick={sorter.toggleDirection}
                         >
                             <Text textTransform="capitalize" mr={1}>
@@ -102,7 +102,7 @@ export default function Schedules() {
                             rounded="pill"
                             transitionDuration="0.15s"
                             transitionProperty="left"
-                            bgColor="primary.600"
+                            bgColor="cyan.main"
                             left={show === "all" ? "50%" : 0}
                             h="100%"
                             w="50%"
@@ -153,7 +153,7 @@ export default function Schedules() {
                 w={8}
                 h={8}
                 boxShadow="0 0 8px rgba(0, 0, 0, 0.5)"
-                bgColor="primary.600"
+                bgColor="cyan.main"
                 to="/schedule/new"
                 p={1}
             >

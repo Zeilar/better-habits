@@ -52,14 +52,14 @@ export default function ComboSelect({ items, value, onChange }: Props) {
                         value={item}
                         cursor="pointer"
                         userSelect="none"
-                        bgColor="gray.400"
+                        bgColor="gray.800"
                         zIndex={20}
                         whiteSpace="nowrap"
                         py={2}
                         px={4}
                         _first={{ roundedTop: "md" }}
                         _last={{ roundedBottom: "md" }}
-                        _hover={{ bgColor: "gray.200" }}
+                        _hover={{ bgColor: "gray.700" }}
                     >
                         {item.label}
                     </Combobox.Option>

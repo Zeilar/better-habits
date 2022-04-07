@@ -36,6 +36,7 @@ export default function Register() {
             bgPos="center"
             bgSize="cover"
             pos="relative"
+            color="text.default.contrast"
             justifyContent="center"
             alignItems="center"
             flexDir="column"
@@ -59,7 +60,7 @@ export default function Register() {
                 backdropFilter="blur(5px)"
                 bgColor="blackAlpha.500"
                 boxShadow="card"
-                rounded="md"
+                rounded="lg"
             >
                 {error && (
                     <Alert status="error" variant="border" mb={4}>
@@ -75,7 +76,7 @@ export default function Register() {
                             Email
                         </FormLabel>
                         <Input
-                            borderColor="text.default"
+                            borderColor="text.default.contrast"
                             id="email"
                             type="email"
                             variant="flushed"
@@ -88,7 +89,7 @@ export default function Register() {
                             Password
                         </FormLabel>
                         <Input
-                            borderColor="text.default"
+                            borderColor="text.default.contrast"
                             id="password"
                             isInvalid={Boolean(errors.password)}
                             type="password"
@@ -102,7 +103,7 @@ export default function Register() {
                             PasswordConfirm
                         </FormLabel>
                         <Input
-                            borderColor="text.default"
+                            borderColor="text.default.contrast"
                             id="passwordConfirm"
                             isInvalid={Boolean(errors.passwordConfirm)}
                             type="passwordConfirm"
@@ -115,7 +116,7 @@ export default function Register() {
                         {`Already registered? `}
                         <ReactLink to="/login">Login</ReactLink>
                     </Text>
-                    <Button rounded="md" isLoading={isSubmitting} type="submit">
+                    <Button rounded="lg" isLoading={isSubmitting} type="submit">
                         Login
                     </Button>
                 </Flex>

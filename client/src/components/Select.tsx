@@ -28,7 +28,6 @@ export default function Select({ items, value, onChange, ...props }: Props) {
             fontWeight={500}
             pos="relative"
             userSelect="none"
-            _focus={{ bg: "red" }}
             {...props}
         >
             <Listbox.Button
@@ -36,15 +35,14 @@ export default function Select({ items, value, onChange, ...props }: Props) {
                 textAlign="left"
                 py={2}
                 px={4}
-                bgColor="gray.400"
-                rounded="md"
+                bgColor="gray.800"
+                rounded="lg"
                 justifyContent="space-between"
                 alignItems="center"
                 boxShadow="card"
                 cursor="pointer"
                 zIndex={20}
-                _hover={{ bgColor: "gray.200" }}
-                _focus={{ bg: "red" }}
+                _hover={{ bgColor: "gray.700" }}
             >
                 {value.label}
                 <Icon ml={4} size={4} icon={Selector} />
@@ -56,7 +54,7 @@ export default function Select({ items, value, onChange, ...props }: Props) {
                 pos="absolute"
                 zIndex={10}
                 top="2.65rem"
-                rounded="md"
+                rounded="lg"
                 boxShadow="card"
                 maxH="30vh"
                 overflowY="auto"
@@ -71,10 +69,10 @@ export default function Select({ items, value, onChange, ...props }: Props) {
                         whiteSpace="nowrap"
                         py={2}
                         px={4}
-                        bgColor="gray.400"
+                        bgColor="gray.800"
                         _first={{ roundedTop: "md" }}
                         _last={{ roundedBottom: "md" }}
-                        _hover={{ bgColor: "gray.200" }}
+                        _hover={{ bgColor: "gray.700" }}
                     >
                         {item.label}
                     </Listbox.Option>

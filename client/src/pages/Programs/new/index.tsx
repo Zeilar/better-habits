@@ -20,16 +20,16 @@ export default function NewProgram() {
 
     async function create({ exercises, ...program }: Fields) {
         setSubmitting(true);
-        const response = await apiService.request<Program<true>>("/programs", {
+        const response = await apiService.request<Program>("/programs", {
             method: "POST",
             data: { exercises, program },
         });
         setSubmitting(false);
         if (response.ok) {
-            toast({ description: "Created program", status: "success" });
+            toast({ title: "Created program", status: "success" });
             navigate(`/program/${response.data.id}`);
         } else {
-            toast({ description: "Error creating program", status: "error" });
+            toast({ title: "Error creating program", status: "error" });
         }
     }
 

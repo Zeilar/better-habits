@@ -1,11 +1,11 @@
 import { ISOString } from "../../server/@types/date";
 import { Exercise } from "./exercise";
 
-export interface Program<WithExercises = false> {
+export interface Program {
     id: number;
     userId: number;
     name: string;
-    exercises: WithExercises extends true ? Exercise[] : undefined;
+    exercises: Exercise[];
     createdAt: ISOString;
     updatedAt: ISOString;
 }

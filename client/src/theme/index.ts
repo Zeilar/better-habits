@@ -11,7 +11,7 @@ import { textStyles } from "./textStyles";
 import { radii } from "./radii";
 import { sizes } from "./sizes";
 
-export default extendTheme(
+const theme = extendTheme(
     {
         sizes,
         config,
@@ -27,3 +27,5 @@ export default extendTheme(
     textStyles,
     ...withDefaults
 );
+
+export default theme;

@@ -17,10 +17,10 @@ export class Program extends BaseEntity implements ProgramSchema {
     @Column()
     public userId: number;
 
-    @OneToMany(() => Exercise, exercise => exercise.program, { cascade: true })
+    @OneToMany(() => Exercise, exercise => exercise.program, { cascade: true, eager: true })
     public exercises: Exercise[];
 
-    @OneToMany(() => Schedule, schedule => schedule.program)
+    @OneToMany(() => Schedule, schedule => schedule.program, { eager: true })
     public schedules: Schedule[];
 
     @Column()

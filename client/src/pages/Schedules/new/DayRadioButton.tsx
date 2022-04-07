@@ -12,7 +12,7 @@ interface DayRadioButtonProps {
 export default function DayRadioButton({ day, active, onToggle }: DayRadioButtonProps) {
     const css: ButtonProps = active
         ? {
-              borderColor: "primary.600",
+              borderColor: "cyan.main",
           }
         : {};
     return (
@@ -26,7 +26,7 @@ export default function DayRadioButton({ day, active, onToggle }: DayRadioButton
             textTransform="capitalize"
             transition="none"
             bgColor="gray.400"
-            rounded="md"
+            rounded="lg"
             fontWeight={500}
             userSelect="none"
             textAlign="left"
@@ -38,7 +38,7 @@ export default function DayRadioButton({ day, active, onToggle }: DayRadioButton
             {...css}
         >
             {day}
-            {active && <Icon ml={4} icon={CheckCircleFill} color="primary.600" />}
+            {active && <Icon ml={4} icon={CheckCircleFill} color="cyan.main" />}
         </Button>
     );
 }

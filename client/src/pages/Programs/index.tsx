@@ -1,10 +1,10 @@
-import { Grid, Skeleton, Text, Link, Divider, Flex, Box, Button } from "@chakra-ui/react";
+import { Grid, Skeleton, Text, Link, Flex, Box, Button } from "@chakra-ui/react";
 import { useCSR, useSort } from "../../hooks";
 import { Program } from "../../../@types/program";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
-import Card from "../../components/Card";
+import CardBody from "../../components/Card/CardBody";
 import { exercisesCombinedDuration, sortBy, SortProperty } from "./service";
 import { useState } from "react";
 import { ArrowDownShort } from "@styled-icons/bootstrap/ArrowDownShort";
@@ -13,10 +13,12 @@ import { Plus } from "@styled-icons/bootstrap/Plus";
 import { Dumbbell } from "@styled-icons/fluentui-system-regular";
 import { Clock } from "@styled-icons/fa-regular";
 import AssetIcon from "../../components/AssetIcon";
-import PageBanner from "../../components/PageBanner";
 import Select, { SelectItem } from "../../components/Select";
 import { BRAND_NAME } from "../../utils/constants";
 import { useTitle } from "@zeilar/hooks";
+import Card from "../../components/Card/Card";
+import CardHeader from "../../components/Card/CardHeader";
+import Chip from "../../components/Chip";
 
 interface Sort {
     property: SortProperty;
@@ -33,9 +35,9 @@ const sorts: Sort[] = [
 const sortOptions: SelectItem[] = sorts.map((sort, i) => ({ label: sort.label, value: i.toString() }));
 
 export default function Programs() {
-    const { data, success, loading } = useCSR<Program<true>[]>("/programs", { params: { withExercises: true } });
+    const { data, success, loading } = useCSR<Program[]>("/programs", { params: { withExercises: true } });
     const [sortOptionsSelection, setSortOptionsSelection] = useState(0);
-    const sorter = useSort<Program<true>>(data, { defaultDirection: "desc" });
+    const sorter = useSort<Program>(data, { defaultDirection: "desc" });
     useTitle(`Programs | ${BRAND_NAME}`);
     const sort = sorts[sortOptionsSelection];
 
@@ -46,19 +48,17 @@ export default function Programs() {
                     {Array(5)
                         .fill(null)
                         .map((_, i) => (
-                            <Skeleton height="7rem" key={i} rounded="md" />
+                            <Skeleton height="11.9rem" key={i} rounded="lg" />
                         ))}
                 </Grid>
             )}
             {success && (
                 <>
                     <Box>
-                        <PageBanner mb={4}>
-                            <Text textStyle="h3" as="h3">
-                                My programs
-                            </Text>
-                        </PageBanner>
-                        <Flex px={4}>
+                        <Text textStyle="h2" as="h2" px={4} color="cyan.main" mb={4} mt={4}>
+                            My programs
+                        </Text>
+                        <Flex px={4} mb={4}>
                             <Select
                                 value={sortOptions[sortOptionsSelection]}
                                 items={sortOptions}
@@ -68,7 +68,7 @@ export default function Programs() {
                                 ml="auto"
                                 display="flex"
                                 variant="unstyled"
-                                _hover={{ color: "primary.600" }}
+                                _hover={{ color: "cyan.main" }}
                                 onClick={sorter.toggleDirection}
                             >
                                 <Text textTransform="capitalize" mr={1}>
@@ -78,8 +78,7 @@ export default function Programs() {
                             </Button>
                         </Flex>
                     </Box>
-                    <Divider w="auto" m={4} />
-                    <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
+                    <Flex flexDir="column" gridGap={4} p={4} pt={0}>
                         {data.length === 0 && (
                             <Flex flexDir="column" alignItems="center">
                                 <AssetIcon size="75%" icon="void" />
@@ -91,27 +90,32 @@ export default function Programs() {
                             </Flex>
                         )}
                         {sortBy(sorter.sort, sort.property).map(program => (
-                            <Link as={ReactLink} to={`/program/${program.id}`} key={program.id} color="text.default">
-                                <Card>
-                                    <Text>{program.name}</Text>
-                                    <Divider my={4} borderColor="border.default" />
-                                    <Flex alignItems="center">
-                                        <Flex alignItems="center">
-                                            <Icon icon={Dumbbell} />
-                                            <Text ml={2} as="span">
+                            <Card key={program.id}>
+                                <CardHeader>
+                                    <Text textStyle="h4" as="h4">
+                                        {program.name}
+                                    </Text>
+                                </CardHeader>
+                                <CardBody gridGap={2}>
+                                    <Flex gridGap={2} flexWrap="wrap">
+                                        <Chip textStyle="p">
+                                            <Icon icon={Dumbbell} mr={2} />
+                                            <Text as="span" verticalAlign="middle">
                                                 {program.exercises.length}
                                             </Text>
-                                        </Flex>
-                                        <Divider orientation="vertical" mx={4} height={4} />
-                                        <Flex alignItems="center">
-                                            <Icon icon={Clock} />
-                                            <Text ml={2} as="span">
+                                        </Chip>
+                                        <Chip textStyle="p">
+                                            <Icon icon={Clock} mr={2} />
+                                            <Text as="span" verticalAlign="middle">
                                                 {exercisesCombinedDuration(program.exercises)}
                                             </Text>
-                                        </Flex>
+                                        </Chip>
                                     </Flex>
-                                </Card>
-                            </Link>
+                                    <Link as={ReactLink} to={`/program/${program.id}`} mt={4}>
+                                        View
+                                    </Link>
+                                </CardBody>
+                            </Card>
                         ))}
                     </Flex>
                 </>
@@ -125,14 +129,13 @@ export default function Programs() {
                 transform="translateX(-50%)"
                 left="50%"
                 rounded="full"
-                w={8}
-                h={8}
-                boxShadow="0 0 8px rgba(0, 0, 0, 0.5)"
-                bgColor="primary.600"
+                w={10}
+                h={10}
+                boxShadow="card"
+                bgColor="cyan.main"
                 to="/programs/new"
-                p={1}
             >
-                <Icon icon={Plus} w={6} h={6} color="black" />
+                <Icon icon={Plus} size={8} color="text.default.contrast" />
             </Flex>
         </PageWrapper>
     );

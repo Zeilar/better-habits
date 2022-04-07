@@ -15,9 +15,11 @@ export class ScheduleService {
 
     public async all(userId: number, query?: GetScheduleTodayQuery) {
         const schedules = await Schedule.find({ where: { userId }, relations: ["program", "days"] });
-        if (query?.today === "true") {
-            const today = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format().toLowerCase() as Day;
-            return schedules.filter(schedule => schedule.days.some(scheduleDay => scheduleDay.day === today));
+        if (query?.day) {
+            const day = new Intl.DateTimeFormat("en-US", { weekday: "long" })
+                .format(new Date(query.day))
+                .toLowerCase() as Day;
+            return schedules.filter(schedule => schedule.days.some(scheduleDay => scheduleDay.day === day));
         }
         return schedules;
     }

@@ -42,6 +42,7 @@ export default function Login() {
             bgPos="center"
             bgSize="cover"
             pos="relative"
+            color="text.default.contrast"
             justifyContent="center"
             alignItems="center"
             flexDir="column"
@@ -65,7 +66,7 @@ export default function Login() {
                 backdropFilter="blur(5px)"
                 bgColor="blackAlpha.500"
                 boxShadow="card"
-                rounded="md"
+                rounded="lg"
             >
                 {error && (
                     <Alert status="error" variant="border" mb={4}>
@@ -81,7 +82,7 @@ export default function Login() {
                             Email
                         </FormLabel>
                         <Input
-                            borderColor="text.default"
+                            borderColor="text.default.contrast"
                             id="email"
                             type="email"
                             variant="flushed"
@@ -94,7 +95,7 @@ export default function Login() {
                             Password
                         </FormLabel>
                         <Input
-                            borderColor="text.default"
+                            borderColor="text.default.contrast"
                             id="password"
                             isInvalid={Boolean(errors.password)}
                             type="password"
@@ -107,7 +108,7 @@ export default function Login() {
                         {`Not registered? `}
                         <ReactLink to="/register">Create one</ReactLink>
                     </Text>
-                    <Button rounded="md" isLoading={isSubmitting} type="submit">
+                    <Button rounded="lg" isLoading={isSubmitting} type="submit">
                         Login
                     </Button>
                 </Flex>
