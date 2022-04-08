@@ -9,7 +9,9 @@ export default function Settings() {
     useTitle(`Settings | ${BRAND_NAME}`);
     return (
         <PageWrapper>
-            <Text textStyle="h3">Settings</Text>
+            <Text textStyle="h3" color="cyan.main" p={4}>
+                Settings
+            </Text>
             <Grid
                 bgColor="gray.700"
                 h="calc(100vh - var(--chakra-sizes-navbarHeight) - 4rem)"

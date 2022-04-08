@@ -59,8 +59,10 @@ export default function NewSchedule() {
 
     return (
         <PageWrapper noScroll>
-            <Text textStyle="h3">Create event</Text>
-            <Box as="form" onSubmit={handleSubmit(onSubmit)} overflowY="auto">
+            <Text textStyle="pageTitle" p={4}>
+                Create event
+            </Text>
+            <Box as="form" onSubmit={handleSubmit(onSubmit)}>
                 {programsQuery.success && (
                     <Controller
                         name="programId"
@@ -68,7 +70,7 @@ export default function NewSchedule() {
                         rules={{ required: "Please pick a program" }}
                         render={({ field, fieldState }) => (
                             <FormControl isInvalid={Boolean(fieldState.error)} px={4} my={4}>
-                                <Text textStyle="h3" mb={2}>
+                                <Text textStyle="h4" mb={2}>
                                     Program
                                 </Text>
                                 <ComboSelect
@@ -85,7 +87,7 @@ export default function NewSchedule() {
                     />
                 )}
                 <Flex flexDir="column" px={4} mb={4}>
-                    <Text textStyle="h3" mb={2}>
+                    <Text textStyle="h4" mb={2}>
                         From
                     </Text>
                     <Flex gridGap={2}>
@@ -114,7 +116,7 @@ export default function NewSchedule() {
                     </Flex>
                 </Flex>
                 <Flex flexDir="column" px={4} mb={4}>
-                    <Text textStyle="h3" mb={2}>
+                    <Text textStyle="h4" mb={2}>
                         To
                     </Text>
                     <Flex gridGap={2}>
@@ -143,7 +145,7 @@ export default function NewSchedule() {
                     </Flex>
                 </Flex>
                 <Box px={4} mb={4}>
-                    <Text textStyle="h3" mb={2}>
+                    <Text textStyle="h4" mb={2}>
                         Day
                     </Text>
                     <Controller
@@ -179,14 +181,16 @@ export default function NewSchedule() {
                     bottom={0}
                     gridTemplateColumns="repeat(2, 1fr)"
                     boxShadow="elevate.top"
-                    bgColor="gray.600"
+                    bgColor="gray.800"
                     p={4}
                     gridGap={4}
                     h="controlsHeight"
                 >
                     <Button type="submit">Create</Button>
-                    <Link as={ReactLink} to="/schedule" display="flex">
-                        <Text m="auto">Cancel</Text>
+                    <Link as={ReactLink} to="/schedule" display="flex" w="100%">
+                        <Text m="auto" color="white.900">
+                            Cancel
+                        </Text>
                     </Link>
                 </Grid>
             </Box>

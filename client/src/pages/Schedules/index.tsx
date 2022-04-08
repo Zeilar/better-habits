@@ -15,6 +15,7 @@ import Event from "../../components/Event";
 import Select, { SelectItem } from "../../components/Select";
 import { BRAND_NAME } from "../../utils/constants";
 import { useTitle } from "@zeilar/hooks";
+import { fadeInAnimation } from "../../styles/aimations";
 
 type Show = "all" | "today";
 
@@ -47,7 +48,7 @@ export default function Schedules() {
     }
 
     return (
-        <PageWrapper noScroll>
+        <PageWrapper noScroll animation={fadeInAnimation}>
             {loading && (
                 <Grid p={4} gridGap={2}>
                     {Array(5)
@@ -59,7 +60,7 @@ export default function Schedules() {
             )}
             {success && (
                 <>
-                    <Text textStyle="h3" mb={4}>
+                    <Text textStyle="h3" p={4} color="cyan.main">
                         My schedule
                     </Text>
                     <Flex px={4}>
@@ -83,7 +84,7 @@ export default function Schedules() {
                     </Flex>
                     <Divider m={4} w="auto" />
                     <Flex
-                        bgColor="gray.400"
+                        bgColor="gray.800"
                         pos="relative"
                         h={10}
                         p={1}
@@ -94,10 +95,11 @@ export default function Schedules() {
                         justifyContent="space-between"
                     >
                         <Box
+                            as="span"
                             pos="absolute"
                             top={0}
                             rounded="pill"
-                            transitionDuration="0.15s"
+                            transitionDuration="0.35s"
                             transitionProperty="left"
                             bgColor="cyan.main"
                             left={show === "all" ? "50%" : 0}

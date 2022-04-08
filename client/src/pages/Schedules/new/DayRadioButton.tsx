@@ -25,7 +25,7 @@ export default function DayRadioButton({ day, active, onToggle }: DayRadioButton
             borderColor="transparent"
             textTransform="capitalize"
             transition="none"
-            bgColor="gray.400"
+            bgColor="gray.800"
             rounded="lg"
             fontWeight={500}
             userSelect="none"
@@ -34,7 +34,7 @@ export default function DayRadioButton({ day, active, onToggle }: DayRadioButton
             paddingInline={4}
             h={12}
             onClick={onToggle}
-            _hover={{ bgColor: "gray.200" }}
+            _hover={{ bgColor: "gray.700" }}
             {...css}
         >
             {day}

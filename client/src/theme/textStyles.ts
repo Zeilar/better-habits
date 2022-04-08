@@ -1,4 +1,4 @@
-export const textStyles = {
+const style = {
     h1: {
         fontSize: ["2rem", "2.5rem"],
         fontWeight: 600,
@@ -26,11 +26,16 @@ export const textStyles = {
     p: {
         fontSize: "1rem",
     },
-    a: {
-        fontSize: "1rem",
-    },
     small: {
         fontSize: "0.75rem",
         textTransform: "uppercase",
+    },
+};
+
+export const textStyles = {
+    ...style,
+    pageTitle: {
+        ...style.h3,
+        color: "cyan.main",
     },
 };
