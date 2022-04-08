@@ -28,16 +28,14 @@ export default function Guest() {
             }}
         >
             <Box zIndex={10}>
-                <Text textStyle="h1" as="h1">
-                    👋
-                </Text>
-                <Text textStyle="h4" as="h4">
+                <Text textStyle="h1">👋</Text>
+                <Text textStyle="h4">
                     {`Welcome to `}
                     <Text as="span" color="cyan.main" fontWeight={600}>
                         {BRAND_NAME}
                     </Text>
                 </Text>
-                <Text textStyle="h5" as="h5" mb={4} mt={1} opacity={0.75}>
+                <Text textStyle="h5" mb={4} mt={1} opacity={0.75}>
                     <cite>&ldquo;Improving habits shouldn&apos;t be complicated&rdquo;</cite>
                 </Text>
                 <Link to="/register">

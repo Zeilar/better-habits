@@ -51,7 +51,7 @@ export default function Register() {
                 zIndex: -1,
             }}
         >
-            <Text as="h1" textStyle="h1" mb={4}>
+            <Text textStyle="h1" mb={4}>
                 Register
             </Text>
             <Box
@@ -124,9 +124,7 @@ export default function Register() {
             <Link as={ReactLink} to="/guest" pos="absolute" bottom={8}>
                 <Flex justifyContent="center" alignItems="center">
                     <Icon size={8} icon={ArrowLeftShort} mr={2} />
-                    <Text textStyle="h3" as="h3">
-                        Back
-                    </Text>
+                    <Text textStyle="h3">Back</Text>
                 </Flex>
             </Link>
         </Flex>

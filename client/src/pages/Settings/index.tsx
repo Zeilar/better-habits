@@ -1,5 +1,4 @@
 import { Button, Grid, Text } from "@chakra-ui/react";
-import PageBanner from "../../components/PageBanner";
 import PageWrapper from "../../components/PageWrapper";
 import { useAuth } from "../../hooks";
 import { useTitle } from "@zeilar/hooks";
@@ -10,11 +9,7 @@ export default function Settings() {
     useTitle(`Settings | ${BRAND_NAME}`);
     return (
         <PageWrapper>
-            <PageBanner zIndex={10} h={16}>
-                <Text textStyle="h3" as="h3">
-                    Settings
-                </Text>
-            </PageBanner>
+            <Text textStyle="h3">Settings</Text>
             <Grid
                 bgColor="gray.700"
                 h="calc(100vh - var(--chakra-sizes-navbarHeight) - 4rem)"

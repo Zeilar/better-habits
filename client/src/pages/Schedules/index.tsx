@@ -10,7 +10,6 @@ import { ArrowDownShort } from "@styled-icons/bootstrap/ArrowDownShort";
 import { ArrowUpShort } from "@styled-icons/bootstrap/ArrowUpShort";
 import { Plus } from "@styled-icons/bootstrap/Plus";
 import AssetIcon from "../../components/AssetIcon";
-import PageBanner from "../../components/PageBanner";
 import { isToday } from "../../utils/date";
 import Event from "../../components/Event";
 import Select, { SelectItem } from "../../components/Select";
@@ -60,11 +59,9 @@ export default function Schedules() {
             )}
             {success && (
                 <>
-                    <PageBanner mb={4}>
-                        <Text textStyle="h3" as="h3">
-                            My schedule
-                        </Text>
-                    </PageBanner>
+                    <Text textStyle="h3" mb={4}>
+                        My schedule
+                    </Text>
                     <Flex px={4}>
                         <Select
                             value={sortOptions[sortOptionsSelection]}
@@ -129,7 +126,7 @@ export default function Schedules() {
                             <Flex flexDir="column" alignItems="center">
                                 <AssetIcon size="75%" icon="void" />
                                 <Flex flexDir="column" alignItems="center">
-                                    <Text as="h3" textStyle="h3" textAlign="center" mt={4}>
+                                    <Text textStyle="h3" textAlign="center" mt={4}>
                                         No programs were found
                                     </Text>
                                 </Flex>

@@ -1,9 +1,6 @@
 import { Box, Button, Flex, FormControl, Grid, Link, Text } from "@chakra-ui/react";
-import PageBanner from "../../../components/PageBanner";
 import PageWrapper from "../../../components/PageWrapper";
 import { Link as ReactLink, useNavigate } from "react-router-dom";
-import { ArrowLeftShort } from "@styled-icons/bootstrap/ArrowLeftShort";
-import Icon from "../../../components/Icon";
 import { BRAND_NAME, days, hourSelection, minuteSelection } from "../../../utils/constants";
 import { Controller, useForm } from "react-hook-form";
 import { Day } from "../../../../@types/date";
@@ -62,14 +59,7 @@ export default function NewSchedule() {
 
     return (
         <PageWrapper noScroll>
-            <PageBanner>
-                <Link as={ReactLink} to="/schedule" mr={4}>
-                    <Icon icon={ArrowLeftShort} size={8} />
-                </Link>
-                <Text textStyle="h3" as="h3">
-                    Create event
-                </Text>
-            </PageBanner>
+            <Text textStyle="h3">Create event</Text>
             <Box as="form" onSubmit={handleSubmit(onSubmit)} overflowY="auto">
                 {programsQuery.success && (
                     <Controller
@@ -78,7 +68,7 @@ export default function NewSchedule() {
                         rules={{ required: "Please pick a program" }}
                         render={({ field, fieldState }) => (
                             <FormControl isInvalid={Boolean(fieldState.error)} px={4} my={4}>
-                                <Text textStyle="h3" as="h3" mb={2}>
+                                <Text textStyle="h3" mb={2}>
                                     Program
                                 </Text>
                                 <ComboSelect
@@ -95,7 +85,7 @@ export default function NewSchedule() {
                     />
                 )}
                 <Flex flexDir="column" px={4} mb={4}>
-                    <Text textStyle="h3" as="h3" mb={2}>
+                    <Text textStyle="h3" mb={2}>
                         From
                     </Text>
                     <Flex gridGap={2}>
@@ -124,7 +114,7 @@ export default function NewSchedule() {
                     </Flex>
                 </Flex>
                 <Flex flexDir="column" px={4} mb={4}>
-                    <Text textStyle="h3" as="h3" mb={2}>
+                    <Text textStyle="h3" mb={2}>
                         To
                     </Text>
                     <Flex gridGap={2}>
@@ -153,7 +143,7 @@ export default function NewSchedule() {
                     </Flex>
                 </Flex>
                 <Box px={4} mb={4}>
-                    <Text textStyle="h3" as="h3" mb={2}>
+                    <Text textStyle="h3" mb={2}>
                         Day
                     </Text>
                     <Controller

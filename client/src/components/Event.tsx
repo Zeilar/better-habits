@@ -15,9 +15,7 @@ export default function Event({ schedule, ...props }: Props) {
     return (
         <Card {...props}>
             <CardHeader>
-                <Text textStyle="h4" as="h4">
-                    {schedule.program.name}
-                </Text>
+                <Text textStyle="h4">{schedule.program.name}</Text>
             </CardHeader>
             <CardBody>
                 <Text textStyle="h4">

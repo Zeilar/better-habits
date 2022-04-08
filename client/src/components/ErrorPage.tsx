@@ -17,13 +17,9 @@ export default function ErrorPage({ code, message }: Props) {
             h="calc(100vh - var(--chakra-sizes-navbarHeight))"
         >
             <Flex h={8} alignItems="center">
-                <Text textStyle="h5" as="h5">
-                    {code}
-                </Text>
+                <Text textStyle="h5">{code}</Text>
                 <Divider orientation="vertical" mx={6} />
-                <Text textStyle="h5" as="h5">
-                    {message}
-                </Text>
+                <Text textStyle="h5">{message}</Text>
             </Flex>
         </Flex>
     );

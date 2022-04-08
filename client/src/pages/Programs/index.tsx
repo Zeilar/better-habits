@@ -10,14 +10,12 @@ import { useState } from "react";
 import { ArrowDownShort } from "@styled-icons/bootstrap/ArrowDownShort";
 import { ArrowUpShort } from "@styled-icons/bootstrap/ArrowUpShort";
 import { Plus } from "@styled-icons/bootstrap/Plus";
-import { Dumbbell } from "@styled-icons/fluentui-system-regular";
 import AssetIcon from "../../components/AssetIcon";
 import Select, { SelectItem } from "../../components/Select";
 import { BRAND_NAME } from "../../utils/constants";
 import { useTitle } from "@zeilar/hooks";
 import Card from "../../components/Card/Card";
 import CardHeader from "../../components/Card/CardHeader";
-import Chip from "../../components/Chip";
 import { fadeInAnimation } from "../../styles/aimations";
 import ExercisesAccordion from "../../components/ExercisesAccordion";
 
@@ -56,7 +54,7 @@ export default function Programs() {
             {success && (
                 <>
                     <Box>
-                        <Text textStyle="h2" as="h2" px={4} color="cyan.main" mb={4} mt={4}>
+                        <Text textStyle="h2" px={4} color="cyan.main" mb={4} mt={4}>
                             My programs
                         </Text>
                         <Flex px={4} mb={4}>
@@ -84,7 +82,7 @@ export default function Programs() {
                             <Flex flexDir="column" alignItems="center">
                                 <AssetIcon size="75%" icon="void" />
                                 <Flex flexDir="column" alignItems="center">
-                                    <Text as="h3" textStyle="h3" textAlign="center" mt={4}>
+                                    <Text textStyle="h3" textAlign="center" mt={4}>
                                         No programs were found
                                     </Text>
                                 </Flex>
@@ -94,9 +92,7 @@ export default function Programs() {
                             {sortBy(sorter.sort, sort.property).map(program => (
                                 <Card key={program.id}>
                                     <CardHeader>
-                                        <Text textStyle="h4" as="h4">
-                                            {program.name}
-                                        </Text>
+                                        <Text textStyle="h4">{program.name}</Text>
                                     </CardHeader>
                                     <CardBody gridGap={2}>
                                         <ExercisesAccordion exercises={program.exercises} />

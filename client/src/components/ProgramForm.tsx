@@ -70,9 +70,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
             <Flex pt={4} flexDir="column" overflowY="auto" scrollBehavior="smooth">
                 <FormControl isInvalid={Boolean(formState.errors.name)} mb={4} px={4}>
                     <FormLabel htmlFor="name">
-                        <Text textStyle="h3" as="h3">
-                            Name
-                        </Text>
+                        <Text textStyle="h3">Name</Text>
                     </FormLabel>
                     <Input
                         placeholder="Heavy weights"
@@ -82,9 +80,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                     {formState.errors.name?.message && <FormError message={formState.errors.name.message} />}
                 </FormControl>
                 <Flex justifyContent="space-between" mb={2} px={4}>
-                    <Text textStyle="h3" as="h3">
-                        Exercises
-                    </Text>
+                    <Text textStyle="h3">Exercises</Text>
                     <Button onClick={addExercise} variant="unstyled">
                         <Icon icon={Plus} size={8} />
                     </Button>

@@ -29,7 +29,7 @@ export default function BrandSpinner(props: FlexProps) {
             w="5rem"
             {...props}
         >
-            <Text as="h1" fontWeight={700} textAlign="center" whiteSpace="nowrap" color="black">
+            <Text fontWeight={700} textAlign="center" whiteSpace="nowrap" color="black">
                 {BRAND_NAME[0]}
             </Text>
         </Flex>
