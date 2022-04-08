@@ -11,7 +11,7 @@ export const Alert: StyleConfig = {
 
             const container = {
                 color: "text.default.main",
-                bgColor: "gray.900",
+                bgColor: "gray.800",
                 overflow: "visible",
                 px: 6,
                 pr: 6,
@@ -31,7 +31,7 @@ export const Alert: StyleConfig = {
                     pos: "absolute",
                     w: "100%",
                     h: "100%",
-                    bgColor: "gray.900",
+                    bgColor: "gray.800",
                     rounded: "full",
                     zIndex: -1,
                 },

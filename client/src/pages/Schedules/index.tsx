@@ -124,7 +124,7 @@ export default function Schedules() {
                             All
                         </Button>
                     </Flex>
-                    <Flex flexDir="column" gridGap={4} overflowY="auto" p={4} pt={0}>
+                    <Flex flexDir="column" gridGap={4} p={4} pt={0}>
                         {schedules.length === 0 && (
                             <Flex flexDir="column" alignItems="center">
                                 <AssetIcon size="75%" icon="void" />

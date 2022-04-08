@@ -8,3 +8,5 @@ export * from "./FormError";
 export * from "./Alert";
 export * from "./FormLabel";
 export * from "./Checkbox";
+export * from "./Accordion";
+export * from "./Table";

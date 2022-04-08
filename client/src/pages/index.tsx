@@ -2,7 +2,6 @@ import { Box, Grid, Text } from "@chakra-ui/react";
 import { useTitle } from "@zeilar/hooks";
 import { useRef } from "react";
 import { Schedule } from "../../@types/schedule";
-import CardBody from "../components/Card/CardBody";
 import PageSpinner from "../components/PageSpinner";
 import PageWrapper from "../components/PageWrapper";
 import { useCSR } from "../hooks";
@@ -17,17 +16,12 @@ export default function Home() {
     return (
         <PageWrapper p={4}>
             {(todayQuery.loading || tomorrowQuery.loading) && <PageSpinner />}
-            {todayQuery.success && (
+            {todayQuery.success && todayQuery.data.length > 0 && (
                 <Box>
                     <Text textStyle="h2" as="h2" mb={2} color="cyan.main">
                         Today
                     </Text>
                     <Grid gridGap={2}>
-                        {todayQuery.data.length === 0 && (
-                            <CardBody rounded="lg" boxShadow="card">
-                                <Text>Nothing to do today!</Text>
-                            </CardBody>
-                        )}
                         {[...todayQuery.data]
                             .sort((a, b) => (a.from > b.from ? 1 : -1))
                             .map(schedule => (
@@ -36,17 +30,12 @@ export default function Home() {
                     </Grid>
                 </Box>
             )}
-            {tomorrowQuery.success && (
+            {tomorrowQuery.success && tomorrowQuery.data.length > 0 && (
                 <Box mt={4}>
                     <Text textStyle="h2" as="h2" mb={2} color="cyan.main">
-                        Upcoming
+                        Tomorrow
                     </Text>
                     <Grid gridGap={2}>
-                        {tomorrowQuery.data.length === 0 && (
-                            <CardBody rounded="lg" boxShadow="card">
-                                <Text>Nothing to do today!</Text>
-                            </CardBody>
-                        )}
                         {[...tomorrowQuery.data]
                             .sort((a, b) => (a.from > b.from ? 1 : -1))
                             .map(schedule => (
