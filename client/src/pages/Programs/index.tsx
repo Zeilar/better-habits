@@ -18,6 +18,8 @@ import { useTitle } from "@zeilar/hooks";
 import Card from "../../components/Card/Card";
 import CardHeader from "../../components/Card/CardHeader";
 import Chip from "../../components/Chip";
+import { fadeInAnimation } from "../../styles/aimations";
+import ExercisesAccordion from "../../components/ExercisesAccordion";
 
 interface Sort {
     property: SortProperty;
@@ -77,7 +79,7 @@ export default function Programs() {
                             </Button>
                         </Flex>
                     </Box>
-                    <Flex flexDir="column" gridGap={4} p={4} pt={0}>
+                    <Box p={4} pt={0}>
                         {data.length === 0 && (
                             <Flex flexDir="column" alignItems="center">
                                 <AssetIcon size="75%" icon="void" />
@@ -88,27 +90,24 @@ export default function Programs() {
                                 </Flex>
                             </Flex>
                         )}
-                        {sortBy(sorter.sort, sort.property).map(program => (
-                            <Card key={program.id}>
-                                <CardHeader>
-                                    <Text textStyle="h4" as="h4">
-                                        {program.name}
-                                    </Text>
-                                </CardHeader>
-                                <CardBody gridGap={2}>
-                                    <Chip textStyle="p">
-                                        <Icon icon={Dumbbell} mr={2} />
-                                        <Text as="span" verticalAlign="middle">
-                                            {program.exercises.length}
+                        <Flex flexDir="column" gridGap={4} animation={fadeInAnimation}>
+                            {sortBy(sorter.sort, sort.property).map(program => (
+                                <Card key={program.id}>
+                                    <CardHeader>
+                                        <Text textStyle="h4" as="h4">
+                                            {program.name}
                                         </Text>
-                                    </Chip>
-                                    <Link as={ReactLink} to={`/program/${program.id}`} mt={4}>
-                                        View
-                                    </Link>
-                                </CardBody>
-                            </Card>
-                        ))}
-                    </Flex>
+                                    </CardHeader>
+                                    <CardBody gridGap={2}>
+                                        <ExercisesAccordion exercises={program.exercises} />
+                                        <Link as={ReactLink} to={`/program/${program.id}`} mt={4}>
+                                            View
+                                        </Link>
+                                    </CardBody>
+                                </Card>
+                            ))}
+                        </Flex>
+                    </Box>
                 </>
             )}
             <Flex

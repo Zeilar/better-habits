@@ -1,10 +1,11 @@
 import { Flex, Text, FlexProps } from "@chakra-ui/layout";
 import { keyframes } from "@chakra-ui/system";
+import theme from "../theme";
 import { BRAND_NAME } from "../utils/constants";
 
 const pulse = keyframes`
     0% {
-        box-shadow: 0 0 0 0 rgba(92, 255, 176, 1);
+        box-shadow: 0 0 0 0 ${theme.colors.cyan["300"]};
     }
     70% {
         box-shadow: 0 0 0 10px rgba(92, 255, 176, 0);

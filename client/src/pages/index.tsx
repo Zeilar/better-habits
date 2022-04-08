@@ -7,6 +7,7 @@ import PageWrapper from "../components/PageWrapper";
 import { useCSR } from "../hooks";
 import { BRAND_NAME } from "../utils/constants";
 import Event from "../components/Event";
+import { fadeInAnimation } from "../styles/aimations";
 
 export default function Home() {
     const now = useRef(new Date().toISOString());
@@ -14,7 +15,7 @@ export default function Home() {
     const tomorrowQuery = useCSR<Schedule[]>("/schedules", { params: { day: now.current } });
     useTitle(`Home | ${BRAND_NAME}`);
     return (
-        <PageWrapper p={4}>
+        <PageWrapper p={4} animation={fadeInAnimation}>
             {(todayQuery.loading || tomorrowQuery.loading) && <PageSpinner />}
             {todayQuery.success && todayQuery.data.length > 0 && (
                 <Box>
