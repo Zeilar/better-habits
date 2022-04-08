@@ -106,16 +106,18 @@ export default function Login() {
                     </FormControl>
                     <Text my={4}>
                         {`Not registered? `}
-                        <ReactLink to="/register">Create one</ReactLink>
+                        <Link as={ReactLink} to="/register">
+                            Create one
+                        </Link>
                     </Text>
                     <Button rounded="lg" isLoading={isSubmitting} type="submit">
                         Login
                     </Button>
                 </Flex>
             </Box>
-            <Link as={ReactLink} to="/guest" pos="absolute" bottom={8}>
-                <Flex justifyContent="center" alignItems="center">
-                    <Icon size={8} icon={ArrowLeftShort} mr={2} />
+            <Link as={ReactLink} to="/guest" pos="absolute" bottom={4}>
+                <Flex flexDir="column" justifyContent="center" alignItems="center" color="text.default.main">
+                    <Icon size={8} icon={ArrowLeftShort} />
                     <Text textStyle="h3">Back</Text>
                 </Flex>
             </Link>

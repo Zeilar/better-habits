@@ -100,30 +100,32 @@ export default function Register() {
                     </FormControl>
                     <FormControl isInvalid={Boolean(errors.passwordConfirm)} mb={8}>
                         <FormLabel mb={0} htmlFor="passwordConfirm">
-                            PasswordConfirm
+                            Confirm Password
                         </FormLabel>
                         <Input
                             borderColor="text.default.main"
                             id="passwordConfirm"
                             isInvalid={Boolean(errors.passwordConfirm)}
-                            type="passwordConfirm"
+                            type="password"
                             variant="flushed"
-                            {...register("passwordConfirm", { required: "Password confirmation is required" })}
+                            {...register("passwordConfirm", { required: "Confirmation is required" })}
                         />
                         {errors.passwordConfirm?.message && <FormError message={errors.passwordConfirm.message} />}
                     </FormControl>
                     <Text my={4}>
                         {`Already registered? `}
-                        <ReactLink to="/login">Login</ReactLink>
+                        <Link as={ReactLink} to="/login">
+                            Login
+                        </Link>
                     </Text>
                     <Button rounded="lg" isLoading={isSubmitting} type="submit">
                         Login
                     </Button>
                 </Flex>
             </Box>
-            <Link as={ReactLink} to="/guest" pos="absolute" bottom={8}>
-                <Flex justifyContent="center" alignItems="center">
-                    <Icon size={8} icon={ArrowLeftShort} mr={2} />
+            <Link as={ReactLink} to="/guest" pos="absolute" bottom={4}>
+                <Flex flexDir="column" justifyContent="center" alignItems="center" color="text.default.main">
+                    <Icon size={8} icon={ArrowLeftShort} />
                     <Text textStyle="h3">Back</Text>
                 </Flex>
             </Link>

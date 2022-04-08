@@ -49,7 +49,7 @@ export default function NewProgram() {
                     >
                         <Button type="submit">Create</Button>
                         <Link as={ReactLink} to="/programs" display="flex" w="100%">
-                            <Text m="auto" color="white.900">
+                            <Text m="auto" color="text.default.main">
                                 Cancel
                             </Text>
                         </Link>

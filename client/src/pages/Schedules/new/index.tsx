@@ -189,7 +189,7 @@ export default function NewSchedule() {
                 >
                     <Button type="submit">Create</Button>
                     <Link as={ReactLink} to="/schedule" display="flex" w="100%">
-                        <Text m="auto" color="white.900">
+                        <Text m="auto" color="text.default.main">
                             Cancel
                         </Text>
                     </Link>
