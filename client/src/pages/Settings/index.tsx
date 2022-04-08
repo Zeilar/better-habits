@@ -13,8 +13,7 @@ export default function Settings() {
                 Settings
             </Text>
             <Grid
-                bgColor="gray.700"
-                h="calc(100vh - var(--chakra-sizes-navbarHeight) - 4rem)"
+                h="calc(100vh - var(--chakra-sizes-navbarHeight) - 4.25rem)"
                 overflowY="auto"
                 gridTemplateRows="repeat(1, 4rem)"
             >
@@ -25,7 +24,7 @@ export default function Settings() {
                     borderBottomColor="border.default"
                     borderRadius={0}
                     paddingInline={4}
-                    _hover={{ bgColor: "gray.600" }}
+                    _hover={{ bgColor: "gray.800" }}
                     h="auto"
                     onClick={logout}
                 >

@@ -1,4 +1,4 @@
-import { Grid, Skeleton, Text, Divider, Flex, Box, Button } from "@chakra-ui/react";
+import { Grid, Skeleton, Text, Flex, Box, Button } from "@chakra-ui/react";
 import { useCSR, useSort } from "../../hooks";
 import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink, useNavigate, useSearchParams } from "react-router-dom";
@@ -82,15 +82,13 @@ export default function Schedules() {
                             <Icon icon={sorter.direction === "asc" ? ArrowUpShort : ArrowDownShort} />
                         </Button>
                     </Flex>
-                    <Divider m={4} w="auto" />
                     <Flex
                         bgColor="gray.800"
                         pos="relative"
                         h={10}
                         p={1}
+                        m={4}
                         rounded="pill"
-                        mx={4}
-                        mb={4}
                         alignItems="center"
                         justifyContent="space-between"
                     >
