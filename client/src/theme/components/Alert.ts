@@ -16,7 +16,6 @@ export const Alert: StyleConfig = {
                 pr: 6,
                 borderWidth: 2,
                 boxShadow: _theme.shadows.card,
-                "box-shadow": _theme.shadows.card, // Need both keys for some reason
             };
             switch (props.status) {
                 case "info":
