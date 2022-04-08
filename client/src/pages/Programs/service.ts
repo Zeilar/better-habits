@@ -5,7 +5,15 @@ import { Program } from "../../../@types/program";
 export type SortProperty = "name" | "duration" | "exercises" | "updatedAt";
 
 export function exercisesCombinedDuration(exercises: Exercise[]) {
-    return exercises.reduce((total, exercise) => total + (exercise.duration ?? 0), 0);
+    return exercises.reduce((total, { duration, sets }) => {
+        if (!duration) {
+            return total;
+        }
+        if (!sets) {
+            return total + duration;
+        }
+        return total + duration * sets;
+    }, 0);
 }
 
 export function sortBy(cb: SortFunction<Program>, property: SortProperty) {

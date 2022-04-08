@@ -5,13 +5,12 @@ import PageWrapper from "../../components/PageWrapper";
 import { Link as ReactLink } from "react-router-dom";
 import Icon from "../../components/Icon";
 import CardBody from "../../components/Card/CardBody";
-import { exercisesCombinedDuration, sortBy, SortProperty } from "./service";
+import { sortBy, SortProperty } from "./service";
 import { useState } from "react";
 import { ArrowDownShort } from "@styled-icons/bootstrap/ArrowDownShort";
 import { ArrowUpShort } from "@styled-icons/bootstrap/ArrowUpShort";
 import { Plus } from "@styled-icons/bootstrap/Plus";
 import { Dumbbell } from "@styled-icons/fluentui-system-regular";
-import { Clock } from "@styled-icons/fa-regular";
 import AssetIcon from "../../components/AssetIcon";
 import Select, { SelectItem } from "../../components/Select";
 import { BRAND_NAME } from "../../utils/constants";
@@ -97,20 +96,12 @@ export default function Programs() {
                                     </Text>
                                 </CardHeader>
                                 <CardBody gridGap={2}>
-                                    <Flex gridGap={2} flexWrap="wrap">
-                                        <Chip textStyle="p">
-                                            <Icon icon={Dumbbell} mr={2} />
-                                            <Text as="span" verticalAlign="middle">
-                                                {program.exercises.length}
-                                            </Text>
-                                        </Chip>
-                                        <Chip textStyle="p">
-                                            <Icon icon={Clock} mr={2} />
-                                            <Text as="span" verticalAlign="middle">
-                                                {exercisesCombinedDuration(program.exercises)}
-                                            </Text>
-                                        </Chip>
-                                    </Flex>
+                                    <Chip textStyle="p">
+                                        <Icon icon={Dumbbell} mr={2} />
+                                        <Text as="span" verticalAlign="middle">
+                                            {program.exercises.length}
+                                        </Text>
+                                    </Chip>
                                     <Link as={ReactLink} to={`/program/${program.id}`} mt={4}>
                                         View
                                     </Link>
