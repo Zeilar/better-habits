@@ -60,7 +60,7 @@ export default function Schedules() {
             )}
             {success && (
                 <>
-                    <Text textStyle="h3" p={4} color="cyan.main">
+                    <Text textStyle="pageTitle" p={4}>
                         My schedule
                     </Text>
                     <Flex px={4}>

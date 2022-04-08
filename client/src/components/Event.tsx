@@ -18,7 +18,7 @@ export default function Event({ schedule, ...props }: Props) {
                 <Text textStyle="h4">{schedule.program.name}</Text>
             </CardHeader>
             <CardBody>
-                <Text textStyle="h4">
+                <Text textStyle="h5">
                     {schedule.from} - {schedule.to}
                 </Text>
                 {schedule.days.length > 0 && (

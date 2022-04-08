@@ -9,7 +9,7 @@ export default function Settings() {
     useTitle(`Settings | ${BRAND_NAME}`);
     return (
         <PageWrapper>
-            <Text textStyle="h3" color="cyan.main" p={4}>
+            <Text textStyle="pageTitle" p={4}>
                 Settings
             </Text>
             <Grid
@@ -20,13 +20,15 @@ export default function Settings() {
                 <Button
                     textAlign="left"
                     variant="unstyled"
-                    borderBottom="1px solid"
-                    borderBottomColor="border.default"
-                    borderRadius={0}
                     paddingInline={4}
                     _hover={{ bgColor: "gray.800" }}
                     h="auto"
                     onClick={logout}
+                    _notFirst={{
+                        borderBottom: "1px solid",
+                        borderBottomColor: "border.default",
+                        borderRadius: 0,
+                    }}
                 >
                     Logout
                 </Button>

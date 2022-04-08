@@ -19,7 +19,7 @@ export default function Home() {
             {(todayQuery.loading || tomorrowQuery.loading) && <PageSpinner />}
             {todayQuery.success && todayQuery.data.length > 0 && (
                 <Box>
-                    <Text textStyle="h2" mb={2} color="cyan.main">
+                    <Text textStyle="pageTitle" mb={2}>
                         Today
                     </Text>
                     <Grid gridGap={2}>
@@ -33,7 +33,7 @@ export default function Home() {
             )}
             {tomorrowQuery.success && tomorrowQuery.data.length > 0 && (
                 <Box mt={4}>
-                    <Text textStyle="h2" mb={2} color="cyan.main">
+                    <Text textStyle="pageTitle" mb={2}>
                         Tomorrow
                     </Text>
                     <Grid gridGap={2}>

@@ -41,7 +41,7 @@ export default function Programs() {
     const sort = sorts[sortOptionsSelection];
 
     return (
-        <PageWrapper noScroll>
+        <PageWrapper noScroll animation={fadeInAnimation}>
             {loading && (
                 <Grid p={4} gridGap={2}>
                     {Array(5)
@@ -54,7 +54,7 @@ export default function Programs() {
             {success && (
                 <>
                     <Box>
-                        <Text textStyle="h2" px={4} color="cyan.main" mb={4} mt={4}>
+                        <Text textStyle="pageTitle" p={4}>
                             My programs
                         </Text>
                         <Flex px={4} mb={4}>
@@ -88,7 +88,7 @@ export default function Programs() {
                                 </Flex>
                             </Flex>
                         )}
-                        <Flex flexDir="column" gridGap={4} animation={fadeInAnimation}>
+                        <Flex flexDir="column" gridGap={4}>
                             {sortBy(sorter.sort, sort.property).map(program => (
                                 <Card key={program.id}>
                                     <CardHeader>
@@ -115,13 +115,13 @@ export default function Programs() {
                 transform="translateX(-50%)"
                 left="50%"
                 rounded="full"
-                w={10}
-                h={10}
+                w={8}
+                h={8}
                 boxShadow="card"
                 bgColor="cyan.main"
                 to="/programs/new"
             >
-                <Icon icon={Plus} size={8} color="text.default.contrast" />
+                <Icon icon={Plus} size={6} color="text.default.contrast" />
             </Flex>
         </PageWrapper>
     );

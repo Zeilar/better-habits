@@ -67,7 +67,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
     return (
         <Flex as="form" onSubmit={handleSubmit(onSubmit)} h="100%" flexDir="column" flexGrow={1} overflow="hidden">
             {(submitting || formState.isSubmitting) && <ContainerSpinner />}
-            <Flex pt={4} flexDir="column" overflowY="auto" scrollBehavior="smooth">
+            <Flex flexDir="column" overflowY="auto" scrollBehavior="smooth">
                 <FormControl isInvalid={Boolean(formState.errors.name)} mb={4} px={4}>
                     <FormLabel htmlFor="name">
                         <Text textStyle="h3">Name</Text>
@@ -141,8 +141,11 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                         <FormControl isInvalid={Boolean(errors?.name)}>
                                             <FormLabel htmlFor={name}>Name</FormLabel>
                                             <Input
+                                                bgColor="blackAlpha.400"
                                                 id={name}
                                                 placeholder="Situps"
+                                                _hover={{ bgColor: "blackAlpha.500" }}
+                                                _focus={{ bgColor: "blackAlpha.500" }}
                                                 {...register(`exercises.${i}.name`, {
                                                     required: "Field is required",
                                                 })}
@@ -153,9 +156,12 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                             <FormControl isInvalid={Boolean(errors?.sets)}>
                                                 <FormLabel htmlFor={sets}>Sets</FormLabel>
                                                 <Input
+                                                    bgColor="blackAlpha.400"
                                                     id={sets}
                                                     placeholder="Sets"
                                                     type="number"
+                                                    _hover={{ bgColor: "blackAlpha.500" }}
+                                                    _focus={{ bgColor: "blackAlpha.500" }}
                                                     {...register(`exercises.${i}.sets`, {
                                                         setValueAs: value => Number(value) || null,
                                                     })}
@@ -165,9 +171,12 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                             <FormControl isInvalid={Boolean(errors?.duration)}>
                                                 <FormLabel htmlFor={duration}>Duration</FormLabel>
                                                 <Input
+                                                    bgColor="blackAlpha.400"
                                                     id={duration}
                                                     type="number"
                                                     placeholder="Duration"
+                                                    _hover={{ bgColor: "blackAlpha.500" }}
+                                                    _focus={{ bgColor: "blackAlpha.500" }}
                                                     {...register(`exercises.${i}.duration`, {
                                                         setValueAs: value => Number(value) || null,
                                                     })}

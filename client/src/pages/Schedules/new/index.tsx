@@ -12,6 +12,7 @@ import ComboSelect from "../../../components/ComboSelect";
 import Select, { SelectItem } from "../../../components/Select";
 import { Program } from "../../../../@types/program";
 import DayRadioButton from "./DayRadioButton";
+import { fadeInAnimation } from "../../../styles/aimations";
 
 interface Fields {
     days: Day[];
@@ -58,7 +59,7 @@ export default function NewSchedule() {
     }
 
     return (
-        <PageWrapper noScroll>
+        <PageWrapper noScroll animation={fadeInAnimation}>
             <Text textStyle="pageTitle" p={4}>
                 Create event
             </Text>
