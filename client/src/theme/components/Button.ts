@@ -28,7 +28,7 @@ export const Button: StyleConfig = {
     variants: {
         primary: {
             bgColor: "cyan.main",
-            color: "black",
+            color: "text.default.contrast",
         },
         secondary: {
             border: "2px solid",
@@ -37,7 +37,7 @@ export const Button: StyleConfig = {
             bgColor: "blackAlpha.400",
             _hover: {
                 bgColor: "cyan.main",
-                color: "black",
+                color: "text.default.contrast",
             },
         },
         link: {

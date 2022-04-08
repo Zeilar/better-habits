@@ -36,7 +36,7 @@ export default function Register() {
             bgPos="center"
             bgSize="cover"
             pos="relative"
-            color="text.default.contrast"
+            color="text.default.main"
             justifyContent="center"
             alignItems="center"
             flexDir="column"
@@ -76,7 +76,7 @@ export default function Register() {
                             Email
                         </FormLabel>
                         <Input
-                            borderColor="text.default.contrast"
+                            borderColor="text.default.main"
                             id="email"
                             type="email"
                             variant="flushed"
@@ -89,7 +89,7 @@ export default function Register() {
                             Password
                         </FormLabel>
                         <Input
-                            borderColor="text.default.contrast"
+                            borderColor="text.default.main"
                             id="password"
                             isInvalid={Boolean(errors.password)}
                             type="password"
@@ -103,7 +103,7 @@ export default function Register() {
                             PasswordConfirm
                         </FormLabel>
                         <Input
-                            borderColor="text.default.contrast"
+                            borderColor="text.default.main"
                             id="passwordConfirm"
                             isInvalid={Boolean(errors.passwordConfirm)}
                             type="passwordConfirm"

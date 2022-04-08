@@ -8,7 +8,6 @@ export const Alert: StyleConfig = {
         solid: (props: AlertProps) => {
             // @ts-ignore
             const _theme: typeof theme = props.theme;
-
             const container = {
                 color: "text.default.main",
                 bgColor: "gray.800",
@@ -19,72 +18,44 @@ export const Alert: StyleConfig = {
                 boxShadow: _theme.shadows.card,
                 "box-shadow": _theme.shadows.card, // Need both keys for some reason
             };
-            const icon = {
-                transform: "translateY(-50%) translateX(-50%)",
-                pos: "absolute",
-                top: "50%",
-                w: 5,
-                h: 5,
-                left: 0,
-                _after: {
-                    content: `""`,
-                    pos: "absolute",
-                    w: "100%",
-                    h: "100%",
-                    bgColor: "gray.800",
-                    rounded: "full",
-                    zIndex: -1,
-                },
-            };
-            const title = {
-                mr: 0,
-            };
             switch (props.status) {
                 case "info":
                     return {
-                        title,
                         container: {
                             ...container,
                             borderColor: "blue.400",
                         },
                         icon: {
-                            ...icon,
                             color: "blue.400",
                         },
                     };
                 case "warning":
                     return {
-                        title,
                         container: {
                             ...container,
                             borderColor: "yello.400",
                         },
                         icon: {
-                            ...icon,
                             color: "yellow.400",
                         },
                     };
                 case "error":
                     return {
-                        title,
                         container: {
                             ...container,
                             borderColor: "error",
                         },
                         icon: {
-                            ...icon,
                             color: "red.400",
                         },
                     };
                 case "success":
                     return {
-                        title,
                         container: {
                             ...container,
                             borderColor: "success",
                         },
                         icon: {
-                            ...icon,
                             color: "success",
                         },
                     };

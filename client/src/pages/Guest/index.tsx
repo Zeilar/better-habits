@@ -27,7 +27,7 @@ export default function Guest() {
                 inset: 0,
             }}
         >
-            <Box zIndex={10} color="text.default.contrast">
+            <Box zIndex={10}>
                 <Text textStyle="h1" as="h1">
                     👋
                 </Text>

@@ -42,7 +42,7 @@ export default function Login() {
             bgPos="center"
             bgSize="cover"
             pos="relative"
-            color="text.default.contrast"
+            color="text.default.main"
             justifyContent="center"
             alignItems="center"
             flexDir="column"
@@ -82,7 +82,7 @@ export default function Login() {
                             Email
                         </FormLabel>
                         <Input
-                            borderColor="text.default.contrast"
+                            borderColor="text.default.main"
                             id="email"
                             type="email"
                             variant="flushed"
@@ -95,7 +95,7 @@ export default function Login() {
                             Password
                         </FormLabel>
                         <Input
-                            borderColor="text.default.contrast"
+                            borderColor="text.default.main"
                             id="password"
                             isInvalid={Boolean(errors.password)}
                             type="password"
