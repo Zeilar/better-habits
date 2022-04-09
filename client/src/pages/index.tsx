@@ -10,9 +10,11 @@ import Event from "../components/Event";
 import { fadeInAnimation } from "../styles/aimations";
 
 export default function Home() {
-    const now = useRef(new Date().toISOString());
-    const todayQuery = useCSR<Schedule[]>("/schedules", { params: { day: now.current } });
-    const tomorrowQuery = useCSR<Schedule[]>("/schedules", { params: { day: now.current } });
+    const now = useRef(new Date());
+    const todayQuery = useCSR<Schedule[]>("/schedules", { params: { day: now.current.toISOString() } });
+    const tomorrowQuery = useCSR<Schedule[]>("/schedules", {
+        params: { day: new Date(now.current.getTime() + 1000 * 60 * 60 * 24).toISOString() },
+    });
     useTitle(`Home | ${BRAND_NAME}`);
     return (
         <PageWrapper p={4} animation={fadeInAnimation}>

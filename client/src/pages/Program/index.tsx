@@ -36,7 +36,6 @@ export default function SingleProgram() {
 
     async function destroy() {
         setSubmitting(true);
-        console.log("delete", id);
         const response = await apiService.request(`/programs/${id}`, { method: "DELETE" });
         setSubmitting(false);
         if (response.ok) {
