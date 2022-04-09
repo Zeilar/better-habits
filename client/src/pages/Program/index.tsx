@@ -8,6 +8,7 @@ import PageWrapper from "../../components/PageWrapper";
 import ProgramForm, { Fields } from "../../components/ProgramForm";
 import { useCSR, useToast } from "../../hooks";
 import { apiService } from "../../services";
+import { fadeInAnimation } from "../../styles/aimations";
 import { BRAND_NAME } from "../../utils/constants";
 
 export default function SingleProgram() {
@@ -46,7 +47,7 @@ export default function SingleProgram() {
     }
 
     return (
-        <PageWrapper noScroll>
+        <PageWrapper noScroll animation={fadeInAnimation} pt={4}>
             <ProgramForm
                 program={data}
                 onSubmit={edit}
@@ -54,7 +55,7 @@ export default function SingleProgram() {
                 controls={
                     <Grid
                         boxShadow="elevate.top"
-                        bgColor="gray.600"
+                        bgColor="gray.800"
                         gridTemplateColumns="repeat(2, 1fr)"
                         h="controlsHeight"
                         gridGap={4}

@@ -70,7 +70,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
             <Flex flexDir="column" overflowY="auto" scrollBehavior="smooth">
                 <FormControl isInvalid={Boolean(formState.errors.name)} mb={4} px={4}>
                     <FormLabel htmlFor="name">
-                        <Text textStyle="h3">Name</Text>
+                        <Text textStyle="h4">Name</Text>
                     </FormLabel>
                     <Input
                         placeholder="Heavy weights"
@@ -79,8 +79,8 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                     />
                     {formState.errors.name?.message && <FormError message={formState.errors.name.message} />}
                 </FormControl>
-                <Flex justifyContent="space-between" mb={2} px={4}>
-                    <Text textStyle="h3">Exercises</Text>
+                <Flex justifyContent="space-between" px={4}>
+                    <Text textStyle="h4">Exercises</Text>
                     <Button onClick={addExercise} variant="unstyled">
                         <Icon icon={Plus} size={8} />
                     </Button>
@@ -93,7 +93,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                 const name = `${label}.name`;
                                 const sets = `${label}.sets`;
                                 const duration = `${label}.duration`;
-                                const errors = formState.errors.exercises ? formState.errors.exercises[i] : {};
+                                const errors = formState.errors.exercises ? formState.errors.exercises[i] ?? {} : {};
                                 return (
                                     <CardBodyMotionBox
                                         key={id}
@@ -150,7 +150,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                                     required: "Field is required",
                                                 })}
                                             />
-                                            {errors.name?.message && <FormError message={errors.name.message} />}
+                                            {errors?.name?.message && <FormError message={errors.name.message} />}
                                         </FormControl>
                                         <Flex gridGap={4}>
                                             <FormControl isInvalid={Boolean(errors?.sets)}>
@@ -166,7 +166,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                                         setValueAs: value => Number(value) || null,
                                                     })}
                                                 />
-                                                {errors.sets?.message && <FormError message={errors.sets.message} />}
+                                                {errors?.sets?.message && <FormError message={errors.sets.message} />}
                                             </FormControl>
                                             <FormControl isInvalid={Boolean(errors?.duration)}>
                                                 <FormLabel htmlFor={duration}>Duration</FormLabel>
@@ -181,7 +181,7 @@ export default function ProgramForm({ program, onSubmit, submitting, controls }:
                                                         setValueAs: value => Number(value) || null,
                                                     })}
                                                 />
-                                                {errors.duration?.message && (
+                                                {errors?.duration?.message && (
                                                     <FormError message={errors.duration.message} />
                                                 )}
                                             </FormControl>
