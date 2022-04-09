@@ -43,15 +43,16 @@ export class ProgramService {
         Program.save(program);
     }
 
-    public async destroy(userId: number) {
-        const program = await Program.findOne({ userId });
+    public async destroy(id: number, userId: number) {
+        const program = await Program.findOne({ id });
         if (!program) {
             throw new NotFoundException();
         }
         if (program.userId !== userId) {
             throw new ForbiddenException();
         }
-        Program.delete(program);
+        const { exercises, schedules, ...rest } = program;
+        Program.delete({ ...rest });
     }
 
     public async getProgramWithExercises(programId: number, userId: number) {

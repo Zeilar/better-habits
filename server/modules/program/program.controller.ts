@@ -30,8 +30,8 @@ export class ProgramController {
 
     @Delete("/:id")
     @UseGuards(AuthenticatedGuard)
-    public destroy(@Req() req: Request) {
-        return this.programService.destroy(req.user!.id);
+    public destroy(@Req() req: Request, @Param() param: FindOneParams) {
+        return this.programService.destroy(param.id, req.user!.id);
     }
 
     @Put("/:id")
