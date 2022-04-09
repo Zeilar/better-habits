@@ -1,5 +1,21 @@
 [
     {
+        "name": "default",
+        "type": "mysql",
+        "host": "localhost",
+        "port": 3306,
+        "username": "",
+        "password": "",
+        "database": "",
+        "entities": ["dist/**/*.entity.js"],
+        "migrations": ["dist/migrations/*.js"],
+        "cli": {
+            "migrationsDir": "dist/migrations"
+        },
+        "logging": ["error"],
+        "synchronize": true
+    },
+    {
         "name": "development",
         "type": "mysql",
         "host": "localhost",
