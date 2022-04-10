@@ -29,7 +29,7 @@ export default function ComboSelect({ items, value, onChange }: Props) {
                 onChange={event => setQuery(event.target.value)}
                 fontWeight={500}
                 boxShadow="card"
-                _focus={{ borderColor: "transparent" }}
+                _focus={{ borderColor: "transparent", outlineColor: "cyan.400" }}
             />
             <Combobox.Button as={Button} variant="unstyled" pos="absolute" right={4}>
                 <Icon size={4} icon={Selector} />

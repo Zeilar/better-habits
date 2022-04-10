@@ -43,6 +43,7 @@ export default function Select({ items, value, onChange, ...props }: Props) {
                 cursor="pointer"
                 zIndex={20}
                 _hover={{ bgColor: "gray.700" }}
+                _focus={{ outlineWidth: 2, outlineColor: "cyan.400", outlineStyle: "solid" }}
             >
                 {value.label}
                 <Icon ml={4} size={4} icon={Selector} />

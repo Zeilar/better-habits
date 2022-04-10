@@ -9,9 +9,10 @@ export const Input: StyleConfig = {
                     bgColor: "gray.700",
                 },
                 _focus: {
-                    borderColor: "cyan.main",
                     boxShadow: "none",
                     bgColor: "gray.700",
+                    outlineWidth: 2,
+                    outlineColor: "cyan.400",
                 },
                 _invalid: {
                     borderColor: "danger",

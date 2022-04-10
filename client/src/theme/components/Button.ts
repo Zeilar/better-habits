@@ -9,6 +9,8 @@ export const Button: StyleConfig = {
         border: 0,
         _focus: {
             boxShadow: "none",
+            outlineWidth: 2,
+            outlineColor: "cyan.400",
         },
         _disabled: {
             pointerEvents: "none",
